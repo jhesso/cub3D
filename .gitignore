@@ -1,0 +1,7 @@
+libft.a
+cub3d
+obj/
+.vscode
+libft/obj/
+.DS_Store
+**/.DS_Store
