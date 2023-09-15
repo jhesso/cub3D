@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/14 20:33:38 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/15 17:58:16 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ NAME_B		=	cub3D_bonus
 CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
 #MLX 		=	SHOULD LINK THE MLX LIBRARY HERE!
 #MLX_FLAGS	=	SHOULD ADD THE FLAGS HERE, AND ALSO ON THE COMPILING!
-FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
+#FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 LIBFT		=	libft.a
 LIBFT_DIR	=	libft/
 
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
-SRC			=	main.c
+SRC			=	main.c init.c read_map.c error.c split_line.c\
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/
@@ -71,7 +71,7 @@ clean:
 	@echo "$(RED)removing object files$(RESET)"
 	@/bin/rm -rf $(OBJ_PATH) $(OBJ_B_PATH)
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	@$(MAKE) clean -C $(MLX)
+	#@$(MAKE) clean -C $(MLX)
 
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
