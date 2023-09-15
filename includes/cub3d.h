@@ -6,12 +6,16 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/14 20:11:27 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:01:14 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# ifndef BUFF
+#  define BUFF 42
+# endif
 
 /******************************************************************************/
 /*								Includes  									  */
@@ -25,18 +29,36 @@
 # include "../libft/includes/libft.h"
 //# include "" should include the header file of the MLX library!
 
+/******************************************************************************/
+/*								Error Messages	 							  */
+/******************************************************************************/
 
+# define X_VALID_FILE "Error: The map is not a .cub file!\n"
+# define X_OPEN_FILE "Error: Couldn't open the file!\n"
+# define X_READ_FILE "Error: Couldn't read the file!\n"
+# define X_MALLOC "Error: Malloc allocation has failed!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
 /******************************************************************************/
 
+typedef struct s_map_data
+{
+	//should add everything we need!
+	char		**map;
+
+}	t_map_data;
 
 /******************************************************************************/
 /*								Functions									  */
 /******************************************************************************/
 
+void		init_map_data(t_map_data *data, char *map);
 
+char		**read_map(char *file);
+
+int	print_error_message(char *message);
+char	**ft_split_line(char const *s, char c);
 
 
 #endif
