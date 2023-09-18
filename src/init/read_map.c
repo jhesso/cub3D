@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:57:05 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/18 15:08:09 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:22:27 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,9 @@ static char	*read_file(int fd, char *buf, int flag, int ret)
 /*	read_map()
 *	reads the given file and saves it into a char**
 */
-char	**read_map(char *file)
+void	read_map(t_map_data *data, char *file)
 {
 	int		fd;
-	char	**map;
 	char	*line;
 	char	*buf;
 
@@ -77,7 +76,7 @@ char	**read_map(char *file)
 	if (!buf)
 		print_error_message(X_MALLOC);
 	line = read_file(fd, buf, 0, 1);
-	map = ft_split_line(line);
+	data->map = ft_split_line(line);
 	free(line);
-	return (map);
+	close(file);
 }
