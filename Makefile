@@ -6,18 +6,18 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/15 17:58:16 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/18 13:44:02 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
 NAME_B		=	cub3D_bonus
 CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
-#MLX 		=	SHOULD LINK THE MLX LIBRARY HERE!
-#MLX_FLAGS	=	SHOULD ADD THE FLAGS HERE, AND ALSO ON THE COMPILING!
-#FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
-LIBFT		=	libft.a
 LIBFT_DIR	=	libft/
+LIBFT		=	libft.a
+MLX_DIR		=	MLX42/
+MLX 		=	MLX42/build/libmlx42.a
+FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
@@ -41,7 +41,10 @@ RED				=	\033[0;31m
 BLUE			=	\033[0;34m
 RESET			=	\033[0m
 
-all: $(NAME)
+all: $(NAME) $(MLX)
+
+$(MLX):
+	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
@@ -50,7 +53,6 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 $(NAME): $(OBJS)
 	@echo "$(BLUE)Compiling $(NAME)$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
-	#@$(MAKE) -C $(MLX)
 	@cc $(CFLAGS) $(OBJS) -o $(NAME) -L $(LIBFT_DIR) -lft
 	@echo "$(GREEN)done$(RESET)"
 
@@ -63,7 +65,6 @@ $(OBJ_B_PATH)%.o: $(SRC_B_PATH)%.c
 $(NAME_B): $(OBJS_B)
 	@echo "$(BLUE)Compiling $(NAME_B)$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
-	#@$(MAKE) -C $(MLX)
 	@cc $(CFLAGS) $(OBJS_B) -o $(NAME_B) -L $(LIBFT_DIR) -lft
 	@echo "$(GREEN)done$(RESET)"
 
@@ -71,13 +72,13 @@ clean:
 	@echo "$(RED)removing object files$(RESET)"
 	@/bin/rm -rf $(OBJ_PATH) $(OBJ_B_PATH)
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	#@$(MAKE) clean -C $(MLX)
+	#@$(MAKE) clean -C $(MLX_DIR)/build //THESE STILL DOESNT WORK!
 
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
 	@/bin/rm -rf $(NAME) $(NAME_B)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
-	#@$(MAKE) fclean -C $(MLX)
+	#@$(MAKE) fclean -C $(MLX_DIR)/build //THESE STILL DOESNT WORK!
 	@echo "$(RED)done$(RESET)"
 
 re: fclean all
