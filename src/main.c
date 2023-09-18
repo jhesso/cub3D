@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/14 20:49:37 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:01:47 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		ft_printf(1, "Mandatory part!\n");
 		init_map_data(&data, argv[1]);
 	}
 	else

@@ -6,60 +6,55 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:57:35 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/15 20:00:38 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/18 14:58:15 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	get_amount_of_words(char const *s, char c)
+static int	count_lines(char const *s)
 {
 	int	amount;
-	int	flag;
 	int	i;
 
 	amount = 0;
-	flag = 0;
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == '\n')
 		{
 			amount++;
-			while (s[i + 1] == c && s[i + 1] != '\0')
+			while (s[i + 1] == '\n' && s[i + 1])
 			{
 				amount++;
 				i++;
 			}
 		}
-		else if (s[i] != c)
+		else if (s[i] != '\n')
 		{
 			amount++;
-			while (s[i] != c && s[i + 1] != '\0')
+			while (s[i] != '\n' && s[i + 1])
 				i++;
 		}
 		i++;
 	}
-	return (amount);
+	return (amount + 1);
 }
 
-static	int	get_word_len(char const *s, char c, int start)
+static	int	get_line_len(char const *s, int start)
 {
 	int	i;
 	int	len;
 
 	i = start;
 	len = 0;
-	// while (s[i] == c)
-	// 	i++;
-	if (s[i] == c)
+	if (s[i] == '\n')
 		len = 1;
-	while (s[i] != '\0' && s[i] != c)
+	while (s[i] && s[i] != '\n')
 	{
 		i++;
 		len++;
 	}
-	// printf("word_len: %d\n", len);
 	return (len);
 }
 
@@ -71,32 +66,29 @@ static char	**free_allocated_strings(char **ret, int row)
 	return (NULL);
 }
 
-/*	ft_split()
-*	splits given string s based on the delimiter char c into a 2d array of
-*	strings
-*	returns said 2d arr of strings or NULL if failed
-*	the caller is required to handle freeing the array after done using
-*/
-char	**ft_split_line(char const *s, char c)
+char	**ft_split_line(char const *s)
 {
 	char			**ret;
 	unsigned int	i;
 	unsigned int	row;
-	unsigned int	word_count;
+	unsigned int	line_count;
 
 	if (s == NULL)
 		return (NULL);
-	word_count = get_amount_of_words(s, c);
-	printf("%d\n", word_count);
-	ret = malloc(sizeof(char *) * (word_count + 1));
+	line_count = count_lines(s);
+	ret = malloc(sizeof(char *) * (line_count + 1));
 	if (ret == NULL)
 		return (NULL);
 	i = 0;
 	row = -1;
-	// printf("%s\n", s);
-	while (++row < word_count)
+	while (++row < line_count)
 	{
-
+		if (s[i] == '\n' && s[i + 1] != '\n' && i != 0)
+			i++;
+		ret[row] = ft_substr(s, i, get_line_len(s, i));
+		if (ret[row] == NULL)
+			return (free_allocated_strings(ret, row));
+		i = i + get_line_len(s, i);
 	}
 	ret[row] = NULL;
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:57:05 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/15 17:58:53 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:08:09 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static char	*ft_join(char *line, char *buf)
 	return (new_line);
 }
 
-static char	*read_file(int fd, char *buf, int flag, int ret, char *line)
+static char	*read_file(int fd, char *buf, int flag, int ret)
 {
+	char	*line;
+
 	while (ret > 0)
 	{
 		ret = read(fd, buf, BUFF);
@@ -74,8 +76,8 @@ char	**read_map(char *file)
 	buf = ft_calloc(BUFF + 1, sizeof(char));
 	if (!buf)
 		print_error_message(X_MALLOC);
-	line = read_file(fd, buf, 0, 1, NULL);
-	map = ft_split_line(line, '\n');
+	line = read_file(fd, buf, 0, 1);
+	map = ft_split_line(line);
 	free(line);
 	return (map);
 }
