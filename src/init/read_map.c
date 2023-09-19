@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:57:05 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/18 16:22:27 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:50:14 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	read_map(t_map_data *data, char *file)
 	if (!buf)
 		print_error_message(X_MALLOC);
 	line = read_file(fd, buf, 0, 1);
-	data->map = ft_split_line(line);
+	data->file_splitted = ft_split_line(line);
 	free(line);
-	close(file);
+	close(fd);
 }

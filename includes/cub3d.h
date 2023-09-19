@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/18 16:27:52 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:27:18 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define X_OPEN_FILE "Error: Couldn't open the file!\n"
 # define X_READ_FILE "Error: Couldn't read the file!\n"
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
+# define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -45,16 +46,14 @@
 typedef struct s_map_data
 {
 	//should add everything we need!
-	char		**map;
+	char		**file_splitted;
 	char		*north;
 	char		*south;
 	char		*west;
 	char		*east;
 	int			floor;
 	int			ceiling;
-	char
-
-}	t_map_data;
+}				t_map_data;
 
 /******************************************************************************/
 /*								Functions									  */
@@ -73,5 +72,7 @@ void			read_map(t_map_data *data, char *file);
 /* split_line */
 char			**ft_split_line(char const *s);
 
+/* parsing_map */
+void			parse_file(t_map_data *data);
 
 #endif

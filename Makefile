@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/18 15:00:31 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/19 14:24:59 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
 SRC			=	main.c error.c \
-				init/init.c init/read_map.c init/split_line.c
+				init/init.c init/read_map.c init/split_line.c \
+				parsing/parsing_map.c
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/
@@ -50,6 +51,7 @@ $(MLX):
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/init
+	@mkdir -p $(OBJ_PATH)/parsing
 	@cc $(CFLAGS) $(INCS) -c $< -o $@
 
 $(NAME): $(OBJS)
