@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/19 14:24:59 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/21 17:10:26 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_PATH	=	src/
 OBJ_PATH	=	obj/
 SRC			=	main.c error.c \
 				init/init.c init/read_map.c init/split_line.c \
-				parsing/parsing_map.c
+				parsing/split_elements_map.c parsing/parse_elements.c
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/

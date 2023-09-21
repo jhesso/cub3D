@@ -6,14 +6,22 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 16:19:47 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/15 16:48:47 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:53:30 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	print_error_message(char *message)
+char	*print_error_message(char *message)
 {
-	ft_printf(2, "%s\n", message);
-	exit(1);
+	ft_printf(2, "%s", message);
+	// return(false);
+	return (NULL);
+}
+
+
+bool	error_message(char *message)
+{
+	ft_printf(2, "%s", message);
+	return(false);
 }

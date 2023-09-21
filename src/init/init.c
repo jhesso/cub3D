@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/19 16:27:31 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:13:20 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,22 @@ static void	init_variables(t_map_data *data)
 	data->south = NULL;
 	data->west = NULL;
 	data->east = NULL;
-	data->floor = 0;
-	data->ceiling = 0;
+	data->floor = NULL;
+	data->ceiling = NULL;
+	data->map = NULL;
 }
 
-void	map_data(t_map_data *data, char *map)
+bool	map_data(t_map_data *data, char *map)
 {
+	// if should free, currently not exiting anywhere!
 	init_variables(data);
-	read_map(data, map);
-	parse_file(data);
-
+	if (!read_map(data, map))
+		return (false);
+	if (!parse_file(data))
+		return (false);
+	if (!parse_elements(data))
+		return (false);
+	// if (!parse_map(data))
+	// 	return (false);
+	return (true);
 }

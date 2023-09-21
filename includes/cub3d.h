@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/19 16:27:18 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:21:26 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <sys/types.h> //read
 # include <sys/uio.h> //read
+# include <stdbool.h>
 
 # include "../libft/includes/libft.h"
 //# include "" should include the header file of the MLX library!
@@ -38,6 +39,8 @@
 # define X_READ_FILE "Error: Couldn't read the file!\n"
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
 # define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
+# define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
+# define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -45,34 +48,47 @@
 
 typedef struct s_map_data
 {
-	//should add everything we need!
 	char		**file_splitted;
 	char		*north;
 	char		*south;
 	char		*west;
 	char		*east;
-	int			floor;
-	int			ceiling;
+	char		*floor;
+	char		*ceiling;
+	char		**map;
 }				t_map_data;
 
 /******************************************************************************/
 /*								Functions									  */
 /******************************************************************************/
 
-int			print_error_message(char *message);
+/* error */
+char			*print_error_message(char *message);
+bool			error_message(char *message);
 
 /*---------------------------------Init---------------------------------------*/
 
 /* init */
-void			map_data(t_map_data *data, char *map);
+bool			map_data(t_map_data *data, char *map);
 
 /* read_map */
-void			read_map(t_map_data *data, char *file);
+bool			read_map(t_map_data *data, char *file);
 
 /* split_line */
 char			**ft_split_line(char const *s);
 
-/* parsing_map */
-void			parse_file(t_map_data *data);
+/*---------------------------------Parsing------------------------------------*/
+
+/* split_elements&map */
+char			*parse_file(t_map_data *data);
+
+/* parse_elements */
+bool			parse_elements(t_map_data *data);
+
+/* parse_texture */
+
+
+/* TEMPORARY IN MAIN*/
+void			print_struct(t_map_data *data);
 
 #endif
