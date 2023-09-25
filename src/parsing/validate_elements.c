@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_elements.c                                   :+:      :+:    :+:   */
+/*   validate_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/21 19:15:22 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:53:46 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,30 @@ static bool	open_texture_files(char *file)
 
 static bool	validate_texture(t_map_data *data)
 {
-	if (open_texture_files(data->north))
+	if (!open_texture_files(data->north))
 		return (false);
-	if (open_texture_files(data->south))
+	if (!open_texture_files(data->south))
 		return (false);
-	if (open_texture_files(data->west))
+	if (!open_texture_files(data->west))
 		return (false);
-	if (open_texture_files(data->east))
+	if (!open_texture_files(data->east))
 		return (false);
 	return (true);
 }
 
+static bool	validate_colors(t_map_data *data)
+{
+	if (!open_texture_files(data->north))
+		return (false);
+	return (true);
+}
 
-bool	parse_elements(t_map_data *data)
+bool	validate_elements(t_map_data *data)
 {
 	print_struct(data);
-	validate_texture(data);
+	if (!validate_texture(data))
+		return (false);
+	if (!validate_colors(data))
+		return (false);
 	return (true);
 }

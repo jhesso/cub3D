@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/21 19:21:26 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:49:42 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
+# define X_EMPTY_LINES "Error: Map has empty lines!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -82,8 +83,8 @@ char			**ft_split_line(char const *s);
 /* split_elements&map */
 char			*parse_file(t_map_data *data);
 
-/* parse_elements */
-bool			parse_elements(t_map_data *data);
+/* validate_elements */
+bool			validate_elements(t_map_data *data);
 
 /* parse_texture */
 

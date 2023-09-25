@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/21 17:13:20 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:48:53 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	map_data(t_map_data *data, char *map)
 		return (false);
 	if (!parse_file(data))
 		return (false);
-	if (!parse_elements(data))
+	if (!validate_elements(data))
 		return (false);
 	// if (!parse_map(data))
 	// 	return (false);

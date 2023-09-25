@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/21 17:35:11 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:42:43 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,36 @@ static char *save_the_elements(t_map_data *data, int i, int j, bool *error)
 {
 	char *str;
 
+	if (data->file_splitted[i][j] != ' ' && data->file_splitted[i][j] != '\t')
+	{
+		print_error_message(X_UNKNOWN_ELEMENT);
+		*(error) = true;
+	}
 	j += remove_whitespace(&data->file_splitted[i][j]);
 	str = ft_strdup(&data->file_splitted[i][j]);
 	if (!str)
 	{
-		print_error_message(X_UNKNOWN_ELEMENT);
+		print_error_message(X_MALLOC);
+		*(error) = true;
+	}
+	return (str);
+}
+
+static char *save_the_map(t_map_data *data, int i, int j, bool *error)
+{
+	char *str;
+
+	if (data->file_splitted[i][j] == '\n' \
+		&& data->file_splitted[i + 1] != NULL)
+	{
+		print_error_message(X_EMPTY_LINES);
+		*(error) = true;
+		return (NULL);
+	}
+	str = ft_strdup(&data->file_splitted[i][j]);
+	if (!str)
+	{
+		print_error_message(X_MALLOC);
 		*(error) = true;
 	}
 	return (str);
@@ -75,7 +100,6 @@ char	*parse_file(t_map_data *data)
 	i = 0;
 	j = 0;
 	error = false;
-	printf("%d\n", error);
 	if (data->file_splitted[i])
 		i = get_elements(data, i, j, &error);
 	if (error)
@@ -88,7 +112,7 @@ char	*parse_file(t_map_data *data)
 		return (print_error_message(X_MALLOC));
 	i = 0;
 	while (data->file_splitted[j] && !error)
-		data->map[i++] = save_the_elements(data, j++, 0, &error);
+		data->map[i++] = save_the_map(data, j++, 0, &error);
 	if (error)
 		return (NULL);
 	data->map[i] = NULL;

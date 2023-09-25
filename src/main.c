@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/21 17:25:39 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:05:01 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_struct(t_map_data *data) // this is just for testing!
 	printf("EAST: %s\n", data->east);
 	printf("FLOOR: %s\n", data->floor);
 	printf("CEILING: %s\n", data->ceiling);
-	// print_string_arr(data->map);
+	print_string_arr(data->map);
 }
 
 int	main(int argc, char **argv)
