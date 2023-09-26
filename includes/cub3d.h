@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 15:49:05 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:46:08 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define X_OPEN_FILE "Error: Couldn't open the file!\n"
 # define X_READ_FILE "Error: Couldn't read the file!\n"
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
-# define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
+# define X_UNKNOWN_ELEMENT "Error: Unknown element on the file!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
 # define X_MISSING_COLOR "Error: Color is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
