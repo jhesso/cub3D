@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:54:33 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 16:55:16 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,35 +70,36 @@ typedef struct s_map_data
 /******************************************************************************/
 
 /* error */
-char			*print_error_message(char *message);
-bool			error_message(char *message);
+char	*print_error_message(char *message);
+bool	error_message(char *message);
 
 /*---------------------------------Init---------------------------------------*/
 
 /* init */
-bool			map_data(t_map_data *data, char *map);
+bool	map_data(t_map_data *data, char *map);
 
 /* read_map */
-bool			read_map(t_map_data *data, char *file);
+bool	read_map(t_map_data *data, char *file);
 
 /* split_line */
-char			**ft_split_line(char const *s);
+char	**ft_split_line(char const *s);
 
 /*---------------------------------Parsing------------------------------------*/
 
 /* split_elements&map */
-char			*parse_file(t_map_data *data);
-char			*save_the_elements(t_map_data *data, int i, int j, bool *error);
+char	*parse_file(t_map_data *data);
+char	*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
 /* validate_elements */
-bool			validate_elements(t_map_data *data);
+bool	validate_elements(t_map_data *data);
 
 /* parse_colors */
-void			parse_colors(t_map_data *data, int i, int j, bool *error);
+void	parse_colors(t_map_data *data, int i, int j, bool *error);
+
 /* validate_map */
 bool	validate_map(char **map);
 
 /* TEMPORARY IN MAIN*/
-void			print_struct(t_map_data *data);
+void	print_struct(t_map_data *data);
 
 #endif
