@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 14:14:45 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:39:26 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:24:00 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	count_commas(char *str, bool *error)
 {
-	int comma;
+	int	comma;
 
 	comma = 0;
 	while (*str)
@@ -47,8 +47,8 @@ static int	check_digit(char *str, bool *error)
 
 static void	check_and_assign(t_map_data *data, char *str, bool *error, char c)
 {
-	char **rgb;
-	int	i;
+	char	**rgb;
+	int		i;
 
 	i = 0;
 	count_commas(str, error);

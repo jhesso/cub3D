@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 15:37:29 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:26:57 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	remove_whitespace(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
-	return(i);
+	return (i);
 }
 
 char	*save_the_elements(t_map_data *data, int i, int j, bool *error)
 {
-	char *str;
+	char	*str;
 
 	if (data->file_splitted[i][j] != ' ' && data->file_splitted[i][j] != '\t')
 	{
@@ -41,9 +41,9 @@ char	*save_the_elements(t_map_data *data, int i, int j, bool *error)
 	return (str);
 }
 
-static char *save_the_map(t_map_data *data, int i, int j, bool *error)
+static char	*save_the_map(t_map_data *data, int i, int j, bool *error)
 {
-	char *str;
+	char	*str;
 
 	if (data->file_splitted[i][j] == '\n' \
 		&& data->file_splitted[i + 1] != NULL)
@@ -61,7 +61,7 @@ static char *save_the_map(t_map_data *data, int i, int j, bool *error)
 	return (str);
 }
 
-static int		get_elements(t_map_data *data, int i, int j, bool *error)
+static int	get_elements(t_map_data *data, int i, int j, bool *error)
 {
 	while (data->file_splitted[i] && !(*error))
 	{
@@ -79,7 +79,7 @@ static int		get_elements(t_map_data *data, int i, int j, bool *error)
 			|| !ft_strncmp(&data->file_splitted[i][j], "C", 1))
 			parse_colors(data, i, j, error);
 		else if (!ft_strncmp(&data->file_splitted[i][j], "1", 1))
-				break;
+			break ;
 		else if (data->file_splitted[i][0] != '\n')
 		{
 			print_error_message(X_UNKNOWN_ELEMENT);

@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:26:41 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:27:49 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static bool	open_texture_files(char *file)
 		return (error_message(X_WRONG_TEXTURE_FILE));
 	close(fd);
 	return (true);
-
 }
-
 
 static bool	validate_texture(t_map_data *data)
 {
@@ -40,14 +38,13 @@ static bool	validate_texture(t_map_data *data)
 	return (true);
 }
 
-static bool validate_color_range(int *data)
+static bool	validate_color_range(int *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < 3)
 	{
-		// printf("%d\n", data[i]);
 		if (!(data[i] >= 0 && data[i] <= 255))
 			return (error_message(X_WRONG_COLOR_VALUE));
 		i++;

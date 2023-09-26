@@ -6,20 +6,23 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:19:02 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:22:05 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_struct(t_map_data *data) // this is just for testing!
+// this is just for testing!
+void	print_struct(t_map_data *data)
 {
+	int	i;
+
+	i = 0;
 	printf("------STRUCT-----\n");
 	printf("NORTH: %s\n", data->north);
 	printf("SOUTH: %s\n", data->south);
 	printf("WEST: %s\n", data->west);
 	printf("EAST: %s\n", data->east);
-	int  i  = 0;
 	printf("Floor: ");
 	while (i < 3)
 	{

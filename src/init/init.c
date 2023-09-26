@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:44:50 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:23:06 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 */
 static void	init_variables(t_map_data *data)
 {
-	int i;
+	int	i;
 
-	i =  0;
+	i = 0;
 	data->file_splitted = NULL;
 	data->north = NULL;
 	data->south = NULL;
@@ -32,7 +32,6 @@ static void	init_variables(t_map_data *data)
 
 bool	map_data(t_map_data *data, char *map)
 {
-	// if should free, currently not exiting anywhere!
 	init_variables(data);
 	if (!read_map(data, map))
 		return (false);
