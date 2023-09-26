@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/25 15:49:42 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:46:29 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@
 # define X_READ_FILE "Error: Couldn't read the file!\n"
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
 # define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
+# define X_UNKNOWN_ELEMENT_MAP "Error: Unknown element on the map!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
+# define X_MAP_NOT_CLOSED "Error: Map not closed with walls!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -88,6 +90,8 @@ bool			validate_elements(t_map_data *data);
 
 /* parse_texture */
 
+/* validate_map */
+bool	validate_map(char **map);
 
 /* TEMPORARY IN MAIN*/
 void			print_struct(t_map_data *data);
