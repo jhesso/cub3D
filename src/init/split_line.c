@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:57:35 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/18 14:58:15 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:10:32 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,6 @@ static	int	get_line_len(char const *s, int start)
 	return (len);
 }
 
-static char	**free_allocated_strings(char **ret, int row)
-{
-	while (row >= 0)
-		free(ret[row--]);
-	free(ret);
-	return (NULL);
-}
-
 char	**ft_split_line(char const *s)
 {
 	char			**ret;
@@ -87,7 +79,7 @@ char	**ft_split_line(char const *s)
 			i++;
 		ret[row] = ft_substr(s, i, get_line_len(s, i));
 		if (ret[row] == NULL)
-			return (free_allocated_strings(ret, row));
+			return (free_array(ret));
 		i = i + get_line_len(s, i);
 	}
 	ret[row] = NULL;

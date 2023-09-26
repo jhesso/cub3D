@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:01:00 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:14:47 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ typedef struct s_map_data
 	char		*south;
 	char		*west;
 	char		*east;
-	// char		*floor;
-	// char		*ceiling;
 	int			*floor;
 	int			*ceiling;
 	char		**map;
@@ -73,6 +71,11 @@ typedef struct s_map_data
 /* error */
 char	*print_error_message(char *message);
 bool	error_message(char *message);
+
+char	**free_array(char **ret); //temperory position
+
+/* cleanup */
+void	cleanup(t_map_data *data);
 
 /*---------------------------------Init---------------------------------------*/
 

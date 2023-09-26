@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 17:58:38 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:19:02 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 			ft_printf(1, "Everything working fine!\n");
 		else
 		{
-			ft_printf(2, "Not Working!\n");
-			exit(1);
+			cleanup(&data);
+			return (1);
 		}
 	}
 	else
@@ -56,5 +56,6 @@ int	main(int argc, char **argv)
 		ft_printf(2, "%s", X_VALID_ARGUMENTS);
 		return (1);
 	}
+	cleanup(&data);
 	return (0);
 }
