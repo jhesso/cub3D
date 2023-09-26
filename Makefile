@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/26 18:15:03 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/26 19:11:42 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,13 +77,13 @@ clean:
 	@echo "$(RED)removing object files$(RESET)"
 	@/bin/rm -rf $(OBJ_PATH) $(OBJ_B_PATH)
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	#@$(MAKE) clean -C $(MLX_DIR)/build //THESE STILL DOESNT WORK!
+	#@$(MAKE) clean -C $(MLX_DIR)build //DON'T KNOW WHAT TO CLEAN!
 
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
 	@/bin/rm -rf $(NAME) $(NAME_B)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
-	#@$(MAKE) fclean -C $(MLX_DIR)/build //THESE STILL DOESNT WORK!
+	@/bin/rm -rf $(MLX_DIR)build
 	@echo "$(RED)done$(RESET)"
 
 re: fclean all
