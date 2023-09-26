@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/25 15:49:42 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:49:05 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
 # define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
+# define X_MISSING_COLOR "Error: Color is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
+# define X_WRONG_COLOR_VALUE "Error: Wrong color value!\n"
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
 
 /******************************************************************************/
@@ -54,8 +56,10 @@ typedef struct s_map_data
 	char		*south;
 	char		*west;
 	char		*east;
-	char		*floor;
-	char		*ceiling;
+	// char		*floor;
+	// char		*ceiling;
+	int			*floor;
+	int			*ceiling;
 	char		**map;
 }				t_map_data;
 
@@ -82,12 +86,13 @@ char			**ft_split_line(char const *s);
 
 /* split_elements&map */
 char			*parse_file(t_map_data *data);
+char			*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
 /* validate_elements */
 bool			validate_elements(t_map_data *data);
 
-/* parse_texture */
-
+/* parse_colors */
+void			parse_colors(t_map_data *data, int i, int j, bool *error);
 
 /* TEMPORARY IN MAIN*/
 void			print_struct(t_map_data *data);

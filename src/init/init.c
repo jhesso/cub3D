@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/25 15:48:53 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:44:50 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 */
 static void	init_variables(t_map_data *data)
 {
+	int i;
+
+	i =  0;
 	data->file_splitted = NULL;
 	data->north = NULL;
 	data->south = NULL;
 	data->west = NULL;
 	data->east = NULL;
-	data->floor = NULL;
-	data->ceiling = NULL;
+	data->floor = malloc(sizeof(int) * 3);
+	data->ceiling = malloc(sizeof(int) * 3);
 	data->map = NULL;
 }
 
@@ -37,7 +40,5 @@ bool	map_data(t_map_data *data, char *map)
 		return (false);
 	if (!validate_elements(data))
 		return (false);
-	// if (!parse_map(data))
-	// 	return (false);
 	return (true);
 }

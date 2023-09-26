@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/25 14:05:01 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:11:12 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,21 @@ void	print_struct(t_map_data *data) // this is just for testing!
 	printf("SOUTH: %s\n", data->south);
 	printf("WEST: %s\n", data->west);
 	printf("EAST: %s\n", data->east);
-	printf("FLOOR: %s\n", data->floor);
-	printf("CEILING: %s\n", data->ceiling);
+	int  i  = 0;
+	printf("Floor: ");
+	while (i < 3)
+	{
+		printf("  %d ", data->floor[i]);
+		i++;
+	}
+	printf("\nCeiling: ");
+	i = 0;
+	while (i < 3)
+	{
+		printf("  %d ", data->ceiling[i]);
+		i++;
+	}
+	printf("\n");
 	print_string_arr(data->map);
 }
 
