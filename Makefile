@@ -6,13 +6,13 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/26 18:51:03 by jhesso           ###   ########.fr        #
+#    Updated: 2023/09/26 19:19:23 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
 NAME_B		=	cub3D_bonus
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -ggdb3
 LIBFT_DIR	=	libft/
 LIBFT		=	libft.a
 MLX_DIR		=	MLX42/
@@ -24,7 +24,8 @@ OBJ_PATH	=	obj/
 SRC			=	main.c error.c cleanup.c \
 				init/init.c init/read_map.c init/split_line.c \
 				parsing/split_elements_map.c parsing/validate_elements.c \
-				parsing/parse_colors.c parsing/validate_map.c
+				parsing/parse_colors.c parsing/validate_map.c \
+				parsing/validate_map_utils.c
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/

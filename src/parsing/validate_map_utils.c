@@ -6,11 +6,35 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/26 18:46:37 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 19:36:02 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// char	**remove_newline(char **map)
+// {
+
+// }
+
+t_vector	get_last_point(char **map)
+{
+	t_vector	ret;
+	int		row;
+	int		col;
+
+	row = 0;
+	col = 0;
+	while (map[row])
+		row++;
+	printf("row: %d\n", row);
+	while (map[row][col])
+		col++;
+	printf("col: %d\n", col);
+	ret.y = row;
+	ret.x = col;
+	return (ret);
+}
 
 char	**duplicate_map(char **map)
 {

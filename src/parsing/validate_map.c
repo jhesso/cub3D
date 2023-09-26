@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/26 18:47:30 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 19:36:18 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static bool	check_first_and_last(char **map)
 		c = map[row][col];
 		if (c != '1' && c != ' ')
 			return (false);
+		col++;
 	}
 	while (map[row + 1])
 		row++;
@@ -62,36 +63,68 @@ static bool	check_first_and_last(char **map)
 		c = map[row][col];
 		if (c != '1' && c != ' ')
 			return (false);
+		col++;
 	}
 	return (true);
 }
 
+// static bool	flood_fill(char **map, t_vector pos)
+// {
+// 	int	row;
+// 	int	col;
+
+// 	row = pos.y;
+// 	col = pos.x;
+// 	while (row >= 0)
+// 	{
+// 		if (map[row][col] == '1')
+// 			return (true);
+// 		row--;
+// 	}
+// 	while (col >= 0)
+// 	{
+// 		if (map[row][col] == '1')
+// 			return (true);
+// 		col--;
+// 	}
+// 	return (false);
+// }
+
 static bool	flood_fill(char **map, t_vector pos)
 {
-	int	row;
-	int	col;
-
-	row = pos.y;
-	col = pos.x;
-	while (row >= 0 && map[row][col] != '1')
-		row--;
-	if (row == 0 && map[row][col] != '1')
-		return (false);
-	while (col >= 0 && map[row][col] != '1')
-		col--;
-	if (col == 0 && map[row][col] != '1')
-		return (false);
+	if (map[pos.y][pos.x] == '1')
+		return (true);
+	map[pos.y][pos.x] = '1';
+	flood_fill(map, (t_vector){pos.x + 1, pos.y});
+	flood_fill(map, (t_vector){pos.x - 1, pos.y});
+	flood_fill(map, (t_vector){pos.x, pos.y + 1});
+	flood_fill(map, (t_vector){pos.x, pos.y - 1});
+	return (false);
 }
 
 static bool	check_walls(char **map)
 {
-	char	**tmp_map;
+	char		**tmp_map;
+	t_vector	last_point;
+	t_vector	point;
+	bool		surrounded;
 
+	printf("LUL\n");
 	if (!check_first_and_last(map))
 		return (false);
 	tmp_map = duplicate_map(map);
-	if (!flood_fill(tmp_map, find_empty_space(map)))
+	print_string_arr(tmp_map);
+	last_point = get_last_point(tmp_map);
+	surrounded = false;
+	point = find_empty_space(tmp_map);
+	while (point.y <= last_point.y && point.x <= last_point.x)
+	{
+		surrounded = flood_fill(tmp_map, point);
+		point = find_empty_space(tmp_map);
+	}
+	if (!surrounded)
 		return (false);
+	free_array(tmp_map);
 	return (true);
 }
 
