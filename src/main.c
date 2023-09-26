@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:11:12 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:58:38 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		ft_printf(2, "ERROR"); //should decide about the error!
+	{
+		ft_printf(2, "%s", X_VALID_ARGUMENTS);
+		return (1);
+	}
 	return (0);
 }

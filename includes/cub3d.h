@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:46:08 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:57:13 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 /*								Error Messages	 							  */
 /******************************************************************************/
 
+# define X_VALID_ARGUMENTS "Error: Invalid number of arguments!\n"
 # define X_VALID_FILE "Error: The map is not a .cub file!\n"
 # define X_OPEN_FILE "Error: Couldn't open the file!\n"
 # define X_READ_FILE "Error: Couldn't read the file!\n"
