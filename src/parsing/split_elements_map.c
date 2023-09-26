@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/25 15:42:43 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:37:29 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	remove_whitespace(char *str)
 	return(i);
 }
 
-static char *save_the_elements(t_map_data *data, int i, int j, bool *error)
+char	*save_the_elements(t_map_data *data, int i, int j, bool *error)
 {
 	char *str;
 
@@ -75,10 +75,9 @@ static int		get_elements(t_map_data *data, int i, int j, bool *error)
 			data->west = save_the_elements(data, i, j + 2, error);
 		else if (!ft_strncmp(&data->file_splitted[i][j], "EA", 2))
 			data->east = save_the_elements(data, i, j + 2, error);
-		else if (!ft_strncmp(&data->file_splitted[i][j], "F", 1))
-			data->floor = save_the_elements(data, i, j + 1, error);
-		else if (!ft_strncmp(&data->file_splitted[i][j], "C", 1))
-			data->ceiling = save_the_elements(data, i, j + 1, error);
+		else if (!ft_strncmp(&data->file_splitted[i][j], "F", 1) \
+			|| !ft_strncmp(&data->file_splitted[i][j], "C", 1))
+			parse_colors(data, i, j, error);
 		else if (!ft_strncmp(&data->file_splitted[i][j], "1", 1))
 				break;
 		else if (data->file_splitted[i][0] != '\n')

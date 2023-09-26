@@ -1,4 +1,4 @@
-        NO ./textures/key20.png
+NO ./textures/key20.png
 SO 							./textures/key20.png
 
 
@@ -6,7 +6,7 @@ SO 							./textures/key20.png
 
 WE ./textures/key20.png
 EA ./textures/key20.png
-F	190,178,123
+F	190,25,4
 
 
 

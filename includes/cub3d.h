@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:46:29 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 16:54:33 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@
 # define X_OPEN_FILE "Error: Couldn't open the file!\n"
 # define X_READ_FILE "Error: Couldn't read the file!\n"
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
-# define X_UNKNOWN_ELEMENT "Error: Unknown element on the map!\n"
+# define X_UNKNOWN_ELEMENT "Error: Unknown element on the file!\n"
 # define X_UNKNOWN_ELEMENT_MAP "Error: Unknown element on the map!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
+# define X_MISSING_COLOR "Error: Color is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
+# define X_WRONG_COLOR_VALUE "Error: Wrong color value!\n"
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
 # define X_MAP_NOT_CLOSED "Error: Map not closed with walls!\n"
 
@@ -56,8 +58,10 @@ typedef struct s_map_data
 	char		*south;
 	char		*west;
 	char		*east;
-	char		*floor;
-	char		*ceiling;
+	// char		*floor;
+	// char		*ceiling;
+	int			*floor;
+	int			*ceiling;
 	char		**map;
 }				t_map_data;
 
@@ -84,12 +88,13 @@ char			**ft_split_line(char const *s);
 
 /* split_elements&map */
 char			*parse_file(t_map_data *data);
+char			*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
 /* validate_elements */
 bool			validate_elements(t_map_data *data);
 
-/* parse_texture */
-
+/* parse_colors */
+void			parse_colors(t_map_data *data, int i, int j, bool *error);
 /* validate_map */
 bool	validate_map(char **map);
 
