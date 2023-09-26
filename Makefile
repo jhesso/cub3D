@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/26 15:29:41 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/09/26 16:59:54 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH	=	obj/
 SRC			=	main.c error.c \
 				init/init.c init/read_map.c init/split_line.c \
 				parsing/split_elements_map.c parsing/validate_elements.c \
-				parsing/parse_colors.c
+				parsing/parse_colors.c parsing/validate_map.c
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/

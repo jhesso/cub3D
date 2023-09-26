@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/26 16:52:33 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 17:10:05 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static bool	check_chars(char **map)
 		while (map[row][col])
 		{
 			c = map[row][col];
-			if (c != '0' || c != '1' || c != 'N' || c != 'S' || c != 'E' ||\
+			if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' &&\
 				c != 'W')
 				return (false);
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W' && !p_start)
+			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !p_start)
 				p_start = true;
-			else
+			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return (false);
 			col++;
 		}
@@ -44,5 +44,6 @@ static bool	check_chars(char **map)
 bool	validate_map(char **map)
 {
 	if (!check_chars(map))
-		return (error_messge(X_UNKNOWN_ELEMENT_MAP));
+		return (error_message(X_UNKNOWN_ELEMENT_MAP));
+	return (true);
 }
