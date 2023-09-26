@@ -6,20 +6,23 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 16:11:12 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:22:05 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_struct(t_map_data *data) // this is just for testing!
+// this is just for testing!
+void	print_struct(t_map_data *data)
 {
+	int	i;
+
+	i = 0;
 	printf("------STRUCT-----\n");
 	printf("NORTH: %s\n", data->north);
 	printf("SOUTH: %s\n", data->south);
 	printf("WEST: %s\n", data->west);
 	printf("EAST: %s\n", data->east);
-	int  i  = 0;
 	printf("Floor: ");
 	while (i < 3)
 	{
@@ -47,11 +50,15 @@ int	main(int argc, char **argv)
 			ft_printf(1, "Everything working fine!\n");
 		else
 		{
-			ft_printf(2, "Not Working!\n");
-			exit(1);
+			cleanup(&data);
+			return (1);
 		}
 	}
 	else
-		ft_printf(2, "ERROR"); //should decide about the error!
+	{
+		ft_printf(2, "%s", X_VALID_ARGUMENTS);
+		return (1);
+	}
+	cleanup(&data);
 	return (0);
 }

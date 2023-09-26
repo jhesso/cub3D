@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:43:20 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/26 18:50:29 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 /*								Error Messages	 							  */
 /******************************************************************************/
 
+# define X_VALID_ARGUMENTS "Error: Invalid number of arguments!\n"
 # define X_VALID_FILE "Error: The map is not a .cub file!\n"
 # define X_OPEN_FILE "Error: Couldn't open the file!\n"
 # define X_READ_FILE "Error: Couldn't read the file!\n"
@@ -58,8 +59,6 @@ typedef struct s_map_data
 	char		*south;
 	char		*west;
 	char		*east;
-	// char		*floor;
-	// char		*ceiling;
 	int			*floor;
 	int			*ceiling;
 	char		**map;
@@ -78,6 +77,11 @@ typedef struct s_vector
 /* error */
 char		*print_error_message(char *message);
 bool		error_message(char *message);
+
+char		**free_array(char **ret); //temperory position
+
+/* cleanup */
+void		cleanup(t_map_data *data);
 
 /*---------------------------------Init---------------------------------------*/
 

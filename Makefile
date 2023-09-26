@@ -6,7 +6,7 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/26 16:59:54 by jhesso           ###   ########.fr        #
+#    Updated: 2023/09/26 18:51:03 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ FRAMEWORK	=	-framework Cocoa -framework OpenGL -framework IOKit
 
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
-SRC			=	main.c error.c \
+SRC			=	main.c error.c cleanup.c \
 				init/init.c init/read_map.c init/split_line.c \
 				parsing/split_elements_map.c parsing/validate_elements.c \
 				parsing/parse_colors.c parsing/validate_map.c
