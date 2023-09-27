@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/27 19:08:12 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:23:33 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static bool	validate_colors(t_map_data *data)
 	if (!data->floor || !data->ceiling)
 		print_error_message(X_MISSING_COLOR);
 	if (!validate_color_range(data->floor))
+		return (false);
+	if (!validate_color_range(data->ceiling))
 		return (false);
 	return (true);
 }
