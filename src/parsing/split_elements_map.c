@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:26:57 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:05:38 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,37 @@ static int	remove_whitespace(char *str)
 	return (i);
 }
 
+static bool	check_element_exists(t_map_data *data, char c)
+{
+	int	flag;
+
+	flag = 0;
+	if (c == 'N' && data->north)
+		flag = 1;
+	else if (c == 'S' && data->south)
+		flag = 1;
+	else if (c == 'W' && data->west)
+		flag = 1;
+	else if (c == 'E' && data->east)
+		flag = 1;
+	else if (c == 'F' && data->floor[0] >= 0)
+		flag = 1;
+	else if (c == 'C' && data->ceiling[0] >= 0)
+		flag = 1;
+	if (flag == 1)
+		return (error_message(X_UNKNOWN_ELEMENT));
+	return (true);
+}
+
 char	*save_the_elements(t_map_data *data, int i, int j, bool *error)
 {
 	char	*str;
 
+	if (!check_element_exists(data, data->file_splitted[i][0]))
+	{
+		*(error) = true;
+		return (NULL);
+	}
 	if (data->file_splitted[i][j] != ' ' && data->file_splitted[i][j] != '\t')
 	{
 		print_error_message(X_UNKNOWN_ELEMENT);
