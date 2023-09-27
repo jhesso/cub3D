@@ -3,16 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/09/26 19:11:42 by dgerguri         ###   ########.fr        #
+=======
+#    Updated: 2023/09/27 11:32:57 by jhesso           ###   ########.fr        #
+>>>>>>> 999543f3c58c5f44b45931b4d2eb40a3f73545f2
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
 NAME_B		=	cub3D_bonus
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -ggdb3
 LIBFT_DIR	=	libft/
 LIBFT		=	libft.a
 MLX_DIR		=	MLX42/
@@ -24,7 +28,8 @@ OBJ_PATH	=	obj/
 SRC			=	main.c error.c cleanup.c \
 				init/init.c init/read_map.c init/split_line.c \
 				parsing/split_elements_map.c parsing/validate_elements.c \
-				parsing/parse_colors.c
+				parsing/parse_colors.c parsing/validate_map.c \
+				parsing/validate_map_utils.c parsing/validate_map_utils_two.c
 
 SRC_B_PATH	=	src_bonus/
 OBJ_B_PATH	=	obj_bonus/

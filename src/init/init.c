@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:23:06 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:50:50 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool	map_data(t_map_data *data, char *map)
 	if (!parse_file(data))
 		return (false);
 	if (!validate_elements(data))
+		return (false);
+	if (!validate_map(data->map))
 		return (false);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:14:47 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:05:13 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,46 +64,63 @@ typedef struct s_map_data
 	char		**map;
 }				t_map_data;
 
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
+
 /******************************************************************************/
 /*								Functions									  */
 /******************************************************************************/
 
 /* error */
-char	*print_error_message(char *message);
-bool	error_message(char *message);
+char		*print_error_message(char *message);
+bool		error_message(char *message);
 
-char	**free_array(char **ret); //temperory position
+char		**free_array(char **ret); //temperory position
 
 /* cleanup */
-void	cleanup(t_map_data *data);
+void		cleanup(t_map_data *data);
 
 /*---------------------------------Init---------------------------------------*/
 
 /* init */
-bool	map_data(t_map_data *data, char *map);
+bool		map_data(t_map_data *data, char *map);
 
 /* read_map */
-bool	read_map(t_map_data *data, char *file);
+bool		read_map(t_map_data *data, char *file);
 
 /* split_line */
-char	**ft_split_line(char const *s);
+char		**ft_split_line(char const *s);
 
 /*---------------------------------Parsing------------------------------------*/
 
 /* split_elements&map */
-char	*parse_file(t_map_data *data);
-char	*save_the_elements(t_map_data *data, int i, int j, bool *error);
+char		*parse_file(t_map_data *data);
+char		*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
 /* validate_elements */
-bool	validate_elements(t_map_data *data);
+bool		validate_elements(t_map_data *data);
 
 /* parse_colors */
-void	parse_colors(t_map_data *data, int i, int j, bool *error);
+void		parse_colors(t_map_data *data, int i, int j, bool *error);
 
 /* validate_map */
-bool	validate_map(char **map);
+bool		validate_map(char **map);
+
+/* validate_map_utils */
+t_vector	find_empty_space(char **map);
+char		**duplicate_map(char **map);
+t_vector	get_last_point(char **map);
+void		remove_newline(char **map);
+bool		map_filled(char **map);
+
+/* validate_map_utils_two */
+bool		check_edges(char **map);
+bool		find_wall(char **map, t_vector pos);
 
 /* TEMPORARY IN MAIN*/
-void	print_struct(t_map_data *data);
+void		print_struct(t_map_data *data);
 
 #endif
