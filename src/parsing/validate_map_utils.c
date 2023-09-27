@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/27 11:15:42 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/27 18:50:36 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ bool	map_filled(char **map)
 		while (map[row][col])
 		{
 			c = map[row][col];
-			if (c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W' &&\
-				c != ' ')
+			if (c != '1' && c != ' ')
 				return (false);
 			col++;
 		}
@@ -50,6 +49,25 @@ void	remove_newline(char **map)
 	}
 }
 
+char	**duplicate_map(char **map)
+{
+	char	**ret;
+	int		i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	ret = malloc(sizeof(char *) * (i + 1));
+	ret[i] = NULL;
+	i = 0;
+	while (map[i])
+	{
+		ret[i] = ft_strdup(map[i]);
+		i++;
+	}
+	return (ret);
+}
+
 t_vector	get_last_point(char **map)
 {
 	t_vector	ret;
@@ -69,24 +87,6 @@ t_vector	get_last_point(char **map)
 	return (ret);
 }
 
-char	**duplicate_map(char **map)
-{
-	char	**ret;
-	int		i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	ret = malloc(sizeof(char *) * (i + 1));
-	ret[i] = NULL;
-	i = 0;
-	while (map[i])
-	{
-		ret[i] = ft_strdup(map[i]);
-		i++;
-	}
-	return (ret);
-}
 
 t_vector find_empty_space(char **map)
 {

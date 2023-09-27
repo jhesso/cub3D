@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/27 16:24:41 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:03:07 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,25 @@ static bool	check_first_and_last(char **map)
 	return (true);
 }
 
-static bool	flood_fill(char **map, t_vector pos)
+static bool	flood_fill(char **map, t_vector pos, bool *stop)
 {
-	printf("flood_fill: pos.y: %d, pos.x: %d\n", pos.y, pos.x);
-	if (map[pos.y][pos.x] == '\0')
+	// printf("flood_fill: pos.y: %d, pos.x: %d\n", pos.y, pos.x);
+	// print_string_arr(map);
+	if (map[pos.y][pos.x] == '\0' || !(*stop))
 		return (false);
 	if (map[pos.y][pos.x] == '1')
 		return (true);
-	// if (map[pos.y][pos.x] != ' ')
-	// 	map[pos.y][pos.x] = '1';
 	if (find_wall(map, pos))
 		map[pos.y][pos.x] = '1';
-	flood_fill(map, (t_vector){pos.x + 1, pos.y});
-	flood_fill(map, (t_vector){pos.x - 1, pos.y});
-	flood_fill(map, (t_vector){pos.x, pos.y + 1});
-	flood_fill(map, (t_vector){pos.x, pos.y - 1});
-	if (map_filled(map))
-		return (true);
+	else
+	{
+		*(stop) = false;
+		return (false);
+	}
+	flood_fill(map, (t_vector){pos.x + 1, pos.y}, stop);
+	flood_fill(map, (t_vector){pos.x - 1, pos.y}, stop);
+	flood_fill(map, (t_vector){pos.x, pos.y + 1}, stop);
+	flood_fill(map, (t_vector){pos.x, pos.y - 1}, stop);
 	return (false);
 }
 
@@ -95,33 +97,28 @@ static bool	check_walls(char **map)
 	t_vector	last_point;
 	t_vector	point;
 	bool		surrounded;
+	bool		stop = true;
 
 	if (!check_first_and_last(map))
 		return (false);
 	remove_newline(map);
-	if (!check_edges(map))
-		return (false);
+	// if (!check_edges(map))
+	// 	return (false);
 	tmp_map = duplicate_map(map);
-	print_string_arr(tmp_map);
+	// print_string_arr(tmp_map);
 	last_point = get_last_point(tmp_map);
 	surrounded = false;
 	point = find_empty_space(tmp_map);
-	printf("last_point.y: %d last_point.x: %d\n", last_point.y, last_point.x);
 	while (true)
 	{
 		if (point.y == last_point.y && point.x == last_point.x)
 			break;
-		surrounded = flood_fill(tmp_map, point);
-		printf("\n\n------AFTER FLOODFILL-------\n\n");
-		print_string_arr(tmp_map);
-		printf("\n--------------------------------\n\n");
+		surrounded = flood_fill(tmp_map, point, &stop);
+		// printf("%d\n", stop);/
+		if (!stop)
+			break ;
 		point = find_empty_space(tmp_map);
-		printf("next empty spot: row: %d col: %d\n", point.y, point.x);
 	}
-	printf("done with floodfill\n");
-	printf("\n\n------AFTER FLOODFILL-------\n\n");
-	print_string_arr(tmp_map);
-	printf("\n--------------------------------\n\n");
 	if (!map_filled(tmp_map))
 		return (false);
 	free_array(tmp_map);
