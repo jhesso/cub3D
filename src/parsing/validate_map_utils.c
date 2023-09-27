@@ -6,16 +6,49 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/26 19:36:02 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/27 10:51:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// char	**remove_newline(char **map)
-// {
+bool	map_filled(char **map)
+{
+	char	c;
+	int		row;
+	int		col;
 
-// }
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			c = map[row][col];
+			if (c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W' &&\
+				c != ' ')
+				return (false);
+			col++;
+		}
+		row++;
+	}
+	return (true);
+}
+
+void	remove_newline(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	i--;
+	if (map[i][0] == '\0')
+	{
+		free(map[i]);
+		map[i] = NULL;
+	}
+}
 
 t_vector	get_last_point(char **map)
 {
@@ -27,10 +60,10 @@ t_vector	get_last_point(char **map)
 	col = 0;
 	while (map[row])
 		row++;
-	printf("row: %d\n", row);
+	row--;
 	while (map[row][col])
 		col++;
-	printf("col: %d\n", col);
+	col--;
 	ret.y = row;
 	ret.x = col;
 	return (ret);
