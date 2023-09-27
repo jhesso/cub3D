@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/27 10:42:41 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/27 12:05:13 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ char		**duplicate_map(char **map);
 t_vector	get_last_point(char **map);
 void		remove_newline(char **map);
 bool		map_filled(char **map);
+
+/* validate_map_utils_two */
+bool		check_edges(char **map);
+bool		find_wall(char **map, t_vector pos);
 
 /* TEMPORARY IN MAIN*/
 void		print_struct(t_map_data *data);

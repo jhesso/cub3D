@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/27 10:51:03 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/27 11:15:42 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,21 @@ t_vector find_empty_space(char **map)
 		vec.x = 0;
 		while (map[vec.y][vec.x])
 		{
-			if (map[vec.y][vec.x] == '0')
+			if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' ||\
+				map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E'||\
+				map[vec.y][vec.x] == 'W')
 				break ;
 			vec.x++;
 		}
-		if (map[vec.y][vec.x] == '0')
+		if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' ||\
+			map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E'||\
+			map[vec.y][vec.x] == 'W')
 			break ;
 		vec.y++;
 	}
+	if (!map[vec.y])
+		vec.y--;
+	if (!map[vec.y][vec.x])
+		vec.x--;
 	return (vec);
 }

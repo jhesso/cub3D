@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/27 11:05:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/27 12:04:12 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,14 @@ static bool	check_first_and_last(char **map)
 static bool	flood_fill(char **map, t_vector pos)
 {
 	printf("flood_fill: pos.y: %d, pos.x: %d\n", pos.y, pos.x);
+	if (map[pos.y][pos.x] == '\0')
+		return (false);
 	if (map[pos.y][pos.x] == '1')
 		return (true);
-	map[pos.y][pos.x] = '1';
+	// if (map[pos.y][pos.x] != ' ')
+	// 	map[pos.y][pos.x] = '1';
+	if (find_wall(map, pos))
+		map[pos.y][pos.x] = '1';
 	flood_fill(map, (t_vector){pos.x + 1, pos.y});
 	flood_fill(map, (t_vector){pos.x - 1, pos.y});
 	flood_fill(map, (t_vector){pos.x, pos.y + 1});
@@ -93,14 +98,18 @@ static bool	check_walls(char **map)
 	if (!check_first_and_last(map))
 		return (false);
 	remove_newline(map);
+	if (!check_edges(map))
+		return (false);
 	tmp_map = duplicate_map(map);
 	print_string_arr(tmp_map);
 	last_point = get_last_point(tmp_map);
 	surrounded = false;
 	point = find_empty_space(tmp_map);
 	printf("last_point.y: %d last_point.x: %d\n", last_point.y, last_point.x);
-	while (point.y <= last_point.y && point.x <= last_point.x)
+	while (true)
 	{
+		if (point.y == last_point.y && point.x == last_point.x)
+			break;
 		surrounded = flood_fill(tmp_map, point);
 		printf("\n\n------AFTER FLOODFILL-------\n\n");
 		print_string_arr(tmp_map);
