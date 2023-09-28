@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:22:05 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:18:44 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		if (map_data(&data, argv[1]))
+		if (data_init(&data, argv[1]))
 			ft_printf(1, "Everything working fine!\n");
 		else
 		{

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:50:50 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/09/28 15:33:36 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*	init_map_data()
-*	initializes variables of the map_data struct
-*/
-static void	init_variables(t_map_data *data)
+static void	init_mlx_data(t_mlx_data *data)
+{
+	data->mlx = NULL;
+	data->window = NULL;
+
+}
+
+static void	init_map_data(t_map_data *data)
 {
 	int	i;
 
@@ -28,11 +32,12 @@ static void	init_variables(t_map_data *data)
 	data->floor = malloc(sizeof(int) * 3);
 	data->ceiling = malloc(sizeof(int) * 3);
 	data->map = NULL;
+	init_mlx_data(&data->mlx_data);
 }
 
-bool	map_data(t_map_data *data, char *map)
+bool	data_init(t_map_data *data, char *map)
 {
-	init_variables(data);
+	init_map_data(data);
 	if (!read_map(data, map))
 		return (false);
 	if (!parse_file(data))
@@ -40,6 +45,8 @@ bool	map_data(t_map_data *data, char *map)
 	if (!validate_elements(data))
 		return (false);
 	if (!validate_map(data->map))
+		return (false);
+	if (!init_mlx(data))
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 12:35:29 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:32:08 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <stdbool.h>
 
 # include "../libft/includes/libft.h"
-//# include "" should include the header file of the MLX library!
+# include "../MLX42/include/MLX42/MLX42.h"
 
 /******************************************************************************/
 /*								Error Messages	 							  */
@@ -50,9 +50,17 @@
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
 # define X_MAP_NOT_CLOSED "Error: Map not closed with walls!\n"
 
+# define X_MLX_INIT "Error: MLX initialization failed!\n"
+
 /******************************************************************************/
 /*								Structs 									  */
 /******************************************************************************/
+
+typedef struct s_mlx_data
+{
+	mlx_t		*mlx;
+	mlx_t		*window;
+}				t_mlx_data;
 
 typedef struct s_map_data
 {
@@ -64,6 +72,7 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	char		**map;
+	t_mlx_data	mlx_data;
 }				t_map_data;
 
 typedef struct s_vector
@@ -89,14 +98,17 @@ void		cleanup(t_map_data *data);
 
 /*---------------------------------Init---------------------------------------*/
 
-/* init */
-bool		map_data(t_map_data *data, char *map);
+/* data_init */
+bool		data_init(t_map_data *data, char *map);
 
 /* read_map */
 bool		read_map(t_map_data *data, char *file);
 
 /* split_line */
 char		**ft_split_line(char const *s);
+
+/* mlx_init */
+bool	init_mlx(t_map_data *data);
 
 /*---------------------------------Parsing------------------------------------*/
 
@@ -119,6 +131,9 @@ t_vector	get_last_point(char **map);
 void		remove_newline(char **map);
 bool		map_filled(char **map);
 bool		find_wall(char **map, t_vector pos);
+
+
+
 
 /* validate_map_utils_two */ //PROBABLY DELETE THE WHOLE FILE!
 // bool		check_edges(char **map);
