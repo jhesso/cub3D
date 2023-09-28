@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 15:32:08 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 22:28:14 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@
 # define X_WRONG_COLOR_VALUE "Error: Wrong color value!\n"
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
 # define X_MAP_NOT_CLOSED "Error: Map not closed with walls!\n"
-
-# define X_MLX_INIT "Error: MLX initialization failed!\n"
+# define X_MLX "Error: MLX has failed!\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -58,8 +57,12 @@
 
 typedef struct s_mlx_data
 {
-	mlx_t		*mlx;
-	mlx_t		*window;
+	mlx_t			*mlx;
+	mlx_image_t		*window;
+	mlx_texture_t	*north;
+	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+	mlx_texture_t	*south;
 }				t_mlx_data;
 
 typedef struct s_map_data
@@ -72,7 +75,7 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	char		**map;
-	t_mlx_data	mlx_data;
+	t_mlx_data	*mlx_data;
 }				t_map_data;
 
 typedef struct s_vector

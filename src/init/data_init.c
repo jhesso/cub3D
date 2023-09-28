@@ -6,20 +6,32 @@
 /*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 20:00:13 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/28 22:36:30 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_mlx_data(t_mlx_data *data)
+static t_mlx_data	*init_mlx_data()
 {
-	data->mlx = NULL;
-	data->window = NULL;
+	t_mlx_data	*mlx_data;
 
+	mlx_data = malloc(sizeof(t_mlx_data));
+	if (!mlx_data)
+	{
+		ft_printf(2, "%s", X_MALLOC);
+		return (NULL);
+	}
+	mlx_data->mlx = NULL;
+	mlx_data->window = NULL;
+	mlx_data->north = NULL;
+	mlx_data->south = NULL;
+	mlx_data->west = NULL;
+	mlx_data->east = NULL;
+	return (mlx_data);
 }
 
-static void	init_map_data(t_map_data *data)
+static bool	init_map_data(t_map_data *data)
 {
 	data->file_splitted = NULL;
 	data->north = NULL;
@@ -28,13 +40,19 @@ static void	init_map_data(t_map_data *data)
 	data->east = NULL;
 	data->floor = malloc(sizeof(int) * 3);
 	data->ceiling = malloc(sizeof(int) * 3);
+	if (!data->floor || !data->ceiling)
+		return (false);
 	data->map = NULL;
-	init_mlx_data(&data->mlx_data);
+	data->mlx_data = init_mlx_data();
+	if (!data->mlx_data)
+		return (false);
+	return (true);
 }
 
 bool	data_init(t_map_data *data, char *map)
 {
-	init_map_data(data);
+	if (!init_map_data(data))
+		return (false);
 	if (!read_map(data, map))
 		return (false);
 	if (!parse_file(data))
