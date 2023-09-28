@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 15:33:36 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 20:00:13 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void	init_mlx_data(t_mlx_data *data)
 
 static void	init_map_data(t_map_data *data)
 {
-	int	i;
-
-	i = 0;
 	data->file_splitted = NULL;
 	data->north = NULL;
 	data->south = NULL;

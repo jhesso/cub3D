@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:03:51 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/26 18:20:28 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:59:52 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	cleanup(t_map_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->file_splitted)
 		free_array(data->file_splitted);
 	if (data->north)

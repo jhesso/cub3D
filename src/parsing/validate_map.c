@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/28 12:33:47 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 20:01:22 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static bool	flood_fill(char **map, t_vector pos, bool *stop)
 	return (false);
 }
 
-static bool	check_walls(char **map, bool surrounded, bool stop)
+static bool	check_walls(char **map, bool stop)
 {
 	char		**tmp_map;
 	t_vector	last_point;
@@ -107,7 +107,7 @@ static bool	check_walls(char **map, bool surrounded, bool stop)
 	{
 		if ((point.y == last_point.y && point.x == last_point.x) || stop)
 			break ;
-		surrounded = flood_fill(tmp_map, point, &stop);
+		flood_fill(tmp_map, point, &stop);
 		point = find_empty_space(tmp_map);
 	}
 	if (!map_filled(tmp_map))
@@ -120,7 +120,7 @@ bool	validate_map(char **map)
 {
 	if (!check_chars(map, 0, 0, false))
 		return (false);
-	if (!check_walls(map, false, false))
+	if (!check_walls(map, false))
 		return (error_message(X_MAP_NOT_CLOSED));
 	return (true);
 }
