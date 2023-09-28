@@ -6,7 +6,7 @@
 #    By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/28 21:25:14 by dardangergu      ###   ########.fr        #
+#    Updated: 2023/09/28 21:42:34 by dardangergu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ all: $(NAME)
 
 # Build the MLX library if needed
 $(MLX):
-	git submodule update --init --recursive $(MLX_DIR)
+	#git submodule update --init --recursive $(MLX_DIR) //should try to make this work
 	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 # Compile source files to object files
