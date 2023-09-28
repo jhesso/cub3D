@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/27 20:04:58 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:35:29 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define X_MALLOC "Error: Malloc allocation has failed!\n"
 # define X_UNKNOWN_ELEMENT "Error: Unknown element on the file!\n"
 # define X_UNKNOWN_ELEMENT_MAP "Error: Unknown element on the map!\n"
+# define X_MULTIPLE_S_POINTS "Error: More than 1 starting point!\n"
+# define X_S_P_MISSING "Error: Starting point is missing!\n"
 # define X_MISSING_TEXTURE "Error: Texture file is missing!\n"
 # define X_MISSING_COLOR "Error: Color is missing!\n"
 # define X_WRONG_TEXTURE_FILE "Error: Wrong texture file!\n"
@@ -78,7 +80,9 @@ typedef struct s_vector
 char		*print_error_message(char *message);
 bool		error_message(char *message);
 
-char		**free_array(char **ret); //temperory position
+/* util.c */
+char		**free_array(char **ret);
+char		**duplicate_map(char **map);
 
 /* cleanup */
 void		cleanup(t_map_data *data);
@@ -96,7 +100,7 @@ char		**ft_split_line(char const *s);
 
 /*---------------------------------Parsing------------------------------------*/
 
-/* split_elements&map */
+/* split_elements_map */
 char		*parse_file(t_map_data *data);
 char		*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
@@ -111,14 +115,13 @@ bool		validate_map(char **map);
 
 /* validate_map_utils */
 t_vector	find_empty_space(char **map);
-char		**duplicate_map(char **map);
 t_vector	get_last_point(char **map);
 void		remove_newline(char **map);
 bool		map_filled(char **map);
-
-/* validate_map_utils_two */
-bool		check_edges(char **map);
 bool		find_wall(char **map, t_vector pos);
+
+/* validate_map_utils_two */ //PROBABLY DELETE THE WHOLE FILE!
+// bool		check_edges(char **map);
 
 /* TEMPORARY IN MAIN*/
 void		print_struct(t_map_data *data);

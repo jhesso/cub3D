@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 16:19:47 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 12:27:39 by dgerguri         ###   ########.fr       */
+/*   Created: 2023/09/28 12:26:46 by dgerguri          #+#    #+#             */
+/*   Updated: 2023/09/28 12:28:34 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*print_error_message(char *message)
+char	**free_array(char **ret)
 {
-	ft_printf(2, "%s", message);
+	int	i;
+
+	i = 0;
+	while (ret[i])
+	{
+		free(ret[i]);
+		i++;
+	}
+	free(ret);
 	return (NULL);
 }
 
-bool	error_message(char *message)
+char	**duplicate_map(char **map)
 {
-	ft_printf(2, "%s", message);
-	return (false);
+	char	**ret;
+	int		i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	ret = malloc(sizeof(char *) * (i + 1));
+	ret[i] = NULL;
+	i = 0;
+	while (map[i])
+	{
+		ret[i] = ft_strdup(map[i]);
+		i++;
+	}
+	return (ret);
 }

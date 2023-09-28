@@ -6,11 +6,29 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/27 18:50:36 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:35:08 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	find_wall(char **map, t_vector pos)
+{
+	int		row;
+	int		col;
+
+	row = pos.y;
+	col = pos.x;
+	if (map[row][col + 1] == '\0' || map[row][col + 1] == ' ')
+		return (false);
+	if (map[row][col - 1] == '\0' || map[row][col - 1] == ' ')
+		return (false);
+	if (map[row + 1][col] == '\0' || map[row + 1][col] == ' ')
+		return (false);
+	if (map[row - 1][col] == '\0' || map[row - 1][col] == ' ')
+		return (false);
+	return (true);
+}
 
 bool	map_filled(char **map)
 {
@@ -49,30 +67,11 @@ void	remove_newline(char **map)
 	}
 }
 
-char	**duplicate_map(char **map)
-{
-	char	**ret;
-	int		i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	ret = malloc(sizeof(char *) * (i + 1));
-	ret[i] = NULL;
-	i = 0;
-	while (map[i])
-	{
-		ret[i] = ft_strdup(map[i]);
-		i++;
-	}
-	return (ret);
-}
-
 t_vector	get_last_point(char **map)
 {
 	t_vector	ret;
-	int		row;
-	int		col;
+	int			row;
+	int			col;
 
 	row = 0;
 	col = 0;
@@ -87,8 +86,7 @@ t_vector	get_last_point(char **map)
 	return (ret);
 }
 
-
-t_vector find_empty_space(char **map)
+t_vector	find_empty_space(char **map)
 {
 	t_vector	vec;
 
@@ -98,14 +96,14 @@ t_vector find_empty_space(char **map)
 		vec.x = 0;
 		while (map[vec.y][vec.x])
 		{
-			if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' ||\
-				map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E'||\
+			if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' || \
+				map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E' || \
 				map[vec.y][vec.x] == 'W')
 				break ;
 			vec.x++;
 		}
-		if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' ||\
-			map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E'||\
+		if (map[vec.y][vec.x] == '0' || map[vec.y][vec.x] == 'N' || \
+			map[vec.y][vec.x] == 'S' || map[vec.y][vec.x] == 'E' || \
 			map[vec.y][vec.x] == 'W')
 			break ;
 		vec.y++;
