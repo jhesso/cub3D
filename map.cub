@@ -3,7 +3,7 @@ SO ./textures/grass.png
 WE ./textures/wood.png
 EA ./textures/wood2.png
 F 100,100,100
-C 100,100,500
+C 100,100,5
 
  11111111111
 1011101 10N1
