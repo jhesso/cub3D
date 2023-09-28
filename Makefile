@@ -6,7 +6,7 @@
 #    By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/28 21:08:00 by dardangergu      ###   ########.fr        #
+#    Updated: 2023/09/28 21:25:14 by dardangergu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ OBJ_B_PATH	=	obj_bonus/
 
 # Source files
 SRC			=	main.c error.c cleanup.c utils.c\
-				init/data_init.c init/read_map.c init/split_line.c init/mlx_init.c\
+				init/data_init.c init/read_map.c init/split_line.c \
+				init/mlx_init.c\
 				parsing/split_elements_map.c parsing/validate_elements.c \
 				parsing/parse_colors.c parsing/validate_map.c \
 				parsing/validate_map_utils.c parsing/validate_map_utils_two.c
@@ -64,6 +65,7 @@ all: $(NAME)
 
 # Build the MLX library if needed
 $(MLX):
+	git submodule update --init --recursive $(MLX_DIR)
 	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 # Compile source files to object files
@@ -77,7 +79,8 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 $(NAME): $(OBJS) $(MLX)
 	@echo "$(BLUE)Compiling $(NAME)$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw -L $(LIBFT_DIR) -lft $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw \
+	-L $(LIBFT_DIR) -lft $(OBJS) -o $(NAME)
 	@echo "$(GREEN)done$(RESET)"
 
 # Build the bonus program if needed
@@ -92,7 +95,8 @@ $(OBJ_B_PATH)%.o: $(SRC_B_PATH)%.c
 $(NAME_B): $(OBJS_B)
 	@echo "$(BLUE)Compiling $(NAME_B)$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw -L $(LIBFT_DIR) -lft $(OBJS_B) -o $(NAME_B)
+	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw \
+	-L $(LIBFT_DIR) -lft $(OBJS_B) -o $(NAME_B)
 	@echo "$(GREEN)done$(RESET)"
 
 # Clean the project by removing object files
