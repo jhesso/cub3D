@@ -6,7 +6,7 @@
 /*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 21:41:34 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/29 22:11:58 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ void		remove_newline(char **map);
 bool		map_filled(char **map);
 bool		find_wall(char **map, t_vector pos);
 
+/*---------------------------------Raycasting---------------------------------*/
+
+/* raycasting */
+void		raycasting(t_map_data *data);
+
+/*---------------------------------Moving-------------------------------------*/
 
 
 
