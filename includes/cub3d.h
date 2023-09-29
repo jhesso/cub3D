@@ -6,7 +6,7 @@
 /*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 22:28:14 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/29 21:41:34 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*window;
-	mlx_texture_t	*north;
-	mlx_texture_t	*west;
-	mlx_texture_t	*east;
-	mlx_texture_t	*south;
+	mlx_image_t		*north;
+	mlx_image_t		*west;
+	mlx_image_t		*east;
+	mlx_image_t		*south;
 }				t_mlx_data;
 
 typedef struct s_map_data

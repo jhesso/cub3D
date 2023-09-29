@@ -3,29 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 15:05:19 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/29 21:51:23 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static bool	init_textures(t_map_data *data)
-{
-	data->mlx_data->north = mlx_load_png(data->north);
+{ //check again the return value of mlx_texture_to_image, could possibly remove the protection
+	mlx_texture_t	*texture;
+
+	texture = mlx_load_png(data->north);
+	data->mlx_data->north = mlx_texture_to_image(data->mlx_data->mlx, texture);
 	if (!data->mlx_data->north)
 		return (error_message(X_MLX));
-	data->mlx_data->south = mlx_load_png(data->south);
+	mlx_delete_texture(texture);
+	texture = mlx_load_png(data->south);
+	data->mlx_data->south = mlx_texture_to_image(data->mlx_data->mlx, texture);
 	if (!data->mlx_data->south)
 		return (error_message(X_MLX));
-	data->mlx_data->west = mlx_load_png(data->west);
+	mlx_delete_texture(texture);
+	texture = mlx_load_png(data->west);
+	data->mlx_data->west = mlx_texture_to_image(data->mlx_data->mlx, texture);
 	if (!data->mlx_data->west)
 		return (error_message(X_MLX));
-	data->mlx_data->east = mlx_load_png(data->east);
+	mlx_delete_texture(texture);
+	texture = mlx_load_png(data->east);
+	data->mlx_data->east = mlx_texture_to_image(data->mlx_data->mlx, texture);
 	if (!data->mlx_data->east)
 		return (error_message(X_MLX));
+	mlx_delete_texture(texture);
 	return (true);
 }
 
