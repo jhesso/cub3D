@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 22:38:44 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/29 15:05:19 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ bool	init_mlx(t_map_data *d)
 	// mlx_loop_hook(d->mlx_data->mlx, ft_randomize, mlx);
 	// mlx_loop_hook(d->mlx_data->mlx, ft_hook, mlx); //got this from the MLX42 test!
 	mlx_loop(d->mlx_data->mlx);
-	mlx_terminate(d->mlx_data->mlx);
 	return (true);
 }

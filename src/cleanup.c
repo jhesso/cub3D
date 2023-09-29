@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:03:51 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 14:55:29 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:06:17 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,13 @@ static void	cleanup_mlx_data(t_mlx_data *data)
 	if (data->window)
 		mlx_delete_image(data->mlx, data->window);
 	if (data->north)
-	{
-		free(data->north);
 		mlx_delete_texture(data->north);
-	}
 	if (data->south)
-	{
-		free(data->south);
 		mlx_delete_texture(data->south);
-	}
 	if (data->west)
-	{
-		free(data->west);
 		mlx_delete_texture(data->west);
-	}
 	if (data->east)
-	{
-		free(data->east);
 		mlx_delete_texture(data->east);
-	}
 }
 
 void	cleanup(t_map_data *data)
