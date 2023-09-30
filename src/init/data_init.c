@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 22:36:30 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/30 16:12:32 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static bool	init_map_data(t_map_data *data)
 	data->ceiling = malloc(sizeof(int) * 3);
 	if (!data->floor || !data->ceiling)
 		return (false);
+	data->starting_pos.x = -1;
+	data->starting_pos.y = -1;
 	data->map = NULL;
 	data->mlx_data = init_mlx_data();
 	if (!data->mlx_data)
@@ -59,8 +61,9 @@ bool	data_init(t_map_data *data, char *map)
 		return (false);
 	if (!validate_elements(data))
 		return (false);
-	if (!validate_map(data->map))
+	if (!validate_map(data))
 		return (false);
+	print_struct(data);
 	if (!init_mlx(data))
 		return (false);
 	return (true);

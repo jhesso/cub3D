@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 14:18:44 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:12:22 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	print_struct(t_map_data *data)
 		i++;
 	}
 	printf("\n");
+	printf("Starting pos: x: %d, y: %d\n", data->starting_pos.x, data->starting_pos.y);
 	print_string_arr(data->map);
 }
 

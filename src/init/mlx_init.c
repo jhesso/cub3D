@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 22:08:22 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/30 15:56:11 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ bool	init_mlx(t_map_data *d)
 		return (error_message(X_MLX));
 	}
 	// mlx_set_window_limit(d->mlx_data->mlx, 1920 - 500, 1024 - 500, 1920, 1024);
-	mlx_loop_hook(d->mlx_data->mlx, &raycasting, d);
-	mlx_loop_hook(d->mlx_data->mlx, &moving, d); //got this from the MLX42 test!
+	// mlx_loop_hook(d->mlx_data->mlx, &raycasting, d);
+	// mlx_loop_hook(d->mlx_data->mlx, &moving, d); //got this from the MLX42 test!
 	mlx_loop(d->mlx_data->mlx);
 	return (true);
 }

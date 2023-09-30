@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/27 19:23:33 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:10:49 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static bool	validate_colors(t_map_data *data)
 
 bool	validate_elements(t_map_data *data)
 {
-	print_struct(data);
 	if (!validate_texture(data))
 		return (false);
 	if (!validate_colors(data))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 22:11:58 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/30 16:11:35 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@
 /*								Structs 									  */
 /******************************************************************************/
 
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
+
 typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
@@ -74,15 +80,10 @@ typedef struct s_map_data
 	char		*east;
 	int			*floor;
 	int			*ceiling;
+	t_vector	starting_pos;
 	char		**map;
 	t_mlx_data	*mlx_data;
 }				t_map_data;
-
-typedef struct s_vector
-{
-	int	x;
-	int	y;
-}	t_vector;
 
 /******************************************************************************/
 /*								Functions									  */
@@ -126,7 +127,7 @@ bool		validate_elements(t_map_data *data);
 void		parse_colors(t_map_data *data, int i, int j, bool *error);
 
 /* validate_map */
-bool		validate_map(char **map);
+bool		validate_map(t_map_data *data);
 
 /* validate_map_utils */
 t_vector	find_empty_space(char **map);

@@ -3,30 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/28 20:01:22 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/09/30 16:13:30 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	check_chars(char **map, int row, int col, bool p_start)
+static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 {
 	char	c;
 
-	while (map[row])
+	while (data->map[row])
 	{
 		col = 0;
-		while (map[row][col])
+		while (data->map[row][col])
 		{
-			c = map[row][col];
+			c = data->map[row][col];
 			if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && \
 				c != 'W' && c != ' ')
 				return (error_message(X_UNKNOWN_ELEMENT_MAP));
 			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !p_start)
+			{
+				data->starting_pos.x = col;
+				data->starting_pos.y = row;
 				p_start = true;
+			}
 			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return (error_message(X_MULTIPLE_S_POINTS));
 			if (c == '\t' || c == '\v' || c == '\f' || c == '\r')
@@ -89,18 +93,18 @@ static bool	flood_fill(char **map, t_vector pos, bool *stop)
 	return (false);
 }
 
-static bool	check_walls(char **map, bool stop)
+static bool	check_walls(t_map_data *data, bool stop)
 {
 	char		**tmp_map;
 	t_vector	last_point;
 	t_vector	point;
 
-	if (!check_first_and_last(map))
+	if (!check_first_and_last(data->map))
 		return (false);
-	remove_newline(map);
+	remove_newline(data->map);
 	// if (!check_edges(map))
 	// 	return (false);
-	tmp_map = duplicate_map(map);
+	tmp_map = duplicate_map(data->map);
 	last_point = get_last_point(tmp_map);
 	point = find_empty_space(tmp_map);
 	while (true)
@@ -116,11 +120,11 @@ static bool	check_walls(char **map, bool stop)
 	return (true);
 }
 
-bool	validate_map(char **map)
+bool	validate_map(t_map_data *data)
 {
-	if (!check_chars(map, 0, 0, false))
+	if (!check_chars(data, 0, 0, false))
 		return (false);
-	if (!check_walls(map, false))
+	if (!check_walls(data, false))
 		return (error_message(X_MAP_NOT_CLOSED));
 	return (true);
 }
