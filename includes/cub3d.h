@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/30 16:11:35 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:26:42 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ bool		find_wall(char **map, t_vector pos);
 /*---------------------------------Raycasting---------------------------------*/
 
 /* raycasting */
-void		raycasting(t_map_data *data);
+void		raycasting(void *ptr);
 
 /*---------------------------------Moving-------------------------------------*/
 

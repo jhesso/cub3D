@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+         #
+#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/09/28 21:42:34 by dardangergu      ###   ########.fr        #
+#    Updated: 2023/09/30 18:03:04 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,9 @@ SRC			=	main.c error.c cleanup.c utils.c\
 				init/mlx_init.c\
 				parsing/split_elements_map.c parsing/validate_elements.c \
 				parsing/parse_colors.c parsing/validate_map.c \
-				parsing/validate_map_utils.c parsing/validate_map_utils_two.c
-
+				parsing/validate_map_utils.c parsing/validate_map_utils_two.c \
+				raycasting/raycasting.c
+#Delete map_utils_two if not neccessay
 SRC_B		=	main_bonus.c
 
 # Object files
@@ -73,6 +74,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/init
 	@mkdir -p $(OBJ_PATH)/parsing
+	@mkdir -p $(OBJ_PATH)/raycasting
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 # Build the main program
