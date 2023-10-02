@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/09/30 16:13:30 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:13:56 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 				return (error_message(X_UNKNOWN_ELEMENT_MAP));
 			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !p_start)
 			{
-				data->starting_pos.x = col;
-				data->starting_pos.y = row;
+				data->starting_pos.x = col * 64; //64 is the block size, can be smaller
+				data->starting_pos.y = row * 64;
 				p_start = true;
 			}
 			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')

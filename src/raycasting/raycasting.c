@@ -3,65 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/02 16:10:23 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/02 22:52:29 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+static void	draw_blocks(t_map_data *data, double x, double y, \
+				unsigned int color)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	int	block_y;
+	int	block_x;
+
+	block_y = 0;
+	while (block_y < 64 - 1)
+	{
+		block_x = 0;
+		while (block_x < 64 - 1)
+		{
+			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, color);
+			block_x++;
+		}
+		block_y++;
+	}
 }
 
-// void	draw_box(t_map_data *data, t_vector pos, t_vector size, uint32_t *color)
-// {
-// 	int	x;
-// 	int	y;
+static void	draw_2D_map(t_map_data *data)
+{
+	int x;
+	int y;
+	uint32_t color;
 
-// 	y = 0;
-// 	while (y < size.y)
-// 	{
-// 		x = 0;
-// 		while (x < size.x)
-// 		{
-// 			mlx_put_pixel(data->mlx_data->window, pos.x + x, pos.y + y, *color);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// static void	static_draw_wall(t_map_data *data, t_vector cord, char type, uint32_t *color)
-// {
-// 	if (type == '1')
-// 		draw_box(data,
-// 			(t_vector){cord.x * 64,  cord.y * 64}, (t_vector){cord.x * 64,  cord.y * 64}, color);
-// 	else if (type == 'O')
-// 		draw_box(data,
-// 			(t_vector){cord.x * 64,  cord.y * 64}, (t_vector){cord.x * 64,  cord.y * 64}, color);
-// }
-
-// static void	draw_walls(t_map_data *data, uint32_t *color)
-// {
-// 	t_vector 	cord;
-
-// 	cord.y = 0;
-// 	cord.x =  0;
-// 	while (data->map[cord.y][cord.x])
-// 	{
-// 		cord.x = 0;
-// 		while (data->map[cord.y][cord.x])
-// 		{
-// 			static_draw_wall(data, cord, data->map[cord.y][cord.x], color);
-// 			cord.x++;
-// 		}
-// 		cord.y++;
-// 	}
-// }
+	y = 0;
+	x = 0;
+	while (data->map[y][x])
+	{
+		printf("x = %d  y= %d\n", x, y);
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
+				color = 0x808080;
+			else if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '0')
+				color = 0xC0C0C0;
+			else
+				color = 0x0000FF;
+			draw_blocks(data, x * 64, y * 64, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	raycasting(void *ptr)
 {
@@ -70,23 +65,18 @@ void	raycasting(void *ptr)
 	// printf("starting: %d    %d\n", 1920 - (data->starting_pos.x * 64), 1024 - (data->starting_pos.y * 64));
 
 	t_vector cord;
-	uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
-			);
+	uint32_t color = 0x000000;
 
-	while (cord.x < 1920)
+	cord.y = 0;
+	while (cord.y < 1080)
 	{
-		cord.y = 0;
-		while (cord.y < 1024)
+		cord.x = 0;
+		while (cord.x < 1920)
 		{
 			mlx_put_pixel(data->mlx_data->window, cord.x, cord.y, color);
-			cord.y++;
+			cord.x++;
 		}
-		cord.x++;
+		cord.y++;
 	}
-	// draw_walls(data, &color);
+	draw_2D_map(data);
 }
-
