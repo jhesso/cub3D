@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/02 22:52:29 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/03 13:09:32 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_blocks(t_map_data *data, double x, double y, \
-				unsigned int color)
+static void	draw_blocks(t_map_data *data, int x, int y, unsigned int color)
 {
 	int	block_y;
 	int	block_x;
@@ -31,19 +30,17 @@ static void	draw_blocks(t_map_data *data, double x, double y, \
 	}
 }
 
-static void	draw_2D_map(t_map_data *data)
+static void	draw_map(t_map_data *data)
 {
 	int x;
 	int y;
 	uint32_t color;
 
 	y = 0;
-	x = 0;
-	while (data->map[y][x])
+	while (data->map[y] && (y * 64) < 1024)
 	{
-		printf("x = %d  y= %d\n", x, y);
 		x = 0;
-		while (data->map[y][x])
+		while (data->map[y][x] && (x * 64) < 1920)
 		{
 			if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
 				color = 0x808080;
@@ -60,13 +57,12 @@ static void	draw_2D_map(t_map_data *data)
 
 void	raycasting(void *ptr)
 {
-	// (void)ptr;
-	t_map_data *data = (t_map_data *)ptr;
-	// printf("starting: %d    %d\n", 1920 - (data->starting_pos.x * 64), 1024 - (data->starting_pos.y * 64));
-
+	t_map_data *data;
+	uint32_t color;
 	t_vector cord;
-	uint32_t color = 0x000000;
 
+	data = (t_map_data *)ptr;
+	color = 0x000000;
 	cord.y = 0;
 	while (cord.y < 1080)
 	{
@@ -78,5 +74,5 @@ void	raycasting(void *ptr)
 		}
 		cord.y++;
 	}
-	draw_2D_map(data);
+	draw_map(data);
 }
