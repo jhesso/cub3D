@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/02 19:21:46 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/03 14:23:33 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static bool	init_textures(t_map_data *data)
 
 bool	init_mlx(t_map_data *d)
 {
-	if (!(d->mlx_data->mlx = mlx_init(1920, 1024, "cub3D", true)))
+	if (!(d->mlx_data->mlx = mlx_init(WIDTH_W, HEIGHT_W, "cub3D", true)))
 		return (error_message(X_MLX));
 	if (!init_textures(d))
 		return (false);
-	if (!(d->mlx_data->window = mlx_new_image(d->mlx_data->mlx, 1920, 1080)))
+	if (!(d->mlx_data->window = mlx_new_image(d->mlx_data->mlx, WIDTH_W, 1080)))
 	{
 		mlx_close_window(d->mlx_data->mlx);
 		return (error_message(X_MLX));
@@ -55,7 +55,6 @@ bool	init_mlx(t_map_data *d)
 		mlx_close_window(d->mlx_data->mlx);
 		return (error_message(X_MLX));
 	}
-	// mlx_set_window_limit(d->mlx_data->mlx, 1920 - 500, 1024 - 500, 1920, 1024);
 	mlx_loop_hook(d->mlx_data->mlx, &raycasting, d);
 	// mlx_loop_hook(d->mlx_data->mlx, &moving, d); //got this from the MLX42 test!
 	mlx_loop(d->mlx_data->mlx);

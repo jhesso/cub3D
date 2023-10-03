@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/30 17:26:42 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:34:10 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 
 # include "../libft/includes/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+
+# define WIDTH_W 1920
+# define HEIGHT_W 1080
+# define SIZE_B 30
+# define SIZE_P 5
 
 /******************************************************************************/
 /*								Error Messages	 							  */
@@ -61,6 +66,12 @@ typedef struct s_vector
 	int	y;
 }	t_vector;
 
+typedef struct s_float_v
+{
+	float	x;
+	float	y;
+}	t_float_v;
+
 typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
@@ -80,7 +91,7 @@ typedef struct s_map_data
 	char		*east;
 	int			*floor;
 	int			*ceiling;
-	t_vector	starting_pos;
+	t_float_v	starting_pos;
 	char		**map;
 	t_mlx_data	*mlx_data;
 }				t_map_data;
