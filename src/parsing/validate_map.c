@@ -6,11 +6,26 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/10/03 14:33:01 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:52:22 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	starting_point(t_map_data *d, int row, int col, bool *p_start, char c) //move somewhere
+{
+	d->starting_pos.x = col * SIZE_B + ((SIZE_B - SIZE_P) / 2);
+	d->starting_pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
+	*(p_start) = true;
+	if (c == 'N')
+		d->s_angle = 90.0;
+	else if (c == 'S')
+		d->s_angle = 270.0;
+	else if (c == 'W')
+		d->s_angle = 180.0;
+	else if (c == 'E')
+		d->s_angle = 0.0;
+}
 
 static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 {
@@ -26,11 +41,7 @@ static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 				c != 'W' && c != ' ')
 				return (error_message(X_UNKNOWN_ELEMENT_MAP));
 			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !p_start)
-			{
-				data->starting_pos.x = col * SIZE_B + ((SIZE_B - SIZE_P) / 2);
-				data->starting_pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
-				p_start = true;
-			}
+				starting_point(data, row, col, &p_start, c);
 			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return (error_message(X_MULTIPLE_S_POINTS));
 			if (c == '\t' || c == '\v' || c == '\f' || c == '\r')
