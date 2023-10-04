@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/03 14:37:41 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:14:46 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	raycasting(void *ptr)
 	data = (t_map_data *)ptr;
 	color = 0x000000;
 	cord.y = 0;
+	if (mlx_is_key_down(data->mlx_data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx_data->mlx);
 	while (cord.y < 1080)
 	{
 		cord.x = 0;
