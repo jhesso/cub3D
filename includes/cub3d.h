@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/03 14:34:10 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 12:39:32 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/types.h> //read
 # include <sys/uio.h> //read
 # include <stdbool.h>
+# include <math.h>
 
 # include "../libft/includes/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -92,6 +93,7 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	t_float_v	starting_pos;
+	float		s_angle;
 	char		**map;
 	t_mlx_data	*mlx_data;
 }				t_map_data;
@@ -151,6 +153,9 @@ bool		find_wall(char **map, t_vector pos);
 
 /* raycasting */
 void		raycasting(void *ptr);
+
+/* moving */
+void		moving(void *ptr);
 
 /*---------------------------------Moving-------------------------------------*/
 

@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/30 16:12:32 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:02:19 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static bool	init_map_data(t_map_data *data)
 		return (false);
 	data->starting_pos.x = -1;
 	data->starting_pos.y = -1;
+	data->s_angle = -1;
 	data->map = NULL;
 	data->mlx_data = init_mlx_data();
 	if (!data->mlx_data)

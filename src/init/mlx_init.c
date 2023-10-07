@@ -6,14 +6,14 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/03 14:23:33 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:01:15 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static bool	init_textures(t_map_data *data)
-{ //check again the return value of mlx_texture_to_image, could possibly remove the protection
+{
 	mlx_texture_t	*texture;
 
 	texture = mlx_load_png(data->north);
@@ -56,7 +56,7 @@ bool	init_mlx(t_map_data *d)
 		return (error_message(X_MLX));
 	}
 	mlx_loop_hook(d->mlx_data->mlx, &raycasting, d);
-	// mlx_loop_hook(d->mlx_data->mlx, &moving, d); //got this from the MLX42 test!
+	mlx_loop_hook(d->mlx_data->mlx, &moving, d);
 	mlx_loop(d->mlx_data->mlx);
 	return (true);
 }

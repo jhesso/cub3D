@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/03 14:23:25 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 13:03:51 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	print_struct(t_map_data *data)
 	}
 	printf("\n");
 	printf("Starting pos: x: %f, y: %f\n", data->starting_pos.x, data->starting_pos.y);
+	printf("The starting angle: %f\n", data->s_angle);
 	print_string_arr(data->map);
 }
 
