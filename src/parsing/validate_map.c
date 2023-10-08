@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/10/04 17:52:22 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/08 09:29:29 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,25 @@ void	starting_point(t_map_data *d, int row, int col, bool *p_start, char c) //mo
 	d->starting_pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
 	*(p_start) = true;
 	if (c == 'N')
-		d->s_angle = 90.0;
+	{
+		d->starting_angle.x = cosf(270 * M_PI / 180.0);
+		d->starting_angle.y = sinf(270 * M_PI / 180.0);
+	}
 	else if (c == 'S')
-		d->s_angle = 270.0;
+	{
+		d->starting_angle.x = cosf(90 * M_PI / 180.0);
+		d->starting_angle.y = sinf(90 * M_PI / 180.0);
+	}
 	else if (c == 'W')
-		d->s_angle = 180.0;
+	{
+		d->starting_angle.x = cosf(180 * M_PI / 180.0);
+		d->starting_angle.y = sinf(180 * M_PI / 180.0);
+	}
 	else if (c == 'E')
-		d->s_angle = 0.0;
+	{
+		d->starting_angle.x = cosf(360 * M_PI / 180.0);
+		d->starting_angle.y = sinf(360 * M_PI / 180.0);
+	}
 }
 
 static bool	check_chars(t_map_data *data, int row, int col, bool p_start)

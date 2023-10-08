@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/07 13:03:51 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:12:28 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_struct(t_map_data *data)
 	}
 	printf("\n");
 	printf("Starting pos: x: %f, y: %f\n", data->starting_pos.x, data->starting_pos.y);
-	printf("The starting angle: %f\n", data->s_angle);
+	printf("Starting pos: x: %f, y: %f\n", data->starting_angle.x, data->starting_angle.y);
 	print_string_arr(data->map);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/07 12:39:32 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:11:42 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	t_float_v	starting_pos;
-	float		s_angle;
+	t_float_v	starting_angle;
 	char		**map;
 	t_mlx_data	*mlx_data;
 }				t_map_data;
