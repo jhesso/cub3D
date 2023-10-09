@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/08 13:57:36 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/09 11:58:01 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	move_up(t_map_data *data)
 	y = -data->starting_angle.x * 0.5;
 	data->starting_pos.x = data->starting_pos.x + x;
 	data->starting_pos.y = data->starting_pos.y + y;
+	printf("x: %f   y: %f\n", x, y);
 }
 
 void	move_down(t_map_data *data)
@@ -29,9 +30,10 @@ void	move_down(t_map_data *data)
 	float	y;
 
 	x = -data->starting_angle.y * 0.5;
-	y = data->starting_angle.x * 0.5;;
+	y = data->starting_angle.x * 0.5;
 	data->starting_pos.x = data->starting_pos.x + x;
 	data->starting_pos.y = data->starting_pos.y + y;
+	printf("x: %f   y: %f\n", x, y);
 }
 
 void	move_left(t_map_data *data)
@@ -40,7 +42,7 @@ void	move_left(t_map_data *data)
 	float	y;
 
 	x = data->starting_pos.x - data->starting_angle.x * 0.5;
-	y = data->starting_pos.y - data->starting_angle.y * 0.5;;
+	y = data->starting_pos.y - data->starting_angle.y * 0.5;
 	data->starting_pos.x = x;
 	data->starting_pos.y = y;
 }
@@ -51,31 +53,27 @@ void	move_right(t_map_data *data)
 	float	y;
 
 	x = data->starting_pos.x + data->starting_angle.x * 0.5;
-	y = data->starting_pos.y + data->starting_angle.y * 0.5;;
+	y = data->starting_pos.y + data->starting_angle.y * 0.5;
 	data->starting_pos.x = x;
 	data->starting_pos.y = y;
 }
 
 void	move_left_arrow(t_map_data *data)
 {
-	float	x;
-	float	y;
+	float	angle_x;
 
-	x = data->starting_angle.y * 0.5;
-	y = -data->starting_angle.x * 0.5;;
-	data->starting_pos.x = data->starting_pos.x + x;
-	data->starting_pos.y = data->starting_pos.y + y;
+	angle_x = data->starting_angle.x;
+	data->starting_angle.x = data->starting_angle.x * cos(-0.05) - data->starting_angle.y * sin(-0.05);
+	data->starting_angle.y = angle_x * sin(-0.05) + data->starting_angle.y * cos(-0.05);
 }
 
 void	move_right_arrow(t_map_data *data)
 {
-	float	x;
-	float	y;
+	float	angle_x;
 
-	x = -data->starting_angle.y * 0.5;
-	y = data->starting_angle.x * 0.5;;
-	data->starting_pos.x = data->starting_pos.x + x;
-	data->starting_pos.y = data->starting_pos.y + y;
+	angle_x = data->starting_angle.x;
+	data->starting_angle.x = data->starting_angle.x * cos(0.05) - data->starting_angle.y * sin(0.05);
+	data->starting_angle.y = angle_x * sin(0.05) + data->starting_angle.y * cos(0.05);
 }
 
 void	moving(void *ptr)
