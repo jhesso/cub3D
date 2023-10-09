@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/09 11:58:01 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:01:13 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	move_up(t_map_data *data)
 	y = -data->starting_angle.x * 0.5;
 	data->starting_pos.x = data->starting_pos.x + x;
 	data->starting_pos.y = data->starting_pos.y + y;
-	printf("x: %f   y: %f\n", x, y);
 }
 
 void	move_down(t_map_data *data)
@@ -33,7 +32,6 @@ void	move_down(t_map_data *data)
 	y = data->starting_angle.x * 0.5;
 	data->starting_pos.x = data->starting_pos.x + x;
 	data->starting_pos.y = data->starting_pos.y + y;
-	printf("x: %f   y: %f\n", x, y);
 }
 
 void	move_left(t_map_data *data)
