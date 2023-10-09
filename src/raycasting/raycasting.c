@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/08 09:51:45 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/09 12:06:12 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color
 	int	block_x;
 
 	block_y = 0;
-	while (block_y < SIZE_P)
+	while (data->starting_pos.x >= 0 && data->starting_pos.y >= 0 && block_y < SIZE_P)
 	{
 		block_x = 0;
 		while (block_x < SIZE_P)
