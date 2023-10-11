@@ -2,8 +2,8 @@ NO    ./textures/brick.png
 SO ./textures/grass.png
 WE ./textures/wood.png
 EA ./textures/wood2.png
-F 100,100,100
-C 100,100,5
+F 210,50,100
+C 20,250,100
 
 111111111
 100000001

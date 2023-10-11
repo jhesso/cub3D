@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/07 23:11:42 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/11 17:35:01 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@
 
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 }	t_vector;
 
 typedef struct s_float_v
@@ -81,6 +81,8 @@ typedef struct s_mlx_data
 	mlx_image_t		*west;
 	mlx_image_t		*east;
 	mlx_image_t		*south;
+	uint32_t		floor;
+	uint32_t		ceiling;
 }				t_mlx_data;
 
 typedef struct s_map_data

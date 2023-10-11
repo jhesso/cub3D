@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/08 09:32:56 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/11 17:41:48 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static t_mlx_data	*init_mlx_data()
 	mlx_data->south = NULL;
 	mlx_data->west = NULL;
 	mlx_data->east = NULL;
+	mlx_data->floor = -1;
+	mlx_data->ceiling = -1;
 	return (mlx_data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/30 16:10:49 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:23:44 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ static bool	validate_texture(t_map_data *data)
 	return (true);
 }
 
-static bool	validate_color_range(int *data)
+static int32_t rgb(int red, int green, int blue)
+{
+    return (((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff));
+}
+
+static bool	validate_color_range(t_map_data *d, int *data, char c)
 {
 	int	i;
 
@@ -49,6 +54,10 @@ static bool	validate_color_range(int *data)
 			return (error_message(X_WRONG_COLOR_VALUE));
 		i++;
 	}
+	if (c == 'F')
+		d->mlx_data->floor = rgb(data[0], data[1], data[2]);
+	else if (c == 'C')
+		d->mlx_data->ceiling = rgb(data[0], data[1], data[2]);
 	return (true);
 }
 
@@ -56,9 +65,9 @@ static bool	validate_colors(t_map_data *data)
 {
 	if (!data->floor || !data->ceiling)
 		print_error_message(X_MISSING_COLOR);
-	if (!validate_color_range(data->floor))
+	if (!validate_color_range(data, data->floor, 'F'))
 		return (false);
-	if (!validate_color_range(data->ceiling))
+	if (!validate_color_range(data, data->ceiling, 'C'))
 		return (false);
 	return (true);
 }
