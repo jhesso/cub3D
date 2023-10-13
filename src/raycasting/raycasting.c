@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/12 17:22:33 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:27:17 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	draw_nose(t_map_data *data)
 	i = 0;
 	while (i < 20 && pos.y > -1 && pos.x > -1)
 	{
-		mlx_put_pixel(data->mlx_data->window, pos.x, pos.y, 0xDFFF00);
+		mlx_put_pixel(data->mlx_data->window, pos.x, pos.y, 0xF000FF);
 		pos.y += angle.y;
 		pos.x += angle.x;
 		i++;
