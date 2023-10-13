@@ -6,13 +6,13 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/12 17:10:31 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:44:33 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_left(t_map_data *data)
+static void	move_left(t_map_data *data)
 {
 	float	x;
 	float	y;
@@ -23,7 +23,7 @@ void	move_left(t_map_data *data)
 	data->starting_pos.y = data->starting_pos.y + y;
 }
 
-void	move_right(t_map_data *data)
+static void	move_right(t_map_data *data)
 {
 	float	x;
 	float	y;
@@ -34,7 +34,7 @@ void	move_right(t_map_data *data)
 	data->starting_pos.y = data->starting_pos.y + y;
 }
 
-void	move_down(t_map_data *data)
+static void	move_down(t_map_data *data)
 {
 	float	x;
 	float	y;
@@ -45,7 +45,7 @@ void	move_down(t_map_data *data)
 	data->starting_pos.y = y;
 }
 
-void	move_up(t_map_data *data)
+static void	move_up(t_map_data *data)
 {
 	float	x;
 	float	y;
@@ -56,7 +56,7 @@ void	move_up(t_map_data *data)
 	data->starting_pos.y = y;
 }
 
-void	move_left_arrow(t_map_data *data)
+static void	move_left_arrow(t_map_data *data)
 {
 	float	angle_x;
 
@@ -65,7 +65,7 @@ void	move_left_arrow(t_map_data *data)
 	data->starting_angle.y = angle_x * sin(-0.05) + data->starting_angle.y * cos(-0.05);
 }
 
-void	move_right_arrow(t_map_data *data)
+static void	move_right_arrow(t_map_data *data)
 {
 	float	angle_x;
 

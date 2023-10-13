@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/10/07 12:42:50 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/10/13 12:40:47 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ SRC			=	main.c error.c cleanup.c utils.c\
 				init/mlx_init.c\
 				parsing/split_elements_map.c parsing/validate_elements.c \
 				parsing/parse_colors.c parsing/validate_map.c \
-				parsing/validate_map_utils.c parsing/validate_map_utils_two.c \
-				raycasting/raycasting.c raycasting/moving.c
+				parsing/validate_map_utils.c \
+				raycasting/raycasting.c raycasting/moving.c raycasting/2d_drawing.c
 #Delete map_utils_two if not neccessay
 SRC_B		=	main_bonus.c
 

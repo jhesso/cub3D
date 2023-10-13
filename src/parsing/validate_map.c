@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/10/12 17:08:57 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:39:43 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,6 @@ static bool	check_walls(t_map_data *data, bool stop)
 	if (!check_first_and_last(data->map))
 		return (false);
 	remove_newline(data->map);
-	// if (!check_edges(map))
-	// 	return (false);
 	tmp_map = duplicate_map(data->map);
 	last_point = get_last_point(tmp_map);
 	point = find_empty_space(tmp_map);

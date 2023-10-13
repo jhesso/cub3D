@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/11 17:35:01 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:43:58 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,14 +159,12 @@ void		raycasting(void *ptr);
 /* moving */
 void		moving(void *ptr);
 
-/*---------------------------------Moving-------------------------------------*/
-
-
-
-/* validate_map_utils_two */ //PROBABLY DELETE THE WHOLE FILE!
-// bool		check_edges(char **map);
-
-/* TEMPORARY IN MAIN*/
+/* TEMPORARY IN MAIN */
 void		print_struct(t_map_data *data);
+
+/* TEMPORARY IN MAIN */
+void	draw_map(t_map_data *data);
+void	draw_player(t_map_data *data);
+void	draw_nose(t_map_data *data);
 
 #endif
