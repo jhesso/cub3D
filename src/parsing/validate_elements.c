@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/11 17:23:44 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:08:33 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static bool	validate_texture(t_map_data *data)
 	return (true);
 }
 
-static int32_t rgb(int red, int green, int blue)
+static int rgb(int r, int g, int b)
 {
-    return (((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff));
+    return (r << 24 | g << 16 | b << 8 | 255);
 }
 
 static bool	validate_color_range(t_map_data *d, int *data, char c)
