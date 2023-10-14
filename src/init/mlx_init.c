@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/07 13:01:15 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:35:53 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static bool	init_textures(t_map_data *data)
 	mlx_texture_t	*texture;
 
 	texture = mlx_load_png(data->north);
+	if (!texture)
+		return (error_message(X_MLX)); //check this it also prints the error from MLX!
 	data->mlx_data->north = mlx_texture_to_image(data->mlx_data->mlx, texture);
 	if (!data->mlx_data->north)
 		return (error_message(X_MLX));
