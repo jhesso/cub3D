@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/10/13 12:39:43 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:37:13 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,32 @@
 
 void	starting_point(t_map_data *d, int row, int col, bool *p_start, char c) //move somewhere
 {
-	d->starting_pos.x = col * SIZE_B + ((SIZE_B - SIZE_P) / 2);
-	d->starting_pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
+	d->pos.x = col * SIZE_B + ((SIZE_B - SIZE_P) / 2);
+	d->pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
 	*(p_start) = true;
 	if (c == 'N')
 	{
-		d->starting_angle.x = cosf(270 * M_PI / 180.0);
-		d->starting_angle.y = sinf(270 * M_PI / 180.0);
+		d->angle = 90;
+		d->cord_dir.x = cosf(270 * M_PI / 180);
+		d->cord_dir.y = sinf(270 * M_PI / 180);
 	}
 	else if (c == 'S')
 	{
-		d->starting_angle.x = cosf(90 * M_PI / 180.0);
-		d->starting_angle.y = sinf(90 * M_PI / 180.0);
+		d->angle = 270;
+		d->cord_dir.x = cosf(90 * M_PI / 180);
+		d->cord_dir.y = sinf(90 * M_PI / 180);
 	}
 	else if (c == 'W')
 	{
-		d->starting_angle.x = cosf(180 * M_PI / 180.0);
-		d->starting_angle.y = sinf(180 * M_PI / 180.0);
+		d->angle = 180;
+		d->cord_dir.x = cosf(180 * M_PI / 180);
+		d->cord_dir.y = sinf(180 * M_PI / 180);
 	}
 	else if (c == 'E')
 	{
-		d->starting_angle.x = cosf(360 * M_PI / 180.0);
-		d->starting_angle.y = sinf(360 * M_PI / 180.0);
+		d->angle = 0;
+		d->cord_dir.x = cosf(360 * M_PI / 180);
+		d->cord_dir.y = sinf(360 * M_PI / 180);
 	}
 }
 

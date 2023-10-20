@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/13 12:42:01 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:37:58 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color
 	int	block_x;
 
 	block_y = 0;
-	while (data->starting_pos.x >= 0 && data->starting_pos.y >= 0 && block_y < SIZE_P)
+	while (data->pos.x >= 0 && data->pos.y >= 0 && block_y < SIZE_P)
 	{
 		block_x = 0;
 		while (block_x < SIZE_P)
@@ -86,7 +86,7 @@ void	draw_player(t_map_data *data)
 		block_x = 0;
 		while ((block_x * SIZE_B) < WIDTH_W)
 		{
-			draw_player_block(data, (data->starting_pos.x ), (data->starting_pos.y), 0xDFFF00);
+			draw_player_block(data, (data->pos.x ), (data->pos.y), 0xDFFF00);
 			block_x++;
 		}
 		block_y++;
@@ -99,10 +99,10 @@ void	draw_nose(t_map_data *data)
 	t_float_v	pos;
 	float		i;
 
-	angle.x = data->starting_angle.x;
-	angle.y = data->starting_angle.y;
-	pos.x = data->starting_pos.x + SIZE_P / 2;
-	pos.y = data->starting_pos.y + SIZE_P / 2;
+	angle.x = data->cord_dir.x;
+	angle.y = data->cord_dir.y;
+	pos.x = data->pos.x + SIZE_P / 2;
+	pos.y = data->pos.y + SIZE_P / 2;
 	i = 0;
 	while (i < 20 && pos.y > -1 && pos.x > -1)
 	{

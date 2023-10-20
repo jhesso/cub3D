@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/11 17:50:16 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:39:16 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ static bool	init_map_data(t_map_data *data)
 	data->ceiling = malloc(sizeof(int) * 3);
 	if (!data->floor || !data->ceiling)
 		return (false);
-	data->starting_pos.x = -1;
-	data->starting_pos.y = -1;
-	data->starting_angle.x = 0;
-	data->starting_angle.y = 0;
+	data->pos.x = 0;
+	data->pos.y = 0;
+	data->cord_dir.x = 0;
+	data->cord_dir.y = 0;
+	data->angle = 0;
 	data->map = NULL;
 	data->mlx_data = init_mlx_data();
 	if (!data->mlx_data)

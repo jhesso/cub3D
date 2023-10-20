@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/13 12:43:58 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:35:50 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ typedef struct s_map_data
 	char		*east;
 	int			*floor;
 	int			*ceiling;
-	t_float_v	starting_pos;
-	t_float_v	starting_angle;
+	t_float_v	pos;
+	t_float_v	cord_dir;
+	float		angle;
 	char		**map;
 	t_mlx_data	*mlx_data;
 }				t_map_data;

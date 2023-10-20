@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/07 23:12:28 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/10/20 15:41:28 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 // this is just for testing!
 void	print_struct(t_map_data *data)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	printf("------STRUCT-----\n");
-	printf("NORTH: %s\n", data->north);
-	printf("SOUTH: %s\n", data->south);
-	printf("WEST: %s\n", data->west);
-	printf("EAST: %s\n", data->east);
-	printf("Floor: ");
-	while (i < 3)
-	{
-		printf("  %d ", data->floor[i]);
-		i++;
-	}
-	printf("\nCeiling: ");
-	i = 0;
-	while (i < 3)
-	{
-		printf("  %d ", data->ceiling[i]);
-		i++;
-	}
-	printf("\n");
-	printf("Starting pos: x: %f, y: %f\n", data->starting_pos.x, data->starting_pos.y);
-	printf("Starting pos: x: %f, y: %f\n", data->starting_angle.x, data->starting_angle.y);
-	print_string_arr(data->map);
+	// i = 0;
+	// printf("------STRUCT-----\n");
+	// printf("NORTH: %s\n", data->north);
+	// printf("SOUTH: %s\n", data->south);
+	// printf("WEST: %s\n", data->west);
+	// printf("EAST: %s\n", data->east);
+	// printf("Floor: ");
+	// while (i < 3)
+	// {
+	// 	printf("  %d ", data->floor[i]);
+	// 	i++;
+	// }
+	// printf("\nCeiling: ");
+	// i = 0;
+	// while (i < 3)
+	// {
+	// 	printf("  %d ", data->ceiling[i]);
+	// 	i++;
+	// }
+	// printf("\n");
+	printf("Pos: x: %f, y: %f\n", data->pos.x, data->pos.y);
+	printf("Cord: x: %f, y: %f\n", data->cord_dir.x, data->cord_dir.y);
+	printf("Angle: %f\n", data->angle);
+	// print_string_arr(data->map);
 }
 
 int	main(int argc, char **argv)
