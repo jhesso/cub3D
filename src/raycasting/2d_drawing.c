@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/20 15:37:58 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:40:48 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	draw_nose(t_map_data *data)
 	t_float_v	pos;
 	float		i;
 
-	angle.x = data->cord_dir.x;
-	angle.y = data->cord_dir.y;
+	angle.x = data->dir.x;
+	angle.y = data->dir.y;
 	pos.x = data->pos.x + SIZE_P / 2;
 	pos.y = data->pos.y + SIZE_P / 2;
 	i = 0;

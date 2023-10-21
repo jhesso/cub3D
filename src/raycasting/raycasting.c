@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/10/20 14:35:40 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/21 15:40:47 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	raycasting(void *ptr)
 	print_struct(data);
 	while (i < WIDTH_W)
 	{
-
+		// calculate_ray();
 		// draw_fov(data);
 		// draw_3d(data);
 		i++;

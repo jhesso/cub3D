@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/20 15:41:28 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:41:17 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_struct(t_map_data *data)
 	// }
 	// printf("\n");
 	printf("Pos: x: %f, y: %f\n", data->pos.x, data->pos.y);
-	printf("Cord: x: %f, y: %f\n", data->cord_dir.x, data->cord_dir.y);
+	printf("Cord: x: %f, y: %f\n", data->dir.x, data->dir.y);
 	printf("Angle: %f\n", data->angle);
 	// print_string_arr(data->map);
 }
