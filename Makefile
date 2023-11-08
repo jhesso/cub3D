@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/10/13 12:40:47 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/11/07 16:39:53 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,13 @@ BLUE			=	\033[0;34m
 RESET			=	\033[0m
 
 # Default target: build the main program
-all: $(NAME)
+# all: $(NAME)
+
+#* this is my workaround to compile on linux
+# !!!REMOVE BEFORE SUBMISSION!!!
+all: $(MLX)
+	$(MAKE) -C $(LIBFT_DIR)
+	cc -Wall -Wextra -Werror src/*.c src/*/*.c -I includes/ -L libft/ -lft -L MLX42/build/ -lmlx42 -I libft/includes -I MLX42/include/ -ldl -lglfw -pthread -lm -o cub3d
 
 # Build the MLX library if needed
 $(MLX):
@@ -109,6 +115,7 @@ clean:
 	@/bin/rm -rf $(MLX_DIR)build
 
 # Clean the project and remove executables
+#? should fclean also clean mlx?
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
 	@/bin/rm -rf $(NAME) $(NAME_B)

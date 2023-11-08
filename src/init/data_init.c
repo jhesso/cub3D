@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/01 15:45:05 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:11:18 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ static bool	init_map_data(t_map_data *data)
 	data->ceiling = malloc(sizeof(int) * 3);
 	if (!data->floor || !data->ceiling)
 		return (false);
+	data->floor[0] = -1;
+	data->ceiling[0] = -1;
 	data->pos.x = 0;
 	data->pos.y = 0;
 	data->dir.x = 0;
 	data->dir.y = 0;
 	data->angle = 0;
+	data->map_w = 0;
+	data->map_h = 0;
 	data->map = NULL;
 	data->mlx_data = init_mlx_data();
 	if (!data->mlx_data)
@@ -62,13 +66,14 @@ bool	data_init(t_map_data *data, char *map)
 		return (false);
 	if (!read_map(data, map))
 		return (false);
+	// print_string_arr(data->file_splitted);
 	if (!parse_file(data))
 		return (false);
+	// print_struct(data);
 	if (!validate_elements(data))
 		return (false);
 	if (!validate_map(data))
 		return (false);
-	// print_struct(data);
 	if (!init_mlx(data))
 		return (false);
 	return (true);

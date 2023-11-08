@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_elements_map.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/28 12:36:00 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:13:51 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,28 @@ static int	remove_whitespace(char *str)
 
 static bool	check_element_exists(t_map_data *data, char c)
 {
-	int	flag;
+	bool	flag;
 
-	flag = 0;
+	flag = false;
+	// printf("c: %c\nnorth: %s\nsouth: %s\nwest: %s\neast: %s\n", c, data->north,
+	// 	data->south, data->west, data->east);
 	if (c == 'N' && data->north)
-		flag = 1;
+		flag = true;
 	else if (c == 'S' && data->south)
-		flag = 1;
+		flag = true;
 	else if (c == 'W' && data->west)
-		flag = 1;
+		flag = true;
 	else if (c == 'E' && data->east)
-		flag = 1;
+		flag = true;
 	else if (c == 'F' && data->floor[0] >= 0)
-		flag = 1;
+	{
+		printf("c: %c, floor[0]: %d\n", c, data->floor[0]);
+		printf("flag == true now\n");
+		flag = true;
+	}
 	else if (c == 'C' && data->ceiling[0] >= 0)
-		flag = 1;
-	if (flag == 1)
+		flag = true;
+	if (flag == true)
 		return (error_message(X_UNKNOWN_ELEMENT));
 	return (true);
 }

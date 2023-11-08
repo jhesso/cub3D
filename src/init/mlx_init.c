@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/14 15:35:53 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:10:49 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,26 @@ static bool	init_textures(t_map_data *data)
 	return (true);
 }
 
+static void	get_map_size(t_map_data *data)
+{
+	int	i;
+	int	w;
+
+	i = 0;
+	while (data->map[i])
+	{
+		w = ft_strlen(data->map[i]);
+		if (w > data->map_w)
+			data->map_w = w;
+		i++;
+	}
+	data->map_h = i;
+}
+
 bool	init_mlx(t_map_data *d)
 {
+	print_struct(d);
+	get_map_size(d);
 	if (!(d->mlx_data->mlx = mlx_init(WIDTH_W, HEIGHT_W, "cub3D", true)))
 		return (error_message(X_MLX));
 	if (!init_textures(d))

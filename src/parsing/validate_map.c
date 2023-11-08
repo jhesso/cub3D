@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/10/21 16:40:10 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:03:51 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ void	starting_point(t_map_data *d, int row, int col, bool *p_start, char c) //mo
 	*(p_start) = true;
 	if (c == 'N')
 	{
-		d->angle = 90 * M_PI / 180;
+		d->angle = 90;
 		d->dir.x = cos(90 * M_PI / 180);
 		d->dir.y = -sin(90 * M_PI / 180);
 	}
 	else if (c == 'S')
 	{
-		d->angle = 270 * M_PI / 180;
+		d->angle = 270;
 		d->dir.x = cos(270 * M_PI / 180);
 		d->dir.y = -sin(270 * M_PI / 180);
 	}
 	else if (c == 'W')
 	{
-		d->angle = 180 * M_PI / 180;
+		d->angle = 180;
 		d->dir.x = cos(180 * M_PI / 180);
 		d->dir.y = -sin(180 * M_PI / 180);
 	}
 	else if (c == 'E')
 	{
-		d->angle = 0 * M_PI / 180;
+		d->angle = 0;
 		d->dir.x = cos(0 * M_PI / 180);
 		d->dir.y = -sin(0 * M_PI / 180);
 	}

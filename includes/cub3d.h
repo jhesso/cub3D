@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/21 16:40:24 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:06:02 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@
 # include "../libft/includes/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH_W 1920
+# define WIDTH_W 1490
 # define HEIGHT_W 1080
-# define SIZE_B 30
-# define SIZE_P 5
+# define SIZE_B 30 // Size of "block" (wall/empty etc..)?
+# define SIZE_P 5 // Size of player?
+# define PI 3.141592
+# define RAD 0.0174533
+# define PROJ_H 770
+# define PROJ_V 1370
 
 /******************************************************************************/
 /*								Error Messages	 							  */
@@ -73,6 +77,43 @@ typedef struct s_float_v
 	float	y;
 }	t_float_v;
 
+// typedef struct s_player
+// {
+// 	int		r; // ray count
+// 	int		mapx; // map x?
+// 	int		mapy; // map y?
+// 	int		mapp; // map position?
+// 	int		dof; // depth of field
+// 	float	rayx; // ray x
+// 	float	rayy; // ray y
+// 	float	raya; // ray angle
+// 	float	xo; // x offset
+// 	float	yo; // y offset
+// 	float	playera; // player angle
+// 	float	playerx; // player x
+// 	float	playery; // player y
+// }			t_player;
+
+typedef struct s_ray
+{
+	float		angle;
+	int			fov;
+	float		raycast_angle;
+	float		projection_width;
+	float		projection_height;
+	t_float_v	center;
+	float		cotan;
+	float		tan;
+	t_float_v	h_map;
+	t_float_v	h_grid;
+	t_float_v	v_map;
+	t_float_v	v_grid;
+	float		distance;
+	char		shortest;
+	t_float_v	vd;
+	t_float_v	hd;
+}				t_ray;
+
 typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
@@ -95,11 +136,21 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	t_float_v	pos;
-	t_float_v	dir;
-	float		angle;
+	t_float_v	dir; // player direction vector (in radians)
+	float		angle; // player viewangle in degrees
 	char		**map;
+	int			map_w;
+	int			map_h;
 	t_mlx_data	*mlx_data;
 }				t_map_data;
+
+enum	e_directions
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
 
 /******************************************************************************/
 /*								Functions									  */
@@ -159,6 +210,16 @@ void		raycasting(void *ptr);
 
 /* moving */
 void		moving(void *ptr);
+
+/* 3d drawing */
+void	draw_view(t_map_data *data, t_ray *ray, int x);
+void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
+
+/* raycasting_utils */
+float	fix_angle(float angle);
+float	deg_to_rad(float degrees);
+float	get_dist(t_float_v *player, t_float_v *wall_hit);
+int		get_rgba(int r, int g, int b, int a);
 
 /* TEMPORARY IN MAIN */
 void		print_struct(t_map_data *data);
