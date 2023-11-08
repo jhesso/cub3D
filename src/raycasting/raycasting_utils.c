@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/08 22:17:47 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/08 22:56:18 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,25 @@ unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 	uint32_t	dst;
 	mlx_image_t		*texture;
 
+	texture = mlx->north;
 	// select correct image based on dir
 	if (dir == NORTH)
-		texture = mlx->north;
+		dst = get_rgba(191, 164, 88, 255);
+		// texture = mlx->north;
 	else if (dir == EAST)
-		texture = mlx->east;
+		dst = get_rgba(88, 191, 172, 255);
+		// texture = mlx->east;
 	else if (dir == SOUTH)
-		texture = mlx->south;
+		dst = get_rgba(120, 128, 126, 255);
+		// texture = mlx->south;
 	else if (dir == WEST)
-		texture = mlx->west;
+		dst = get_rgba(208, 156, 214, 255);
+		// texture = mlx->west;
 	if ((uint32_t)x >= texture->width || x < 0 || (uint32_t)y >= texture->height || y < 0)
 		return (get_rgba(255, 0, 0, 255)); // RED
 	// get the pixel color value from the correct texture
 	// for this I believe the textures should be in xpm format
-	dst = get_rgba(0, 255, 0, 255); // just give color green to test
+	// dst = get_rgba(0, 255, 0, 255); // just give color green to test
 	return (dst);
 }
 
