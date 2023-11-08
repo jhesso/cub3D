@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 19:06:02 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/08 22:14:10 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void		moving(void *ptr);
 /* 3d drawing */
 void	draw_view(t_map_data *data, t_ray *ray, int x);
 void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
+unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
 
 /* raycasting_utils */
 float	fix_angle(float angle);

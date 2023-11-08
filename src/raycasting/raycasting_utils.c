@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/08 19:09:23 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/08 22:17:47 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 {
-	unsigned int	dst;
+	uint32_t	dst;
 	mlx_image_t		*texture;
 
 	// select correct image based on dir
@@ -26,10 +26,12 @@ unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 		texture = mlx->south;
 	else if (dir == WEST)
 		texture = mlx->west;
-	if (x >= texture->width || x < 0 || y >= texture->height || y < 0)
+	if ((uint32_t)x >= texture->width || x < 0 || (uint32_t)y >= texture->height || y < 0)
 		return (get_rgba(255, 0, 0, 255)); // RED
 	// get the pixel color value from the correct texture
 	// for this I believe the textures should be in xpm format
+	dst = get_rgba(0, 255, 0, 255); // just give color green to test
+	return (dst);
 }
 
 float	fix_angle(float angle)

@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/08 19:06:13 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/08 22:40:39 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ static t_ray	init_ray(t_map_data *data)
 	ray.raycast_angle = ray.fov / ray.projection_width;
 	ray.center.x = ray.projection_width / 2;
 	ray.center.y = ray.projection_height / 2;
+	return (ray);
 }
 
-static void	check_hit_wall(t_map_data *data, t_vector *grid, t_vector *map,
-t_vector *offset)
+static void	check_hit_wall(t_map_data *data, t_float_v *grid, t_float_v *map,
+t_float_v *offset)
 {
 	int	dof;
 
@@ -131,12 +132,12 @@ static void	draw_rays(t_map_data *data)
 
 	ray = init_ray(data);
 	rays_cast = 0;
-	while (rays_cast <= ray.raycast_angle)
+	while (rays_cast <= PROJ_V)
 	{
 		cast_horizontal(data, &ray);
 		cast_vertical(data, &ray);
 		get_shortest(data, &ray);
-		draw_view(data, &ray, ray.projection_width - rays_cast);
+		draw_view(data, &ray, PROJ_V - rays_cast);
 		ray.angle += ray.raycast_angle;
 		ray.angle = fix_angle(ray.angle);
 		rays_cast++;
@@ -163,9 +164,9 @@ void	raycasting(void *param)
 		}
 		cord.y++;
 	}
-	draw_map(data);
-	draw_player(data);
-	draw_nose(data);
+	// draw_map(data);
+	// draw_player(data);
+	// draw_nose(data);
 	draw_rays(data);
 }
 
