@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/09 23:31:50 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/10 01:31:13 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static t_ray	init_ray(t_map_data *data)
 
 	ray.fov = 60;
 	ray.angle = fix_angle(data->angle - ray.fov / 2);
-	// ray.projection_width = 1370;
-	// ray.projection_height = 770;
 	ray.raycast_angle = ray.fov / (float)WIDTH_W;
-	// printf("ray.raycast_angle: %f\n", ray.raycast_angle);
 	ray.center.x = WIDTH_W / 2;
 	ray.center.y = HEIGHT_W / 2;
 	return (ray);
@@ -183,30 +180,11 @@ static void	draw_minimap(t_map_data *data)
 void	raycasting(void *param)
 {
 	t_map_data	*data;
-	t_vector	cord;
 
 	data = (t_map_data *)param;
-	cord.y = 0;
 	if (mlx_is_key_down(data->mlx_data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx_data->mlx);
-	// draw the background. without this the lines between squares are colored with nose color
-	while (cord.y < HEIGHT_W)
-	{
-		cord.x = 0;
-		while (cord.x < WIDTH_W)
-		{
-			mlx_put_pixel(data->mlx_data->window, cord.x, cord.y, 0x00000000);
-			cord.x++;
-		}
-		cord.y++;
-	}
 	draw_floor_ceiling(data);
 	draw_rays(data);
 	draw_minimap(data);
-	// uint32_t	color;
-	// color = data->mlx_data->north->pixels[9];
-	// mlx_put_pixel(data->mlx_data->window, WIDTH_W / 2, HEIGHT_W / 2,
-	// color);
-	// mlx_image_to_window(data->mlx_data->mlx, data->mlx_data->north, WIDTH_W / 2, HEIGHT_W / 2);
-	// crosshair(data);
 }

@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 23:42:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/10 01:31:21 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 # define WIDTH_W 1920
 # define HEIGHT_W 1080
-# define SIZE_B 30 // Size of "block" (wall/empty etc..)?
+# define SIZE_B 64 // Size of "block" (wall/empty etc..)?
 # define SIZE_P 5 // Size of player?
 # define PI 3.141592
 # define RAD 0.0174533
@@ -85,8 +85,6 @@ typedef struct s_ray
 	float		angle;
 	int			fov;
 	float		raycast_angle;
-	// float		projection_width;
-	// float		projection_height;
 	t_float_v	center;
 	float		cotan;
 	float		tan;
