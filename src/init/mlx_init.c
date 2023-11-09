@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 18:10:49 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 23:43:26 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,49 @@
 
 static bool	init_textures(t_map_data *data)
 {
-	mlx_texture_t	*texture;
-
-	texture = mlx_load_png(data->north);
-	if (!texture)
-		return (error_message(X_MLX)); //check this it also prints the error from MLX!
-	data->mlx_data->north = mlx_texture_to_image(data->mlx_data->mlx, texture);
+	data->mlx_data->north = mlx_load_png(data->north);
 	if (!data->mlx_data->north)
 		return (error_message(X_MLX));
-	mlx_delete_texture(texture);
-	texture = mlx_load_png(data->south);
-	data->mlx_data->south = mlx_texture_to_image(data->mlx_data->mlx, texture);
-	if (!data->mlx_data->south)
-		return (error_message(X_MLX));
-	mlx_delete_texture(texture);
-	texture = mlx_load_png(data->west);
-	data->mlx_data->west = mlx_texture_to_image(data->mlx_data->mlx, texture);
-	if (!data->mlx_data->west)
-		return (error_message(X_MLX));
-	mlx_delete_texture(texture);
-	texture = mlx_load_png(data->east);
-	data->mlx_data->east = mlx_texture_to_image(data->mlx_data->mlx, texture);
+	data->mlx_data->east = mlx_load_png(data->east);
 	if (!data->mlx_data->east)
 		return (error_message(X_MLX));
-	mlx_delete_texture(texture);
+	data->mlx_data->south = mlx_load_png(data->south);
+	if (!data->mlx_data->south)
+		return (error_message(X_MLX));
+	data->mlx_data->west = mlx_load_png(data->west);
+	if (!data->mlx_data->west)
+		return (error_message(X_MLX));
 	return (true);
 }
+
+// static bool	init_textures(t_map_data *data)
+// {
+// 	mlx_texture_t	*texture;
+
+// 	texture = mlx_load_png(data->north);
+// 	if (!texture)
+// 		return (error_message(X_MLX)); //check this it also prints the error from MLX!
+// 	data->mlx_data->north = mlx_texture_to_image(data->mlx_data->mlx, texture);
+// 	if (!data->mlx_data->north)
+// 		return (error_message(X_MLX));
+// 	mlx_delete_texture(texture);
+// 	texture = mlx_load_png(data->south);
+// 	data->mlx_data->south = mlx_texture_to_image(data->mlx_data->mlx, texture);
+// 	if (!data->mlx_data->south)
+// 		return (error_message(X_MLX));
+// 	mlx_delete_texture(texture);
+// 	texture = mlx_load_png(data->west);
+// 	data->mlx_data->west = mlx_texture_to_image(data->mlx_data->mlx, texture);
+// 	if (!data->mlx_data->west)
+// 		return (error_message(X_MLX));
+// 	mlx_delete_texture(texture);
+// 	texture = mlx_load_png(data->east);
+// 	data->mlx_data->east = mlx_texture_to_image(data->mlx_data->mlx, texture);
+// 	if (!data->mlx_data->east)
+// 		return (error_message(X_MLX));
+// 	mlx_delete_texture(texture);
+// 	return (true);
+// }
 
 static void	get_map_size(t_map_data *data)
 {

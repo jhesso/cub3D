@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/09 20:42:29 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 23:31:50 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,10 @@ void	raycasting(void *param)
 	draw_floor_ceiling(data);
 	draw_rays(data);
 	draw_minimap(data);
+	// uint32_t	color;
+	// color = data->mlx_data->north->pixels[9];
+	// mlx_put_pixel(data->mlx_data->window, WIDTH_W / 2, HEIGHT_W / 2,
+	// color);
+	// mlx_image_to_window(data->mlx_data->mlx, data->mlx_data->north, WIDTH_W / 2, HEIGHT_W / 2);
 	// crosshair(data);
 }

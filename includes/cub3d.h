@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 20:43:27 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 23:42:10 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,14 @@ typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*window;
-	mlx_image_t		*north;
-	mlx_image_t		*west;
-	mlx_image_t		*east;
-	mlx_image_t		*south;
+	// mlx_image_t		*north;
+	// mlx_image_t		*west;
+	// mlx_image_t		*east;
+	// mlx_image_t		*south;
+	mlx_texture_t	*north;
+	mlx_texture_t	*west;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
 	uint32_t		floor;
 	uint32_t		ceiling;
 }				t_mlx_data;
@@ -198,15 +202,16 @@ void		raycasting(void *ptr);
 void		moving(void *ptr);
 
 /* 3d drawing */
-void	draw_view(t_map_data *data, t_ray *ray, int x);
-void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
+void			draw_view(t_map_data *data, t_ray *ray, int x);
+void			draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
 unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
 
 /* raycasting_utils */
-float	fix_angle(float angle);
-float	deg_to_rad(float degrees);
-float	get_dist(t_float_v *player, t_float_v *wall_hit);
-int		get_rgba(int r, int g, int b, int a);
+float		fix_angle(float angle);
+float		deg_to_rad(float degrees);
+float		get_dist(t_float_v *player, t_float_v *wall_hit);
+int			get_rgba(int r, int g, int b, int a);
+uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y);
 
 /* TEMPORARY IN MAIN */
 void		print_struct(t_map_data *data);

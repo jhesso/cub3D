@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:03:51 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/29 21:48:25 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/11/09 23:44:38 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	cleanup_mlx_data(t_mlx_data *data)
 		mlx_terminate(data->mlx);
 	if (data->window)
 		mlx_delete_image(data->mlx, data->window);
-	if (data->north)
-		mlx_delete_image(data->mlx, data->north);
-	if (data->south)
-		mlx_delete_image(data->mlx, data->south);
-	if (data->west)
-		mlx_delete_image(data->mlx, data->west);
-	if (data->east)
-		mlx_delete_image(data->mlx, data->east);
+	// if (data->north)
+	// 	mlx_delete_image(data->mlx, data->north);
+	// if (data->south)
+	// 	mlx_delete_image(data->mlx, data->south);
+	// if (data->west)
+	// 	mlx_delete_image(data->mlx, data->west);
+	// if (data->east)
+	// 	mlx_delete_image(data->mlx, data->east);
 }
 
 void	cleanup(t_map_data *data)
