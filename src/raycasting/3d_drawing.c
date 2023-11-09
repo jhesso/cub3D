@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/08 19:00:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:22:22 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 	t_float_v		texture;
 	int				drawn_count;
 
-	line_height = SIZE_B * ray->projection_height / ray->distance;
+	line_height = SIZE_B * PROJ_H / ray->distance;
 	y_step = SIZE_B / line_height;
 	if (ray->shortest == 'v')
 		texture = get_texture_vec(&ray->v_map, dir, y_step, line_height);

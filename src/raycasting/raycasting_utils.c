@@ -6,11 +6,17 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/08 22:56:18 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 19:03:16 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
+
+// unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
+// {
+
+// 	if (dir == NORTH)
+// }
 
 unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 {

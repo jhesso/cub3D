@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 17:25:05 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:39:18 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define SIZE_P 5 // Size of player?
 # define PI 3.141592
 # define RAD 0.0174533
-# define PROJ_V 1920
-# define PROJ_H 1080
+# define PROJ_V 1280
+# define PROJ_H 720
 # define SPEED 3
 
 /******************************************************************************/
@@ -87,8 +87,8 @@ typedef struct s_ray
 	float		angle;
 	int			fov;
 	float		raycast_angle;
-	float		projection_width;
-	float		projection_height;
+	// float		projection_width;
+	// float		projection_height;
 	t_float_v	center;
 	float		cotan;
 	float		tan;

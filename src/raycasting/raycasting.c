@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/09 17:11:53 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:38:52 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ static t_ray	init_ray(t_map_data *data)
 
 	ray.fov = 60;
 	ray.angle = fix_angle(data->angle - ray.fov / 2);
-	ray.projection_width = 1370;
-	ray.projection_height = 770;
-	ray.raycast_angle = ray.fov / ray.projection_width;
-	ray.center.x = ray.projection_width / 2;
-	ray.center.y = ray.projection_height / 2;
+	// ray.projection_width = 1370;
+	// ray.projection_height = 770;
+	ray.raycast_angle = ray.fov / (float)PROJ_V;
+	// printf("ray.raycast_angle: %f\n", ray.raycast_angle);
+	ray.center.x = PROJ_V / 2;
+	ray.center.y = PROJ_H / 2;
 	return (ray);
 }
 
@@ -34,14 +35,14 @@ t_float_v *offset)
 	dof = 0;
 	if (map->x == data->pos.x && map->y == data->pos.x)
 		return ;
-	while (dof < 10000)
+	while (dof < 1000)
 	{
 		grid->x = (int)map->x / SIZE_B;
 		grid->y = (int)map->y / SIZE_B;
 		if (grid->y >= 0 && grid->x >= 0 && grid->x < data->map_w
 			&& grid->y < data->map_h
 			&& data->map[(int)grid->y][(int)grid->x] == '1')
-			dof = 10000;
+			dof = 1000;
 		else
 		{
 			map->x += offset->x;
@@ -149,20 +150,20 @@ static void	draw_floor_ceiling(t_map_data *data)
 	t_vector	window;
 
 	window.y = 0;
-	while (window.y < HEIGHT_W * 0.25f) // draw ceiling on only the top quarter of screen height (not perfect at all)
+	while (window.y < PROJ_H / 2) // draw ceiling on only the top quarter of screen height (not perfect at all)
 	{
 		window.x = 0;
-		while (window.x < WIDTH_W)
+		while (window.x < PROJ_V)
 		{
 			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->ceiling);
 			window.x++;
 		}
 		window.y++;
 	}
-	while (window.y < HEIGHT_W)
+	while (window.y < PROJ_H)
 	{
 		window.x = 0;
-		while (window.x < WIDTH_W)
+		while (window.x < PROJ_V)
 		{
 			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->floor);
 			window.x++;
@@ -170,6 +171,15 @@ static void	draw_floor_ceiling(t_map_data *data)
 		window.y++;
 	}
 }
+
+static void	draw_minimap(t_map_data *data)
+{
+	// (void)data;
+	draw_map(data);
+	draw_player(data);
+	draw_nose(data);
+}
+
 void	raycasting(void *param)
 {
 	t_map_data	*data;
@@ -191,8 +201,7 @@ void	raycasting(void *param)
 		cord.y++;
 	}
 	draw_floor_ceiling(data);
-	draw_map(data);
-	draw_player(data);
-	draw_nose(data);
 	draw_rays(data);
+	draw_minimap(data);
+	// crosshair(data);
 }
