@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/09 17:11:53 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 19:21:19 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_float_v *offset)
 	dof = 0;
 	if (map->x == data->pos.x && map->y == data->pos.x)
 		return ;
-	while (dof < 10000)
+	while (dof < 1000)
 	{
 		grid->x = (int)map->x / SIZE_B;
 		grid->y = (int)map->y / SIZE_B;
@@ -149,7 +149,7 @@ static void	draw_floor_ceiling(t_map_data *data)
 	t_vector	window;
 
 	window.y = 0;
-	while (window.y < HEIGHT_W * 0.25f) // draw ceiling on only the top quarter of screen height (not perfect at all)
+	while (window.y < HEIGHT_W / 2)
 	{
 		window.x = 0;
 		while (window.x < WIDTH_W)

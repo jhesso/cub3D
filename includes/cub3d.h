@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 17:25:05 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 19:19:24 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@
 /*								    Defines    	 							  */
 /******************************************************************************/
 
-# define WIDTH_W 1920
-# define HEIGHT_W 1080
+# define WIDTH_W 1370
+# define HEIGHT_W 770
 # define SIZE_B 30 // Size of "block" (wall/empty etc..)?
 # define SIZE_P 5 // Size of player?
 # define PI 3.141592
 # define RAD 0.0174533
-# define PROJ_V 1920
-# define PROJ_H 1080
+# define PROJ_V 1370
+# define PROJ_H 770
 # define SPEED 3
 
 /******************************************************************************/
