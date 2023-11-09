@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 17:22:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 17:25:35 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	move_left(t_map_data *data)
 	float	x;
 	float	y;
 
-	x = data->dir.y * 0.5;
-	y = -data->dir.x * 0.5;
+	x = data->dir.y * SPEED;
+	y = -data->dir.x * SPEED;
 	data->pos.x = data->pos.x + x;
 	data->pos.y = data->pos.y + y;
 }
@@ -28,8 +28,8 @@ static void	move_right(t_map_data *data)
 	float	x;
 	float	y;
 
-	x = -data->dir.y * 0.5;
-	y = data->dir.x * 0.5;
+	x = -data->dir.y * SPEED;
+	y = data->dir.x * SPEED;
 	data->pos.x = data->pos.x + x;
 	data->pos.y = data->pos.y + y;
 }
@@ -39,8 +39,8 @@ static void	move_down(t_map_data *data)
 	float	x;
 	float	y;
 
-	x = data->pos.x - data->dir.x * 0.5;
-	y = data->pos.y - data->dir.y * 0.5;
+	x = data->pos.x - data->dir.x * SPEED;
+	y = data->pos.y - data->dir.y * SPEED;
 	data->pos.x = x;
 	data->pos.y = y;
 }
@@ -50,29 +50,11 @@ static void	move_up(t_map_data *data)
 	float	x;
 	float	y;
 
-	x = data->pos.x + data->dir.x * 0.5;
-	y = data->pos.y + data->dir.y * 0.5;
+	x = data->pos.x + data->dir.x * SPEED;
+	y = data->pos.y + data->dir.y * SPEED;
 	data->pos.x = x;
 	data->pos.y = y;
 }
-
-// static void	move_left_arrow(t_map_data *data)
-// {
-// 	float	angle_x;
-
-// 	angle_x = data->dir.x;
-// 	data->dir.x = data->dir.x * cos(-0.05) - data->dir.y * sin(-0.05);
-// 	data->dir.y = angle_x * sin(-0.05) + data->dir.y * cos(-0.05);
-// }
-
-// static void	move_right_arrow(t_map_data *data)
-// {
-// 	float	angle_x;
-
-// 	angle_x = data->dir.x;
-// 	data->dir.x = data->dir.x * cos(0.05) - data->dir.y * sin(0.05);
-// 	data->dir.y = angle_x * sin(0.05) + data->dir.y * cos(0.05);
-// }
 
 static void	turn_player(t_map_data *data, int keycode)
 {

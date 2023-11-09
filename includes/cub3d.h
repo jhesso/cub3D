@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 22:14:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 17:25:05 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@
 # include "../libft/includes/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH_W 1490
+/******************************************************************************/
+/*								    Defines    	 							  */
+/******************************************************************************/
+
+# define WIDTH_W 1920
 # define HEIGHT_W 1080
 # define SIZE_B 30 // Size of "block" (wall/empty etc..)?
 # define SIZE_P 5 // Size of player?
 # define PI 3.141592
 # define RAD 0.0174533
-# define PROJ_H 770
-# define PROJ_V 1370
+# define PROJ_V 1920
+# define PROJ_H 1080
+# define SPEED 3
 
 /******************************************************************************/
 /*								Error Messages	 							  */
@@ -76,23 +81,6 @@ typedef struct s_float_v
 	float	x;
 	float	y;
 }	t_float_v;
-
-// typedef struct s_player
-// {
-// 	int		r; // ray count
-// 	int		mapx; // map x?
-// 	int		mapy; // map y?
-// 	int		mapp; // map position?
-// 	int		dof; // depth of field
-// 	float	rayx; // ray x
-// 	float	rayy; // ray y
-// 	float	raya; // ray angle
-// 	float	xo; // x offset
-// 	float	yo; // y offset
-// 	float	playera; // player angle
-// 	float	playerx; // player x
-// 	float	playery; // player y
-// }			t_player;
 
 typedef struct s_ray
 {
