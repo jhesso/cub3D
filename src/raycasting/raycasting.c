@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/09 20:38:52 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:42:29 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static t_ray	init_ray(t_map_data *data)
 	ray.angle = fix_angle(data->angle - ray.fov / 2);
 	// ray.projection_width = 1370;
 	// ray.projection_height = 770;
-	ray.raycast_angle = ray.fov / (float)PROJ_V;
+	ray.raycast_angle = ray.fov / (float)WIDTH_W;
 	// printf("ray.raycast_angle: %f\n", ray.raycast_angle);
-	ray.center.x = PROJ_V / 2;
-	ray.center.y = PROJ_H / 2;
+	ray.center.x = WIDTH_W / 2;
+	ray.center.y = HEIGHT_W / 2;
 	return (ray);
 }
 
@@ -133,12 +133,12 @@ static void	draw_rays(t_map_data *data)
 
 	ray = init_ray(data);
 	rays_cast = 0;
-	while (rays_cast <= PROJ_V)
+	while (rays_cast <= WIDTH_W)
 	{
 		cast_horizontal(data, &ray);
 		cast_vertical(data, &ray);
 		get_shortest(data, &ray);
-		draw_view(data, &ray, PROJ_V - rays_cast);
+		draw_view(data, &ray, WIDTH_W - rays_cast);
 		ray.angle += ray.raycast_angle;
 		ray.angle = fix_angle(ray.angle);
 		rays_cast++;
@@ -150,20 +150,20 @@ static void	draw_floor_ceiling(t_map_data *data)
 	t_vector	window;
 
 	window.y = 0;
-	while (window.y < PROJ_H / 2) // draw ceiling on only the top quarter of screen height (not perfect at all)
+	while (window.y < HEIGHT_W / 2) // draw ceiling on only the top quarter of screen height (not perfect at all)
 	{
 		window.x = 0;
-		while (window.x < PROJ_V)
+		while (window.x < WIDTH_W)
 		{
 			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->ceiling);
 			window.x++;
 		}
 		window.y++;
 	}
-	while (window.y < PROJ_H)
+	while (window.y < HEIGHT_W)
 	{
 		window.x = 0;
-		while (window.x < PROJ_V)
+		while (window.x < WIDTH_W)
 		{
 			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->floor);
 			window.x++;

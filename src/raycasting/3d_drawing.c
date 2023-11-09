@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/09 20:22:22 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:42:29 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static float	clip_line_height(float to_clip)
 {
 	float	line_height;
 
-	if (to_clip > PROJ_H)
-		line_height = PROJ_H;
+	if (to_clip > HEIGHT_W)
+		line_height = HEIGHT_W;
 	else
 		line_height = round((double)to_clip);
 	return(line_height);
@@ -29,8 +29,8 @@ float line_size)
 	t_float_v	texture;
 
 	texture.y = 0;
-	if (line_size > PROJ_H)
-		texture.y = ((line_size - PROJ_H) / 2.0f) * y_step;
+	if (line_size > HEIGHT_W)
+		texture.y = ((line_size - HEIGHT_W) / 2.0f) * y_step;
 	if (dir == NORTH)
 		texture.x = SIZE_B - 1 - (((int) hit->x) % SIZE_B);
 	else if (dir == SOUTH)
@@ -50,14 +50,14 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 	t_float_v		texture;
 	int				drawn_count;
 
-	line_height = SIZE_B * PROJ_H / ray->distance;
+	line_height = SIZE_B * HEIGHT_W / ray->distance;
 	y_step = SIZE_B / line_height;
 	if (ray->shortest == 'v')
 		texture = get_texture_vec(&ray->v_map, dir, y_step, line_height);
 	else
 		texture = get_texture_vec(&ray->h_map, dir, y_step, line_height);
 	line_height = clip_line_height(line_height);
-	pane_y_color[0] = (PROJ_H - line_height) / 2;
+	pane_y_color[0] = (HEIGHT_W - line_height) / 2;
 	drawn_count = 0;
 	while (drawn_count++ < line_height)
 	{
