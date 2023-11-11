@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 03:01:05 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 04:07:52 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 	uint32_t		color;
 	mlx_texture_t	*texture;
 
+	texture = NULL;
+	color = 0;
 	if (dir == NORTH)
 		texture = mlx->north;
 	else if (dir == EAST)
@@ -36,7 +38,8 @@ unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 	if ((uint32_t)x >= texture->width || x < 0 || \
 		(uint32_t)y >= texture->height || y < 0)
 		return (get_rgba(255, 0, 0, 255));
-	color = get_pixel_color(texture, x, y);
+	if (texture)
+		color = get_pixel_color(texture, x, y);
 	return (color);
 }
 
