@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
+#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/11/07 16:39:53 by jhesso           ###   ########.fr        #
+#    Updated: 2023/11/11 11:40:48 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ OBJ_B_PATH	=	obj_bonus/
 SRC			=	main.c error.c cleanup.c utils.c\
 				init/data_init.c init/read_map.c init/split_line.c \
 				init/mlx_init.c\
-				parsing/split_elements_map.c parsing/validate_elements.c \
-				parsing/parse_colors.c parsing/validate_map.c \
+				parsing/split_elements_map.c parsing/split_elements_utils.c parsing/validate_elements.c \
+				parsing/parse_colors.c parsing/validate_map.c parsing/starting_position.c\
 				parsing/validate_map_utils.c \
-				raycasting/raycasting.c raycasting/moving.c raycasting/2d_drawing.c
+				raycasting/raycasting.c raycasting/raycasting2.c raycasting/raycasting_utils.c \
+				raycasting/moving.c raycasting/2d_drawing.c raycasting/3d_drawing.c \
+				raycasting/2d_drawing2.c raycasting/pad_map.c raycasting/turn.c
 #Delete map_utils_two if not neccessay
 SRC_B		=	main_bonus.c
 
@@ -62,13 +64,7 @@ BLUE			=	\033[0;34m
 RESET			=	\033[0m
 
 # Default target: build the main program
-# all: $(NAME)
-
-#* this is my workaround to compile on linux
-# !!!REMOVE BEFORE SUBMISSION!!!
-all: $(MLX)
-	$(MAKE) -C $(LIBFT_DIR)
-	cc -Wall -Wextra -Werror src/*.c src/*/*.c -I includes/ -L libft/ -lft -L MLX42/build/ -lmlx42 -I libft/includes -I MLX42/include/ -ldl -lglfw -pthread -lm -o cub3d
+all: $(NAME)
 
 # Build the MLX library if needed
 $(MLX):
@@ -115,7 +111,6 @@ clean:
 	@/bin/rm -rf $(MLX_DIR)build
 
 # Clean the project and remove executables
-#? should fclean also clean mlx?
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
 	@/bin/rm -rf $(NAME) $(NAME_B)
