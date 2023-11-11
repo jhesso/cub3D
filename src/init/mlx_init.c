@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 02:27:51 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:11:15 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,6 @@ static bool	init_textures(t_map_data *data)
 		return (error_message(X_MLX));
 	return (true);
 }
-
-// static bool	init_textures(t_map_data *data)
-// {
-// 	mlx_texture_t	*texture;
-
-// 	texture = mlx_load_png(data->north);
-// 	if (!texture)
-// 		return (error_message(X_MLX)); //check this it also prints the error from MLX!
-// 	data->mlx_data->north = mlx_texture_to_image(data->mlx_data->mlx, texture);
-// 	if (!data->mlx_data->north)
-// 		return (error_message(X_MLX));
-// 	mlx_delete_texture(texture);
-// 	texture = mlx_load_png(data->south);
-// 	data->mlx_data->south = mlx_texture_to_image(data->mlx_data->mlx, texture);
-// 	if (!data->mlx_data->south)
-// 		return (error_message(X_MLX));
-// 	mlx_delete_texture(texture);
-// 	texture = mlx_load_png(data->west);
-// 	data->mlx_data->west = mlx_texture_to_image(data->mlx_data->mlx, texture);
-// 	if (!data->mlx_data->west)
-// 		return (error_message(X_MLX));
-// 	mlx_delete_texture(texture);
-// 	texture = mlx_load_png(data->east);
-// 	data->mlx_data->east = mlx_texture_to_image(data->mlx_data->mlx, texture);
-// 	if (!data->mlx_data->east)
-// 		return (error_message(X_MLX));
-// 	mlx_delete_texture(texture);
-// 	return (true);
-// }
 
 static void	get_map_size(t_map_data *data)
 {
@@ -80,11 +51,13 @@ bool	init_mlx(t_map_data *d)
 	get_map_size(d);
 	if (!pad_map(d))
 		return (false);
-	if (!(d->mlx_data->mlx = mlx_init(WIDTH_W, HEIGHT_W, "cub3D", true)))
+	d->mlx_data->mlx = mlx_init(WIDTH_W, HEIGHT_W, "cub3D", true);
+	if (!d->mlx_data->mlx)
 		return (error_message(X_MLX));
 	if (!init_textures(d))
 		return (false);
-	if (!(d->mlx_data->window = mlx_new_image(d->mlx_data->mlx, WIDTH_W, 1080)))
+	d->mlx_data->window = mlx_new_image(d->mlx_data->mlx, WIDTH_W, 1080);
+	if (!d->mlx_data->window)
 	{
 		mlx_close_window(d->mlx_data->mlx);
 		return (error_message(X_MLX));

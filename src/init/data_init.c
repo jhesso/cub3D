@@ -6,13 +6,13 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:43:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 18:11:18 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:09:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static t_mlx_data	*init_mlx_data()
+static t_mlx_data	*init_mlx_data(void)
 {
 	t_mlx_data	*mlx_data;
 
@@ -66,10 +66,8 @@ bool	data_init(t_map_data *data, char *map)
 		return (false);
 	if (!read_map(data, map))
 		return (false);
-	// print_string_arr(data->file_splitted);
 	if (!parse_file(data))
 		return (false);
-	// print_struct(data);
 	if (!validate_elements(data))
 		return (false);
 	if (!validate_map(data))
