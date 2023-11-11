@@ -1,0 +1,12 @@
+NO ./textures/brick.png
+SO ./textures/grass.png
+WE ./textures/wood.png
+EA ./textures/wood2.png
+F 210,50,100
+C 20,250,100
+
+111111111111111111111
+100000000000000000001
+100011001111111111111
+100N00001
+111111111
