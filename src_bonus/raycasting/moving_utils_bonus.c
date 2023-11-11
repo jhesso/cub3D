@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turn.c                                             :+:      :+:    :+:   */
+/*   moving_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:52:25 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 02:52:45 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 18:29:39 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	turn_player(t_map_data *data, int keycode)
 {
@@ -34,4 +34,16 @@ void	lookat(t_map_data *data, int dir)
 		data->angle = 180;
 	data->dir.x = cos(deg_to_rad(data->angle));
 	data->dir.y = -sin(deg_to_rad(data->angle));
+}
+
+bool	check_validity(t_map_data *data, float x, float y)
+{
+	int	x_pos;
+	int	y_pos;
+
+	x_pos = x / SIZE_B;
+	y_pos = y / SIZE_B;
+	if (data->map[y_pos][x_pos] == '1')
+		return (false);
+	return (true);
 }

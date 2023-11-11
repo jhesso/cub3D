@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/11/11 18:21:07 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/11/11 18:28:31 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC			=	main.c error.c cleanup.c utils.c\
 				raycasting/raycasting.c raycasting/raycasting2.c \
 				raycasting/raycasting_utils.c raycasting/moving.c \
 				raycasting/3d_drawing.c \
-				raycasting/pad_map.c raycasting/turn.c
+				raycasting/pad_map.c raycasting/moving_utils.c
 
 #Delete map_utils_two if not neccessay
 SRC_B		=	main_bonus.c error_bonus.c cleanup_bonus.c utils_bonus.c\
@@ -51,7 +51,7 @@ SRC_B		=	main_bonus.c error_bonus.c cleanup_bonus.c utils_bonus.c\
 				raycasting/raycasting_utils_bonus.c raycasting/moving_bonus.c \
 				raycasting/2d_drawing_bonus.c raycasting/3d_drawing_bonus.c \
 				raycasting/2d_drawing2_bonus.c raycasting/pad_map_bonus.c \
-				raycasting/turn_bonus.c
+				raycasting/moving_utils_bonus.c
 
 # Object files
 OBJ			=	$(SRC:.c=.o)

@@ -6,23 +6,11 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 12:06:20 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:26:24 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static bool	check_validity(t_map_data *data, float x, float y)
-{
-	int x_pos;
-	int	y_pos;
-
-	x_pos = x / SIZE_B;
-	y_pos = y / SIZE_B;
-	if (data->map[y_pos][x_pos] == '1')
-		return (false);
-	return (true);
-}
 
 static void	move_left(t_map_data *data)
 {
