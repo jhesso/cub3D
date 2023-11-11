@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:38:33 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 02:56:01 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 12:06:20 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static bool	check_validity(t_map_data *data, float x, float y)
+{
+	int x_pos;
+	int	y_pos;
+
+	x_pos = x / SIZE_B;
+	y_pos = y / SIZE_B;
+	if (data->map[y_pos][x_pos] == '1')
+		return (false);
+	return (true);
+}
 
 static void	move_left(t_map_data *data)
 {
@@ -19,8 +31,11 @@ static void	move_left(t_map_data *data)
 
 	x = data->dir.y * SPEED;
 	y = -data->dir.x * SPEED;
-	data->pos.x = data->pos.x + x;
-	data->pos.y = data->pos.y + y;
+	if (check_validity(data, data->pos.x + x, data->pos.y + y))
+	{
+		data->pos.x = data->pos.x + x;
+		data->pos.y = data->pos.y + y;
+	}
 }
 
 static void	move_right(t_map_data *data)
@@ -30,8 +45,11 @@ static void	move_right(t_map_data *data)
 
 	x = -data->dir.y * SPEED;
 	y = data->dir.x * SPEED;
-	data->pos.x = data->pos.x + x;
-	data->pos.y = data->pos.y + y;
+	if (check_validity(data, data->pos.x + x, data->pos.y + y))
+	{
+		data->pos.x = data->pos.x + x;
+		data->pos.y = data->pos.y + y;
+	}
 }
 
 static void	move_down(t_map_data *data)
@@ -41,8 +59,11 @@ static void	move_down(t_map_data *data)
 
 	x = data->pos.x - data->dir.x * SPEED;
 	y = data->pos.y - data->dir.y * SPEED;
-	data->pos.x = x;
-	data->pos.y = y;
+	if (check_validity(data, x, y))
+	{
+		data->pos.x = x;
+		data->pos.y = y;
+	}
 }
 
 static void	move_up(t_map_data *data)
@@ -52,8 +73,11 @@ static void	move_up(t_map_data *data)
 
 	x = data->pos.x + data->dir.x * SPEED;
 	y = data->pos.y + data->dir.y * SPEED;
-	data->pos.x = x;
-	data->pos.y = y;
+	if (check_validity(data, x, y))
+	{
+		data->pos.x = x;
+		data->pos.y = y;
+	}
 }
 
 void	moving(void *ptr)
