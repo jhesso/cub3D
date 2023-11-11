@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/09 20:42:29 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 02:51:22 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static float	clip_line_height(float to_clip)
 		line_height = HEIGHT_W;
 	else
 		line_height = round((double)to_clip);
-	return(line_height);
+	return (line_height);
 }
 
 static t_float_v	get_texture_vec(t_float_v *hit, int dir, float y_step,
@@ -62,7 +62,8 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 	while (drawn_count++ < line_height)
 	{
 		pane_y_color[1] = get_pixel(data->mlx_data, texture.x, texture.y, dir);
-		mlx_put_pixel(data->mlx_data->window, x, pane_y_color[0], pane_y_color[1]);
+		mlx_put_pixel(data->mlx_data->window, x, pane_y_color[0],
+			pane_y_color[1]);
 		pane_y_color[0]++;
 		texture.y += y_step;
 	}
@@ -71,7 +72,7 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 static int	get_dir(t_ray *ray)
 {
 	if (ray->shortest == 'h' && (ray->angle >= 0 && ray->angle < 180))
-	return (SOUTH);
+		return (SOUTH);
 	else if (ray->shortest == 'h' && (ray->angle >= 180 && ray->angle < 360))
 		return (NORTH);
 	else if (ray->shortest == 'v' && (ray->angle >= 90 && ray->angle < 270))

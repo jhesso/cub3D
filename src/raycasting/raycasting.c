@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/11 02:35:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:06:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,9 @@ static t_ray	init_ray(t_map_data *data)
 	return (ray);
 }
 
-static void	check_hit_wall(t_map_data *data, t_float_v *grid, t_float_v *map,
-t_float_v *offset)
-{
-	int	dof;
-
-	dof = 0;
-	if (map->x == data->pos.x && map->y == data->pos.x)
-		return ;
-	while (dof < 1000)
-	{
-		grid->x = (int)map->x / SIZE_B;
-		grid->y = (int)map->y / SIZE_B;
-		if (grid->y >= 0 && grid->x >= 0 && grid->x < data->map_w
-			&& grid->y < data->map_h
-			&& data->map[(int)grid->y][(int)grid->x] == '1')
-			dof = 1000;
-		else
-		{
-			map->x += offset->x;
-			map->y += offset->y;
-			dof++;
-		}
-	}
-}
-
 static void	cast_horizontal(t_map_data *data, t_ray *ray)
 {
-	t_float_v *player;
+	t_float_v	*player;
 
 	player = &data->pos;
 	ray->cotan = 1.0 / tan(deg_to_rad(ray->angle));
@@ -76,6 +51,7 @@ static void	cast_horizontal(t_map_data *data, t_ray *ray)
 	}
 	check_hit_wall(data, &ray->h_grid, &ray->h_map, &ray->hd);
 }
+
 static void	cast_vertical(t_map_data *data, t_ray *ray)
 {
 	t_float_v	*player;
@@ -104,25 +80,6 @@ static void	cast_vertical(t_map_data *data, t_ray *ray)
 	check_hit_wall(data, &ray->v_grid, &ray->v_map, &ray->vd);
 }
 
-static void	get_shortest(t_map_data *data, t_ray *ray)
-{
-	float	h_dist;
-	float	v_dist;
-
-	h_dist = get_dist(&data->pos, &ray->h_map);
-	v_dist = get_dist(&data->pos, &ray->v_map);
-	if (h_dist != 0.0f && (h_dist < v_dist || v_dist == 0.0f))
-	{
-		ray->shortest = 'h';
-		ray->distance = h_dist * cos(deg_to_rad(ray->angle - data->angle));
-	}
-	else
-	{
-		ray->shortest = 'v';
-		ray->distance = v_dist * cos(deg_to_rad(ray->angle - data->angle));
-	}
-}
-
 static void	draw_rays(t_map_data *data)
 {
 	t_ray	ray;
@@ -140,41 +97,6 @@ static void	draw_rays(t_map_data *data)
 		ray.angle = fix_angle(ray.angle);
 		rays_cast++;
 	}
-}
-
-static void	draw_floor_ceiling(t_map_data *data)
-{
-	t_vector	window;
-
-	window.y = 0;
-	while (window.y < HEIGHT_W / 2) // draw ceiling on only the top quarter of screen height (not perfect at all)
-	{
-		window.x = 0;
-		while (window.x < WIDTH_W)
-		{
-			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->ceiling);
-			window.x++;
-		}
-		window.y++;
-	}
-	while (window.y < HEIGHT_W)
-	{
-		window.x = 0;
-		while (window.x < WIDTH_W)
-		{
-			mlx_put_pixel(data->mlx_data->window, window.x, window.y, data->mlx_data->floor);
-			window.x++;
-		}
-		window.y++;
-	}
-}
-
-static void	draw_minimap(t_map_data *data)
-{
-	// (void)data;
-	draw_map(data);
-	draw_player(data);
-	draw_nose(data);
 }
 
 void	raycasting(void *param)

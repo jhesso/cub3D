@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2d_drawing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/21 16:40:48 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/11 02:58:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	draw_blocks(t_map_data *data, int x, int y, uint32_t color)
 		block_x = 0;
 		while (block_x < SIZE_B - 1)
 		{
-			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, color);
+			mlx_put_pixel(data->mlx_data->window,
+				x + block_x, y + block_y, color);
 			block_x++;
 		}
 		block_y++;
@@ -32,9 +33,9 @@ static void	draw_blocks(t_map_data *data, int x, int y, uint32_t color)
 
 void	draw_map(t_map_data *data)
 {
-	int x;
-	int y;
-	uint32_t color;
+	int			x;
+	int			y;
+	uint32_t	color;
 
 	y = 0;
 	while (data->map[y] && (y * SIZE_B) < HEIGHT_W)
@@ -57,7 +58,7 @@ void	draw_map(t_map_data *data)
 	}
 }
 
-static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color)
+static void	draw_player_block(t_map_data *data, float x, float y, uint32_t c)
 {
 	int	block_y;
 	int	block_x;
@@ -68,7 +69,7 @@ static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color
 		block_x = 0;
 		while (block_x < SIZE_P)
 		{
-			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, color);
+			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, c);
 			block_x++;
 		}
 		block_y++;
@@ -86,7 +87,7 @@ void	draw_player(t_map_data *data)
 		block_x = 0;
 		while ((block_x * SIZE_B) < WIDTH_W)
 		{
-			draw_player_block(data, (data->pos.x ), (data->pos.y), 0xDFFF00);
+			draw_player_block(data, (data->pos.x), (data->pos.y), 0xDFFF00);
 			block_x++;
 		}
 		block_y++;

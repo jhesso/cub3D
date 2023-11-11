@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 02:41:16 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:06:17 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,13 +192,25 @@ bool		find_wall(char **map, t_vector pos);
 /* raycasting */
 void		raycasting(void *ptr);
 
+/* raycasting2 */
+void	get_shortest(t_map_data *data, t_ray *ray);
+void	check_hit_wall(t_map_data *data, t_float_v *grid, t_float_v *map,
+t_float_v *offset);
+
 /* moving */
 void		moving(void *ptr);
+
+/* turning */
+void	turn_player(t_map_data *data, int keycode);
+void	lookat(t_map_data *data, int dir);
 
 /* 3d drawing */
 void			draw_view(t_map_data *data, t_ray *ray, int x);
 void			draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
 unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
+
+void	draw_floor_ceiling(t_map_data *data);
+void	draw_minimap(t_map_data *data);
 
 /* raycasting_utils */
 float		fix_angle(float angle);

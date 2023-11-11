@@ -6,20 +6,19 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/10 01:22:45 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:01:05 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y)
 {
-    uint32_t	*color;
+	uint32_t	*color;
 
-    color = (uint32_t *)(img->pixels + (x + y * img->width) * sizeof(uint32_t));
+	color = (uint32_t *)(img->pixels + (x + y * img->width) * sizeof(uint32_t));
 	return (*color);
 }
-
 
 unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 {
@@ -34,9 +33,9 @@ unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 		texture = mlx->south;
 	else if (dir == WEST)
 		texture = mlx->west;
-	if ((uint32_t)x >= texture->width || x < 0 ||
-	(uint32_t)y >= texture->height || y < 0)
-		return (get_rgba(255, 0, 0, 255)); // RED
+	if ((uint32_t)x >= texture->width || x < 0 || \
+		(uint32_t)y >= texture->height || y < 0)
+		return (get_rgba(255, 0, 0, 255));
 	color = get_pixel_color(texture, x, y);
 	return (color);
 }
@@ -68,9 +67,4 @@ float	get_dist(t_float_v *player, t_float_v *wall_hit)
 	b = player->y - wall_hit->y;
 	c = sqrt((a * a) + (b * b));
 	return (c);
-}
-
-int	get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
 }
