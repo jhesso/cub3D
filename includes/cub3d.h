@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 02:27:12 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 02:41:16 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # include <fcntl.h>
 # include <stdio.h>
-# include <sys/types.h> //read
-# include <sys/uio.h> //read
+# include <sys/types.h>
+# include <sys/uio.h>
 # include <stdbool.h>
 # include <math.h>
 
@@ -102,10 +102,6 @@ typedef struct s_mlx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*window;
-	// mlx_image_t		*north;
-	// mlx_image_t		*west;
-	// mlx_image_t		*east;
-	// mlx_image_t		*south;
 	mlx_texture_t	*north;
 	mlx_texture_t	*west;
 	mlx_texture_t	*south;
@@ -124,8 +120,8 @@ typedef struct s_map_data
 	int			*floor;
 	int			*ceiling;
 	t_float_v	pos;
-	t_float_v	dir; // player direction vector (in radians)
-	float		angle; // player viewangle in degrees
+	t_float_v	dir;
+	float		angle;
 	char		**map;
 	int			map_w;
 	int			map_h;

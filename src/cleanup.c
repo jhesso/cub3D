@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:03:51 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 23:44:38 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 02:43:11 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	cleanup_mlx_data(t_mlx_data *data)
 {
-	if (data->mlx)
-		mlx_terminate(data->mlx);
 	if (data->window)
 		mlx_delete_image(data->mlx, data->window);
-	// if (data->north)
-	// 	mlx_delete_image(data->mlx, data->north);
-	// if (data->south)
-	// 	mlx_delete_image(data->mlx, data->south);
-	// if (data->west)
-	// 	mlx_delete_image(data->mlx, data->west);
-	// if (data->east)
-	// 	mlx_delete_image(data->mlx, data->east);
+	if (data->north)
+		mlx_delete_texture(data->north);
+	if (data->south)
+		mlx_delete_texture(data->south);
+	if (data->west)
+		mlx_delete_texture(data->west);
+	if (data->east)
+		mlx_delete_texture(data->east);
+	if (data->mlx)
+		mlx_terminate(data->mlx);
 }
 
 void	cleanup(t_map_data *data)
