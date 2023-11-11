@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/10 01:43:22 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 02:27:12 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ float		deg_to_rad(float degrees);
 float		get_dist(t_float_v *player, t_float_v *wall_hit);
 int			get_rgba(int r, int g, int b, int a);
 uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y);
+bool		pad_map(t_map_data *data);
 
 /* TEMPORARY IN MAIN */
 void		print_struct(t_map_data *data);

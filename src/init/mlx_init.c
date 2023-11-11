@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/09 23:43:26 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 02:27:51 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ bool	init_mlx(t_map_data *d)
 {
 	print_struct(d);
 	get_map_size(d);
+	if (!pad_map(d))
+		return (false);
 	if (!(d->mlx_data->mlx = mlx_init(WIDTH_W, HEIGHT_W, "cub3D", true)))
 		return (error_message(X_MLX));
 	if (!init_textures(d))
