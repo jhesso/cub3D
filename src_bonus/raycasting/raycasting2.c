@@ -6,11 +6,11 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 03:05:05 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 17:29:01 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	get_shortest(t_map_data *data, t_ray *ray)
 {

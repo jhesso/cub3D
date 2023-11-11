@@ -1,21 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   2d_drawing2_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 20:01:34 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/09/14 20:38:46 by dgerguri         ###   ########.fr       */
+/*   Created: 2023/11/11 03:02:47 by jhesso            #+#    #+#             */
+/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	main(int argc, char **argv)
-{
-	(void)argc;
-	(void)argv;
-	ft_printf(1, "Bonus part!\n");
-	return (0);
-}

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 22:10:33 by dardangergu       #+#    #+#             */
-/*   Updated: 2023/11/11 17:33:22 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static t_ray	init_ray(t_map_data *data)
 {
@@ -108,4 +108,5 @@ void	raycasting(void *param)
 		mlx_close_window(data->mlx_data->mlx);
 	draw_floor_ceiling(data);
 	draw_rays(data);
+	draw_minimap(data);
 }

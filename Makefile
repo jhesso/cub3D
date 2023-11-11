@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/11/11 13:19:58 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/11/11 17:49:35 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,21 @@ SRC			=	main.c error.c cleanup.c utils.c\
 				parsing/validate_map_utils.c \
 				raycasting/raycasting.c raycasting/raycasting2.c \
 				raycasting/raycasting_utils.c raycasting/moving.c \
-				raycasting/2d_drawing.c raycasting/3d_drawing.c \
-				raycasting/2d_drawing2.c raycasting/pad_map.c raycasting/turn.c
+				raycasting/3d_drawing.c \
+				raycasting/pad_map.c raycasting/turn.c
 
 #Delete map_utils_two if not neccessay
-SRC_B		=	main_bonus.c
+SRC_B		=	main.c error.c cleanup.c utils.c\
+				init/data_init.c init/read_map.c init/split_line.c \
+				init/mlx_init.c\
+				parsing/split_elements_map.c parsing/split_elements_utils.c \
+				parsing/validate_elements.c parsing/parse_colors.c \
+				parsing/validate_map.c parsing/starting_position.c \
+				parsing/validate_map_utils.c \
+				raycasting/raycasting_bonus.c raycasting/raycasting2.c \
+				raycasting/raycasting_utils.c raycasting/moving_bonus.c \
+				raycasting/2d_drawing_bonus.c raycasting/3d_drawing.c \
+				raycasting/2d_drawing2_bonus.c raycasting/pad_map.c raycasting/turn.c
 
 # Object files
 OBJ			=	$(SRC:.c=.o)
@@ -91,18 +101,21 @@ $(NAME): $(MLX) $(OBJS)
 	@echo "$(GREEN)done$(RESET)"
 
 # Build the bonus program if needed
-bonus:  $(MLX) $(NAME_B)
+bonus: $(NAME_B)
 
 # Compile bonus source files to object files
-$(OBJ_B_PATH)%.o: $(SRC_B_PATH)%.c
+$(OBJ_B_PATH)%.o: $(SRC_B_PATH)%.c includes/cub3d_bonus.h
 	@mkdir -p $(OBJ_B_PATH)
+	@mkdir -p $(OBJ_B_PATH)/init
+	@mkdir -p $(OBJ_B_PATH)/parsing
+	@mkdir -p $(OBJ_B_PATH)/raycasting
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 # Build the bonus program
-$(NAME_B): $(OBJS_B)
+$(NAME_B): $(MLX) $(OBJS_B)
 	@echo "$(BLUE)Compiling $(NAME_B)$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw \
+	$(MAKE) -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw \
 	-L $(LIBFT_DIR) -lft $(OBJS_B) -o $(NAME_B)
 	@echo "$(GREEN)done$(RESET)"
 

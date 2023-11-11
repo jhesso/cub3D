@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2d_drawing.c                                       :+:      :+:    :+:   */
+/*   2d_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 17:21:00 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color)
 {
@@ -195,4 +195,11 @@ void	draw_map(t_map_data *data)
 			y++;
 		}
 	}
+}
+
+void	draw_minimap(t_map_data *data)
+{
+	draw_map(data);
+	draw_player(data);
+	draw_nose(data);
 }
