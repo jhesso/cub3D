@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 03:45:58 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 12:47:52 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,6 @@ static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 	return (true);
 }
 
-static bool	check_first_and_last(char **map)
-{
-	int		row;
-	int		col;
-	char	c;
-
-	row = 0;
-	col = 0;
-	while (map[row][col])
-	{
-		c = map[row][col];
-		if (c != '1' && c != ' ')
-			return (false);
-		col++;
-	}
-	while (map[row + 1])
-		row++;
-	row--;
-	col = 0;
-	while (map[row][col])
-	{
-		c = map[row][col];
-		if (c != '1' && c != ' ')
-			return (false);
-		col++;
-	}
-	return (true);
-}
-
 static bool	flood_fill(char **map, t_vector pos, bool *stop)
 {
 	if (map[pos.y][pos.x] == '\0' || (*stop))
@@ -95,8 +66,6 @@ static bool	check_walls(t_map_data *data, bool stop)
 	t_vector	last_point;
 	t_vector	point;
 
-	if (!check_first_and_last(data->map))
-		return (false);
 	remove_newline(data->map);
 	tmp_map = duplicate_map(data->map);
 	last_point = get_last_point(tmp_map);
