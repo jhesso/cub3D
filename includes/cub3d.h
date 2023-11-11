@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 13:18:29 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/11 14:23:29 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@
 
 # define WIDTH_W 1920
 # define HEIGHT_W 1080
-# define SIZE_B 64 // Size of "block" (wall/empty etc..)?
+# define SIZE_B 32 // Size of "block" (wall/empty etc..)?
 # define SIZE_P 5 // Size of player?
 # define PI 3.141592
 # define RAD 0.0174533
-# define SPEED 2
+# define SPEED 3
 
 /******************************************************************************/
 /*								Error Messages	 							  */
