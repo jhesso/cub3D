@@ -6,43 +6,11 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/08 17:03:51 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:45:58 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	starting_point(t_map_data *d, int row, int col, bool *p_start, char c) //move somewhere
-{
-	d->pos.x = col * SIZE_B + ((SIZE_B - SIZE_P) / 2);
-	d->pos.y = row * SIZE_B + ((SIZE_B - SIZE_P) / 2);
-	*(p_start) = true;
-	if (c == 'N')
-	{
-		d->angle = 90;
-		d->dir.x = cos(90 * M_PI / 180);
-		d->dir.y = -sin(90 * M_PI / 180);
-	}
-	else if (c == 'S')
-	{
-		d->angle = 270;
-		d->dir.x = cos(270 * M_PI / 180);
-		d->dir.y = -sin(270 * M_PI / 180);
-	}
-	else if (c == 'W')
-	{
-		d->angle = 180;
-		d->dir.x = cos(180 * M_PI / 180);
-		d->dir.y = -sin(180 * M_PI / 180);
-	}
-	else if (c == 'E')
-	{
-		d->angle = 0;
-		d->dir.x = cos(0 * M_PI / 180);
-		d->dir.y = -sin(0 * M_PI / 180);
-	}
-	printf("pdx: %f   %f   %f\n", d->angle, d->dir.x, d->dir.y);
-}
 
 static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 {
@@ -58,7 +26,7 @@ static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 				c != 'W' && c != ' ')
 				return (error_message(X_UNKNOWN_ELEMENT_MAP));
 			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && !p_start)
-				starting_point(data, row, col, &p_start, c);
+				starting_point(data, (t_vector){col, row}, &p_start, c);
 			else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return (error_message(X_MULTIPLE_S_POINTS));
 			if (c == '\t' || c == '\v' || c == '\f' || c == '\r')

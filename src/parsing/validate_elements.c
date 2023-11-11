@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:10:37 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/10/13 13:08:33 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/11 03:49:41 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ static bool	validate_texture(t_map_data *data)
 	return (true);
 }
 
-static int rgb(int r, int g, int b)
-{
-    return (r << 24 | g << 16 | b << 8 | 255);
-}
-
 static bool	validate_color_range(t_map_data *d, int *data, char c)
 {
 	int	i;
@@ -55,9 +50,9 @@ static bool	validate_color_range(t_map_data *d, int *data, char c)
 		i++;
 	}
 	if (c == 'F')
-		d->mlx_data->floor = rgb(data[0], data[1], data[2]);
+		d->mlx_data->floor = get_rgba(data[0], data[1], data[2], 255);
 	else if (c == 'C')
-		d->mlx_data->ceiling = rgb(data[0], data[1], data[2]);
+		d->mlx_data->ceiling = get_rgba(data[0], data[1], data[2], 255);
 	return (true);
 }
 

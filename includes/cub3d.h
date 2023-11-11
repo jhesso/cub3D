@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 03:06:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:48:11 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,9 @@ bool	init_mlx(t_map_data *data);
 char		*parse_file(t_map_data *data);
 char		*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
+/* split_elements_utils */
+int			remove_whitespace(char *str);
+
 /* validate_elements */
 bool		validate_elements(t_map_data *data);
 
@@ -186,6 +189,9 @@ t_vector	get_last_point(char **map);
 void		remove_newline(char **map);
 bool		map_filled(char **map);
 bool		find_wall(char **map, t_vector pos);
+
+/* starting_position */
+void	starting_point(t_map_data *d, t_vector pos, bool *p_start, char c);
 
 /*---------------------------------Raycasting---------------------------------*/
 

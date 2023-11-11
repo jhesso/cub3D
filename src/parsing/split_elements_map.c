@@ -6,29 +6,17 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:13:06 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/07 14:13:51 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 03:47:24 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	remove_whitespace(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	return (i);
-}
 
 static bool	check_element_exists(t_map_data *data, char c)
 {
 	bool	flag;
 
 	flag = false;
-	// printf("c: %c\nnorth: %s\nsouth: %s\nwest: %s\neast: %s\n", c, data->north,
-	// 	data->south, data->west, data->east);
 	if (c == 'N' && data->north)
 		flag = true;
 	else if (c == 'S' && data->south)
