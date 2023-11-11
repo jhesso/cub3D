@@ -6,7 +6,7 @@
 #    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/11/11 11:40:48 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/11/11 13:19:58 by dgerguri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,15 @@ OBJ_B_PATH	=	obj_bonus/
 SRC			=	main.c error.c cleanup.c utils.c\
 				init/data_init.c init/read_map.c init/split_line.c \
 				init/mlx_init.c\
-				parsing/split_elements_map.c parsing/split_elements_utils.c parsing/validate_elements.c \
-				parsing/parse_colors.c parsing/validate_map.c parsing/starting_position.c\
+				parsing/split_elements_map.c parsing/split_elements_utils.c \
+				parsing/validate_elements.c parsing/parse_colors.c \
+				parsing/validate_map.c parsing/starting_position.c \
 				parsing/validate_map_utils.c \
-				raycasting/raycasting.c raycasting/raycasting2.c raycasting/raycasting_utils.c \
-				raycasting/moving.c raycasting/2d_drawing.c raycasting/3d_drawing.c \
+				raycasting/raycasting.c raycasting/raycasting2.c \
+				raycasting/raycasting_utils.c raycasting/moving.c \
+				raycasting/2d_drawing.c raycasting/3d_drawing.c \
 				raycasting/2d_drawing2.c raycasting/pad_map.c raycasting/turn.c
+
 #Delete map_utils_two if not neccessay
 SRC_B		=	main_bonus.c
 
@@ -68,11 +71,11 @@ all: $(NAME)
 
 # Build the MLX library if needed
 $(MLX):
-	#git submodule update --init --recursive $(MLX_DIR) //should try to make this work
+	git submodule update --init --recursive
 	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 # Compile source files to object files
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c includes/cub3d.h
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/init
 	@mkdir -p $(OBJ_PATH)/parsing
@@ -80,7 +83,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 # Build the main program
-$(NAME): $(OBJS) $(MLX)
+$(NAME): $(MLX) $(OBJS)
 	@echo "$(BLUE)Compiling $(NAME)$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(MLX) $(FRAMEWORK) -L $(GLFW)/lib -lglfw \
@@ -108,13 +111,13 @@ clean:
 	@echo "$(RED)removing object files$(RESET)"
 	@/bin/rm -rf $(OBJ_PATH) $(OBJ_B_PATH)
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	@/bin/rm -rf $(MLX_DIR)build
 
 # Clean the project and remove executables
 fclean: clean
 	@echo "$(RED)cleaning all compiled stuff.. :)$(RESET)"
 	@/bin/rm -rf $(NAME) $(NAME_B)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
+	@/bin/rm -rf $(MLX_DIR)build
 	@echo "$(RED)done$(RESET)"
 
 # Clean and rebuild the project
