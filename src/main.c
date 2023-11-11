@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:00:19 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/08 16:17:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 18:00:27 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this is just for testing!
+// this is just for testing! //DELETE
 void	print_struct(t_map_data *data)
 {
 	int	i;

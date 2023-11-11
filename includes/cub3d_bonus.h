@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 17:39:35 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 18:20:12 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 
 # define WIDTH_W 1920
 # define HEIGHT_W 1080
-# define SIZE_B 32 // Size of "block" (wall/empty etc..)?
-# define SIZE_P 5 // Size of player?
+# define SIZE_B 32
+# define SIZE_P 5
 # define PI 3.141592
 # define RAD 0.0174533
 # define SPEED 3
@@ -140,96 +140,99 @@ enum	e_directions
 /*								Functions									  */
 /******************************************************************************/
 
-/* error */
+/* utils_bonus*/
+char		**free_array(char **ret);
+char		**duplicate_map(char **map);
+int			get_rgba(int r, int g, int b, int a);
+int			remove_whitespace(char *str);
+
+/* error_bonus*/
 char		*print_error_message(char *message);
 bool		error_message(char *message);
 
-/* util.c */
-char		**free_array(char **ret);
-char		**duplicate_map(char **map);
-
-/* cleanup */
+/* cleanup_bonus*/
 void		cleanup(t_map_data *data);
 
 /*---------------------------------Init---------------------------------------*/
 
-/* data_init */
+/* data_init_bonus */
 bool		data_init(t_map_data *data, char *map);
 
-/* read_map */
+/* read_map_bonus */
 bool		read_map(t_map_data *data, char *file);
 
-/* split_line */
+/* split_line_bonus */
 char		**ft_split_line(char const *s);
 
-/* mlx_init */
-bool	init_mlx(t_map_data *data);
+/* mlx_init_bonus */
+bool		init_mlx(t_map_data *data);
 
 /*---------------------------------Parsing------------------------------------*/
 
-/* split_elements_map */
+/* split_elements_map_bonus */
 char		*parse_file(t_map_data *data);
 char		*save_the_elements(t_map_data *data, int i, int j, bool *error);
 
-/* split_elements_utils */
-int			remove_whitespace(char *str);
-
-/* validate_elements */
+/* validate_elements_bonus */
 bool		validate_elements(t_map_data *data);
 
-/* parse_colors */
+/* parse_colors_bonus */
 void		parse_colors(t_map_data *data, int i, int j, bool *error);
 
-/* validate_map */
+/* validate_map_bonus */
 bool		validate_map(t_map_data *data);
 
-/* validate_map_utils */
+/* validate_map_utils_bonus */
 t_vector	find_empty_space(char **map);
 t_vector	get_last_point(char **map);
 void		remove_newline(char **map);
 bool		map_filled(char **map);
 bool		find_wall(char **map, t_vector pos);
 
-/* starting_position */
-void	starting_point(t_map_data *d, t_vector pos, bool *p_start, char c);
+/* starting_position_bonus */
+void		starting_point(t_map_data *d, t_vector pos, bool *p_start, char c);
 
 /*---------------------------------Raycasting---------------------------------*/
 
-/* raycasting */
+/* raycasting_bonus */
 void		raycasting(void *ptr);
 
-/* raycasting2 */
-void	get_shortest(t_map_data *data, t_ray *ray);
-void	check_hit_wall(t_map_data *data, t_float_v *grid, t_float_v *map,
+/* raycasting2_bonus */
+void		get_shortest(t_map_data *data, t_ray *ray);
+void		check_hit_wall(t_map_data *data, t_float_v *grid, t_float_v *map,
 t_float_v *offset);
+void		draw_floor_ceiling(t_map_data *data);
 
-/* moving */
-void		moving(void *ptr);
-
-/* turning */
-void	turn_player(t_map_data *data, int keycode);
-void	lookat(t_map_data *data, int dir);
-
-/* 3d drawing */
-void			draw_view(t_map_data *data, t_ray *ray, int x);
-void			draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
-unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
-
-void	draw_floor_ceiling(t_map_data *data);
-void	draw_minimap(t_map_data *data);
-
-/* raycasting_utils */
+/* raycasting_utils_bonus */
 float		fix_angle(float angle);
 float		deg_to_rad(float degrees);
 float		get_dist(t_float_v *player, t_float_v *wall_hit);
-int			get_rgba(int r, int g, int b, int a);
 uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y);
+unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
+
+/* pad_map_bonus */
 bool		pad_map(t_map_data *data);
 
-/* TEMPORARY IN MAIN */
+/* moving_bonus */
+void		moving(void *ptr);
+
+/* turn_bonus */
+void		turn_player(t_map_data *data, int keycode);
+void		lookat(t_map_data *data, int dir);
+
+/* 3d drawing_bonus */
+void		draw_view(t_map_data *data, t_ray *ray, int x);
+void		draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
+
+/* 2d_drawing_bonus */
+void		draw_minimap(t_map_data *data);
+
+/* 2d_drawing2_bonus */
+
+/* TEMPORARY IN MAIN *///DELETE
 void		print_struct(t_map_data *data);
 
-/* TEMPORARY IN MAIN */
+/* TEMPORARY IN MAIN */ //DELETE
 void	draw_map(t_map_data *data);
 void	draw_player(t_map_data *data);
 void	draw_nose(t_map_data *data);

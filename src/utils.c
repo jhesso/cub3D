@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:26:46 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 03:01:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/11 18:04:35 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,14 @@ char	**duplicate_map(char **map)
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+int	remove_whitespace(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	return (i);
 }
