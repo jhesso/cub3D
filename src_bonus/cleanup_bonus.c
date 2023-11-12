@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   cleanup_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:03:51 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 02:43:11 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 13:40:01 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	cleanup_mlx_data(t_mlx_data *data)
 {
@@ -46,6 +46,8 @@ void	cleanup(t_map_data *data)
 		free(data->ceiling);
 	if (data->map)
 		free_array(data->map);
+	if (data->map_c)
+		free_array(data->map_c);
 	if (data->mlx_data)
 	{
 		cleanup_mlx_data(data->mlx_data);

@@ -3,199 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   2d_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 11:50:50 by dardangergu      ###   ########.fr       */
+/*   Updated: 2023/11/12 14:52:40 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color)
-{
-	int	block_y;
-	int	block_x;
-
-	block_y = 0;
-
-	while (x > SIZE_B * 5 && x < ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-		x = x - SIZE_B;
-	while (y > SIZE_B * 3 && y < ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-		y = y - SIZE_B;
-	if (x > SIZE_B * 5 && x > ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-		x = x - data->map_w * SIZE_B + 320;
-	if (y > SIZE_B * 3 && y > ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-			y = y - data->map_h * SIZE_B + 192;
-	while (x >= 0 && y >= 0 && block_y < SIZE_P)
-	{
-		block_x = 0;
-		while (block_x < SIZE_P)
-		{
-			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, color);
-			block_x++;
-		}
-		block_y++;
-	}
-}
-
-void	draw_player(t_map_data *data)
-{
-	int	block_y;
-	int	block_x;
-
-	block_y = 0;
-	while ((block_y * SIZE_B) < 10)
-	{
-		block_x = 0;
-		while ((block_x * SIZE_B) < 20)
-		{
-			draw_player_block(data, data->pos.x, data->pos.y, 0xDFFF00);
-			block_x++;
-		}
-		block_y++;
-	}
-}
-
-void	draw_nose(t_map_data *data)
+static void	draw_nose(t_map_data *d, uint32_t color)
 {
 	t_float_v	angle;
 	t_float_v	pos;
 	float		i;
 
-	angle.x = data->dir.x;
-	angle.y = data->dir.y;
-	pos.x = data->pos.x + SIZE_P / 2;
-	pos.y = data->pos.y + SIZE_P / 2;
-	while (pos.x > (SIZE_B * 5) + 2 && pos.x < ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
+	angle.x = d->dir.x;
+	angle.y = d->dir.y;
+	pos.x = d->pos.x + SIZE_P / 2;
+	pos.y = d->pos.y + SIZE_P / 2;
+	while (pos.x > SIZE_B * 5 && pos.x < ((d->map_w - 6) * SIZE_B + (27 / 2)))
 		pos.x = pos.x - SIZE_B;
-	while (pos.y > (SIZE_B * 3) + 2 && pos.y < ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
+	while (pos.y > (SIZE_B * 3) && pos.y < ((d->map_h - 4) * SIZE_B + (27 / 2)))
 		pos.y = pos.y - SIZE_B;
-	if (pos.x > SIZE_B * 5 + 2 && pos.x > ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
-		pos.x = pos.x - data->map_w * SIZE_B + 320;
-	if (pos.y > SIZE_B * 3 + 2 && pos.y > ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
-			pos.y = pos.y - data->map_h * SIZE_B + 192;
+	if (d->map_w > 10 && pos.x > ((d->map_w - 6) * SIZE_B + (27 / 2)))
+		pos.x = pos.x - d->map_w * SIZE_B + 320;
+	if (d->map_h > 6 && pos.y > ((d->map_h - 4) * SIZE_B + (27 / 2)))
+		pos.y = pos.y - d->map_h * SIZE_B + 192;
 	i = 0;
 	while (i < 10 && pos.y > -1 && pos.x > -1)
 	{
-		mlx_put_pixel(data->mlx_data->window, pos.x, pos.y, 0xF000FF);
+		mlx_put_pixel(d->mlx_data->window, pos.x, pos.y, color);
 		pos.y += angle.y;
 		pos.x += angle.x;
 		i++;
 	}
 }
 
-static void	draw_blocks(t_map_data *data, float x, float y, uint32_t color)
+static void	draw_player_block(t_map_data *d, float x, float y, uint32_t color)
 {
 	int	block_y;
 	int	block_x;
 
 	block_y = 0;
-	while (block_y < SIZE_B - 1 && color)
+	while (x > SIZE_B * 5 && x < (d->map_w - 6) * SIZE_B + (27 / 2))
+		x = x - SIZE_B;
+	while (y > SIZE_B * 3 && y < (d->map_h - 4) * SIZE_B + (27 / 2))
+		y = y - SIZE_B;
+	if (d->map_w > 10 && x > (d->map_w - 6) * SIZE_B + (27 / 2))
+		x = x - d->map_w * SIZE_B + 320;
+	if (d->map_h > 6 && y > (d->map_h - 4) * SIZE_B + (27 / 2))
+		y = y - d->map_h * SIZE_B + 192;
+	while (x >= 0 && y >= 0 && block_y < SIZE_P)
 	{
 		block_x = 0;
-		while (block_x < SIZE_B - 1)
+		while (block_x < SIZE_P)
 		{
-			mlx_put_pixel(data->mlx_data->window, x + block_x, y + block_y, color);
+			mlx_put_pixel(d->mlx_data->window, x + block_x, y + block_y, color);
 			block_x++;
 		}
 		block_y++;
 	}
 }
 
-static void	get_top_left_y_and_x(t_map_data *data, int *y, int *x, int type)
+static void	draw_player(t_map_data *data)
 {
-	int	pos_x;
-	int	pos_y;
+	int			block_y;
+	int			block_x;
+	uint32_t	color;
 
-	pos_x = ((int)data->pos.x / SIZE_B) + 1;
-	pos_y = ((int)data->pos.y / SIZE_B) + 1;
-	if (type == 1)
+	block_y = 0;
+	color = get_rgba(0, 153, 0, 255);
+	while ((block_y * SIZE_B) < 10)
 	{
-		if (data->map_h > 6 && pos_y > data->map_h - 6 / 2)
-			*y = data->map_h - 6;
-		else if (pos_y > 6 / 2)
-			*y = pos_y - 6 / 2;
-		else
-			*y = 0;
-	}
-	else if (type == 2)
-	{
-		if (data->map_w > 10 && pos_x > data->map_w - 10 / 2)
-			*x = data->map_w - 10;
-		else if (pos_x > 10 / 2)
-			*x = pos_x - 10 / 2;
-		else
-			*x = 0;
-	}
-}
-
-void draw_map_long(t_map_data *data, int row, int column, int x)
-{
-	int y;
-	uint32_t color;
-
-	get_top_left_y_and_x(data, &y, 0, 1);
-	while (data->map[y] && row < 6)
-	{
-		column = 0;
-		get_top_left_y_and_x(data, 0, &x, 2);
-		while (column < 10)
+		block_x = 0;
+		while ((block_x * SIZE_B) < 20)
 		{
-			if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
-				color = 0x808080;
-			else if (x < (int)ft_strlen(data->map[y]) \
-				&& (data->map[y][x] == '0' || (data->map[y][x] != ' ' \
-				&& ft_strrchr("NSWE", data->map[y][x]))))
-				color = 0x0000FF;
-			else
-				break ;
-			draw_blocks(data, column * SIZE_B, row * SIZE_B, color);
-			x++;
-			column++;
+			draw_player_block(data, data->pos.x, data->pos.y, color);
+			block_x++;
 		}
-		y++;
-		row++;
-	}
-}
-
-
-void	draw_map(t_map_data *data)
-{
-	int x;
-	int y;
-	uint32_t color;
-
-	x = 0;
-	y = 0;
-	if (data->map_w > 10 || data->map_h > 6)
-		draw_map_long(data, 0, 0, 0);
-	else
-	{
-		while (data->map[y] && y < 6)
-		{
-			x = 0;
-			while (data->map[y][x] && x < 10)
-			{
-				if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
-					color = 0x808080;
-				else if (x < (int)ft_strlen(data->map[y]) \
-					&& (data->map[y][x] == '0' || (data->map[y][x] != ' ' \
-					&& ft_strrchr("NSWE", data->map[y][x]))))
-					color = 0x0000FF;
-				else
-					break;
-				draw_blocks(data, x * SIZE_B, y * SIZE_B, color);
-				x++;
-			}
-			y++;
-		}
+		block_y++;
 	}
 }
 
 void	draw_minimap(t_map_data *data)
 {
-	draw_map(data);
+	if (data->map_w > 10 || data->map_h > 6)
+		draw_map_big(data, 0, 0, 0);
+	else
+		draw_map_small(data, 0, 0);
 	draw_player(data);
-	draw_nose(data);
+	draw_nose(data, get_rgba(0, 153, 0, 255));
 }

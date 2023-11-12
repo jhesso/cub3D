@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 04:07:52 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 14:49:11 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y)
 	return (*color);
 }
 
-unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
+uint32_t	get_pixel(t_mlx_data *mlx, int x, int y, int dir)
 {
 	uint32_t		color;
 	mlx_texture_t	*texture;

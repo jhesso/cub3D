@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:57:05 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 14:57:54 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ static char	*ft_join(char *line, char *buf)
 	return (new_line);
 }
 
+static char	*join_str(char *line, int *flag, char *buf)
+{
+	if (*flag)
+	{
+		line = ft_join(line, buf);
+		if (!line)
+			return (print_error_message(X_MALLOC));
+	}
+	else
+	{
+		line = ft_strdup(buf);
+		if (!line)
+			return (print_error_message(X_MALLOC));
+		*(flag) = 1;
+	}
+	return (line);
+}
+
 static char	*read_file(int fd, char *buf, int flag, int ret)
 {
 	char	*line;
@@ -46,19 +64,7 @@ static char	*read_file(int fd, char *buf, int flag, int ret)
 			return (print_error_message(X_READ_FILE));
 		}
 		buf[ret] = '\0';
-		if (flag)
-		{
-			line = ft_join(line, buf);
-			if (!line)
-				return (print_error_message(X_MALLOC));
-		}
-		else
-		{
-			line = ft_strdup(buf);
-			if (!line)
-				return (print_error_message(X_MALLOC));
-			flag = 1;
-		}
+		join_str(line, &flag, buf);
 	}
 	free(buf);
 	return (line);

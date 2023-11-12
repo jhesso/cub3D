@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 18:29:00 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:49:15 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ float		fix_angle(float angle);
 float		deg_to_rad(float degrees);
 float		get_dist(t_float_v *player, t_float_v *wall_hit);
 uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y);
-unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
+uint32_t	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
 
 /* pad_map */
 bool		pad_map(t_map_data *data);
@@ -224,13 +224,5 @@ bool		check_validity(t_map_data *data, float x, float y);
 /* 3d drawing */
 void		draw_view(t_map_data *data, t_ray *ray, int x);
 void		draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
-
-/* TEMPORARY IN MAIN */ //DELETE
-void		print_struct(t_map_data *data);
-
-/* TEMPORARY IN MAIN */ //DELETE
-void		draw_map(t_map_data *data);
-void		draw_player(t_map_data *data);
-void		draw_nose(t_map_data *data);
 
 #endif

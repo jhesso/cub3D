@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 18:28:55 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:50:42 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_map_data
 	t_float_v	dir;
 	float		angle;
 	char		**map;
+	char		**map_c;
 	int			map_w;
 	int			map_h;
 	t_mlx_data	*mlx_data;
@@ -208,7 +209,7 @@ float		fix_angle(float angle);
 float		deg_to_rad(float degrees);
 float		get_dist(t_float_v *player, t_float_v *wall_hit);
 uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y);
-unsigned int	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
+uint32_t	get_pixel(t_mlx_data *mlx, int x, int y, int dir);
 
 /* pad_map_bonus */
 bool		pad_map(t_map_data *data);
@@ -229,13 +230,7 @@ void		draw_walls(t_map_data *data, int x, t_ray *ray, int dir);
 void		draw_minimap(t_map_data *data);
 
 /* 2d_drawing2_bonus */
-
-/* TEMPORARY IN MAIN *///DELETE
-void		print_struct(t_map_data *data);
-
-/* TEMPORARY IN MAIN */ //DELETE
-void		draw_map(t_map_data *data);
-void		draw_player(t_map_data *data);
-void		raw_nose(t_map_data *data);
+void		draw_map_small(t_map_data *data, int x, int y);
+void		draw_map_big(t_map_data *data, int row, int column, int x);
 
 #endif
