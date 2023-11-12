@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2d_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 11:50:50 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,15 @@ static void	draw_player_block(t_map_data *data, float x, float y, uint32_t color
 	int	block_x;
 
 	block_y = 0;
-	printf("x: %f\n", x);
 
 	while (x > SIZE_B * 5 && x < ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
 		x = x - SIZE_B;
 	while (y > SIZE_B * 3 && y < ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
 		y = y - SIZE_B;
-	if (x > ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-	{
-		while (x > 320)
-			x = x - 210;
-	}
-	if (y > ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
-	{
-		while (y > 160)
-			y = y - 126;
-	}
+	if (x > SIZE_B * 5 && x > ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
+		x = x - data->map_w * SIZE_B + 320;
+	if (y > SIZE_B * 3 && y > ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)))
+			y = y - data->map_h * SIZE_B + 192;
 	while (x >= 0 && y >= 0 && block_y < SIZE_P)
 	{
 		block_x = 0;
@@ -74,11 +67,14 @@ void	draw_nose(t_map_data *data)
 	angle.y = data->dir.y;
 	pos.x = data->pos.x + SIZE_P / 2;
 	pos.y = data->pos.y + SIZE_P / 2;
-	// printf("X : %f\n", pos.x);make
-	while (pos.x > (SIZE_B * 5) + 2)
+	while (pos.x > (SIZE_B * 5) + 2 && pos.x < ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
 		pos.x = pos.x - SIZE_B;
-	while (pos.y > (SIZE_B * 3) + 2)
+	while (pos.y > (SIZE_B * 3) + 2 && pos.y < ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
 		pos.y = pos.y - SIZE_B;
+	if (pos.x > SIZE_B * 5 + 2 && pos.x > ((data->map_w - 6) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
+		pos.x = pos.x - data->map_w * SIZE_B + 320;
+	if (pos.y > SIZE_B * 3 + 2 && pos.y > ((data->map_h - 4) * SIZE_B + ((SIZE_B - SIZE_P) / 2)) + 2)
+			pos.y = pos.y - data->map_h * SIZE_B + 192;
 	i = 0;
 	while (i < 10 && pos.y > -1 && pos.x > -1)
 	{
