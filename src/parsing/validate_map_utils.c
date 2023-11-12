@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:19:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 12:49:17 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:19:59 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ bool	find_wall(char **map, t_vector pos)
 
 	row = pos.y;
 	col = pos.x;
-	if (map[row][0] == '0')
+	if (map[row][0] == '0' || map[row][0] == 'N' || map[row][0] == 'S' \
+		|| map[row][0] == 'E' || map[row][0] == 'W')
 		return (false);
 	if (map[row][col + 1] == '\0' || map[row][col + 1] == ' ')
 		return (false);

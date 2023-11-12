@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 19:39:45 by dgerguri          #+#    #+#              #
-#    Updated: 2023/11/11 18:28:31 by dgerguri         ###   ########.fr        #
+#    Updated: 2023/11/12 15:48:46 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_B		=	cub3D_bonus
 
 # Name, compiler, and flags
 CC = cc
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -ggdb3
+CFLAGS		=	-Wall -Wextra -Werror
 
 # Directories
 LIBFT_DIR	=	libft/
@@ -81,7 +81,6 @@ all: $(NAME)
 
 # Build the MLX library if needed
 $(MLX):
-	git submodule update --init --recursive
 	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
 # Compile source files to object files

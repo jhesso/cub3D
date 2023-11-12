@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_colors.c                                     :+:      :+:    :+:   */
+/*   parse_colors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 14:14:45 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 17:41:08 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 17:55:39 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,23 @@ static void	check_and_assign(t_map_data *data, char *str, bool *error, char c)
 	char	**rgb;
 	int		i;
 
-	i = 0;
+	i = -1;
 	count_commas(str, error);
 	if (!(*error))
 		rgb = ft_split(str, ',');
 	if (c == 'C' && !(*error))
 	{
-		while (rgb[i] && !(*error))
-		{
+		while (rgb[++i] && !(*error))
 			if (!check_digit(rgb[i], error))
 				data->ceiling[i] = ft_atoi(rgb[i]);
-			i++;
-		}
+		free_array(rgb);
 	}
 	else if (c == 'F' && !(*error))
 	{
-		while (rgb[i] && !(*error))
-		{
+		while (rgb[++i] && !(*error))
 			if (!check_digit(rgb[i], error))
 				data->floor[i] = ft_atoi(rgb[i]);
-			i++;
-		}
+		free_array(rgb);
 	}
 }
 

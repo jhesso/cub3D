@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:24:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 12:47:52 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:38:14 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static bool	check_first_and_last(char **map)
+{
+	int		row;
+	int		col;
+	char	c;
+
+	row = 0;
+	col = 0;
+	while (map[row][col])
+	{
+		c = map[row][col];
+		if (c != '1' && c != ' ')
+			return (false);
+		col++;
+	}
+	while (map[row + 1])
+		row++;
+	row--;
+	col = 0;
+	while (map[row][col])
+	{
+		c = map[row][col];
+		if (c != '1' && c != ' ')
+			return (false);
+		col++;
+	}
+	return (true);
+}
 
 static bool	check_chars(t_map_data *data, int row, int col, bool p_start)
 {
@@ -66,6 +95,8 @@ static bool	check_walls(t_map_data *data, bool stop)
 	t_vector	last_point;
 	t_vector	point;
 
+	if (!check_first_and_last(data->map))
+		return (false);
 	remove_newline(data->map);
 	tmp_map = duplicate_map(data->map);
 	last_point = get_last_point(tmp_map);
@@ -78,13 +109,21 @@ static bool	check_walls(t_map_data *data, bool stop)
 		point = find_empty_space(tmp_map);
 	}
 	if (!map_filled(tmp_map))
+	{
+		free_array(tmp_map);
 		return (false);
+	}
 	free_array(tmp_map);
 	return (true);
 }
 
 bool	validate_map(t_map_data *data)
 {
+	get_map_size(data);
+	if (data->map_w > 100)
+		return (error_message(X_MAP_TOO_BIG));
+	if (data->map_h > 100)
+		return (error_message(X_MAP_TOO_BIG));
 	if (!check_chars(data, 0, 0, false))
 		return (false);
 	if (!check_walls(data, false))

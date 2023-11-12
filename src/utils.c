@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:26:46 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/11 18:04:35 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:13:44 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,20 @@ int	remove_whitespace(char *str)
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	return (i);
+}
+
+void	get_map_size(t_map_data *data)
+{
+	int	i;
+	int	w;
+
+	i = 0;
+	while (data->map[i])
+	{
+		w = ft_strlen(data->map[i]);
+		if (w > data->map_w)
+			data->map_w = w;
+		i++;
+	}
+	data->map_h = i;
 }

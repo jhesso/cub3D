@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:57:05 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 14:58:00 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:13:07 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,12 @@ static char	*ft_join(char *line, char *buf)
 	return (new_line);
 }
 
-static char	*join_str(char *line, int *flag, char *buf)
+static char	*read_fail(char *buf, char *line)
 {
-	if (*flag)
-	{
-		line = ft_join(line, buf);
-		if (!line)
-			return (print_error_message(X_MALLOC));
-	}
-	else
-	{
-		line = ft_strdup(buf);
-		if (!line)
-			return (print_error_message(X_MALLOC));
-		*(flag) = 1;
-	}
-	return (line);
+	free (buf);
+	if (line)
+		free(line);
+	return (print_error_message(X_READ_FILE));
 }
 
 static char	*read_file(int fd, char *buf, int flag, int ret)
@@ -57,14 +47,21 @@ static char	*read_file(int fd, char *buf, int flag, int ret)
 	{
 		ret = read(fd, buf, BUFF);
 		if (ret == -1)
-		{
-			free (buf);
-			if (line)
-				free(line);
-			return (print_error_message(X_READ_FILE));
-		}
+			return (read_fail(buf, line));
 		buf[ret] = '\0';
-		join_str(line, &flag, buf);
+		if (flag)
+		{
+			line = ft_join(line, buf);
+			if (!line)
+				return (print_error_message(X_MALLOC));
+		}
+		else
+		{
+			line = ft_strdup(buf);
+			if (!line)
+				return (print_error_message(X_MALLOC));
+			flag = 1;
+		}
 	}
 	free(buf);
 	return (line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:14:20 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 13:36:51 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:36:46 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ static bool	init_textures(t_map_data *data)
 	if (!data->mlx_data->west)
 		return (error_message(X_MLX));
 	return (true);
-}
-
-static void	get_map_size(t_map_data *data)
-{
-	int	i;
-	int	w;
-
-	i = 0;
-	while (data->map[i])
-	{
-		w = ft_strlen(data->map[i]);
-		if (w > data->map_w)
-			data->map_w = w;
-		i++;
-	}
-	data->map_h = i;
 }
 
 bool	init_mlx(t_map_data *d)

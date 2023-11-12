@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   2d_drawing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:40:17 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 14:52:40 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:40:19 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-static void	draw_nose(t_map_data *d, uint32_t color)
-{
-	t_float_v	angle;
-	t_float_v	pos;
-	float		i;
-
-	angle.x = d->dir.x;
-	angle.y = d->dir.y;
-	pos.x = d->pos.x + SIZE_P / 2;
-	pos.y = d->pos.y + SIZE_P / 2;
-	while (pos.x > SIZE_B * 5 && pos.x < ((d->map_w - 6) * SIZE_B + (27 / 2)))
-		pos.x = pos.x - SIZE_B;
-	while (pos.y > (SIZE_B * 3) && pos.y < ((d->map_h - 4) * SIZE_B + (27 / 2)))
-		pos.y = pos.y - SIZE_B;
-	if (d->map_w > 10 && pos.x > ((d->map_w - 6) * SIZE_B + (27 / 2)))
-		pos.x = pos.x - d->map_w * SIZE_B + 320;
-	if (d->map_h > 6 && pos.y > ((d->map_h - 4) * SIZE_B + (27 / 2)))
-		pos.y = pos.y - d->map_h * SIZE_B + 192;
-	i = 0;
-	while (i < 10 && pos.y > -1 && pos.x > -1)
-	{
-		mlx_put_pixel(d->mlx_data->window, pos.x, pos.y, color);
-		pos.y += angle.y;
-		pos.x += angle.x;
-		i++;
-	}
-}
 
 static void	draw_player_block(t_map_data *d, float x, float y, uint32_t color)
 {
@@ -93,5 +65,4 @@ void	draw_minimap(t_map_data *data)
 	else
 		draw_map_small(data, 0, 0);
 	draw_player(data);
-	draw_nose(data, get_rgba(0, 153, 0, 255));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 14:50:42 by dgerguri         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:36:19 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define X_EMPTY_LINES "Error: Map has empty lines!\n"
 # define X_MAP_NOT_CLOSED "Error: Map not closed with walls!\n"
 # define X_MLX "Error: MLX has failed!\n"
+# define X_MAP_TOO_BIG "Error: Map too big\n"
 
 /******************************************************************************/
 /*								Structs 									  */
@@ -146,6 +147,7 @@ char		**free_array(char **ret);
 char		**duplicate_map(char **map);
 int			get_rgba(int r, int g, int b, int a);
 int			remove_whitespace(char *str);
+void		get_map_size(t_map_data *data);
 
 /* error_bonus*/
 char		*print_error_message(char *message);

@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/11/11 02:51:22 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/11/12 17:03:58 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 	line_height = clip_line_height(line_height);
 	pane_y_color[0] = (HEIGHT_W - line_height) / 2;
 	drawn_count = 0;
-	while (drawn_count++ < line_height)
+	while (drawn_count++ < line_height - 1)
 	{
 		pane_y_color[1] = get_pixel(data->mlx_data, texture.x, texture.y, dir);
 		mlx_put_pixel(data->mlx_data->window, x, pane_y_color[0],
@@ -72,13 +72,13 @@ void	draw_walls(t_map_data *data, int x, t_ray *ray, int dir)
 static int	get_dir(t_ray *ray)
 {
 	if (ray->shortest == 'h' && (ray->angle >= 0 && ray->angle < 180))
-		return (SOUTH);
-	else if (ray->shortest == 'h' && (ray->angle >= 180 && ray->angle < 360))
 		return (NORTH);
+	else if (ray->shortest == 'h' && (ray->angle >= 180 && ray->angle < 360))
+		return (SOUTH);
 	else if (ray->shortest == 'v' && (ray->angle >= 90 && ray->angle < 270))
-		return (EAST);
-	else if (ray->shortest == 'v' && (ray->angle >= 270 || ray->angle < 90))
 		return (WEST);
+	else if (ray->shortest == 'v' && (ray->angle >= 270 || ray->angle < 90))
+		return (EAST);
 	return (-1);
 }
 
