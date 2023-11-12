@@ -1,9 +1,0 @@
-
-1. If no player exists it is not valid, however, it is still valid for us!
-
-TO AGREE ON:
-	1. if we want the edges to have walls, or not!
-
-!if there is time:
-	check the error messages for the elements!
-		1. check_element_exists function!
