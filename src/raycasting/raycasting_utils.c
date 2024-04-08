@@ -6,7 +6,7 @@
 /*   By: dgerguri <dgerguri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:22:23 by jhesso            #+#    #+#             */
-/*   Updated: 2024/04/08 16:40:40 by dgerguri         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:44:58 by dgerguri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ uint32_t	get_pixel_color(mlx_texture_t *img, uint32_t x, uint32_t y)
 {
 	uint32_t	color;
 
-	char            *a;
+	char		*a;
 
 	a = (char *)(img->pixels + (x + (y * img->width)) * 4);
     color = *(unsigned int *)a;
