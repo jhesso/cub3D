@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dardangerguri <dardangerguri@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:02:23 by dgerguri          #+#    #+#             */
-/*   Updated: 2023/11/12 17:36:19 by jhesso           ###   ########.fr       */
+/*   Updated: 2025/01/13 21:19:07 by dardangergu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@
 
 # define WIDTH_W 1920
 # define HEIGHT_W 1080
-# define SIZE_B 32
+# define SIZE_B 512
 # define SIZE_P 5
 # define PI 3.141592
 # define RAD 0.0174533
-# define SPEED 3
+# define SPEED 10
 
 /******************************************************************************/
 /*								Error Messages	 							  */
